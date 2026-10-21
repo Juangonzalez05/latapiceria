@@ -1,0 +1,249 @@
+---
+import Icon from './Icon.astro';
+import { waBase } from '../lib/whatsapp';
+
+const needs = ['Retapizar', 'Restaurar', 'Mueble a la medida', 'Aún no sé'];
+const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Comedor', 'Otro'];
+---
+
+<section id="cotizar" class="section-y bg-esmeralda text-crema on-dark" aria-labelledby="cotizar-titulo">
+  <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+    <div class="lg:col-span-5">
+      <h2 id="cotizar-titulo" class="text-h2 !text-crema" data-reveal>Tu cotización en tres pasos</h2>
+      <p class="lead mt-5 max-w-md" data-reveal>
+        Responde tres preguntas y armamos el mensaje por ti. Lo envías por WhatsApp y te respondemos con los siguientes pasos.
+      </p>
+    </div>
+
+    <form class="quote rounded-card bg-crema-50 p-5 text-negro shadow-soft sm:p-10 lg:col-span-7" novalidate data-quote data-wa-base={waBase} data-reveal>
+      <div class="mb-8">
+        <div class="label flex justify-between">
+          <span data-q-label>Paso 1 de 3</span>
+          <span data-q-name>Qué necesitas</span>
+        </div>
+        <div class="mt-3 h-[3px] overflow-hidden rounded-full bg-negro/10" aria-hidden="true">
+          <div class="q-bar h-full origin-left bg-terra" style="transform: scaleX(0.3333)" data-q-bar></div>
+        </div>
+      </div>
+
+      <!-- Paso 1 -->
+      <fieldset data-q-step="1" data-q-title="Qué necesitas">
+        <legend class="mb-6 text-h3">¿Qué necesitas?</legend>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {needs.map((n) => (
+            <label class="choice">
+              <input type="radio" name="servicio" value={n} class="peer sr-only" required />
+              <span class="choice-box">{n}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <!-- Paso 2 -->
+      <fieldset data-q-step="2" data-q-title="Tipo de mueble" hidden>
+        <legend class="mb-6 text-h3">¿Qué tipo de mueble?</legend>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {furniture.map((f) => (
+            <label class="choice">
+              <input type="radio" name="mueble" value={f} class="peer sr-only" required />
+              <span class="choice-box">{f}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <!-- Paso 3 -->
+      <fieldset data-q-step="3" data-q-title="Medidas y nombre" hidden>
+        <legend class="mb-6 text-h3">Unos últimos datos</legend>
+        <div class="grid gap-5">
+          <div>
+            <label for="q-medidas" class="field-label">Medidas aproximadas <span class="font-normal text-gris">(opcional)</span></label>
+            <input id="q-medidas" name="medidas" type="text" class="field" placeholder="Ej.: 2,20 m de largo x 90 cm de fondo" autocomplete="off" />
+          </div>
+          <div>
+            <label for="q-nombre" class="field-label">Tu nombre</label>
+            <input id="q-nombre" name="nombre" type="text" class="field" required autocomplete="given-name" aria-describedby="q-error" />
+          </div>
+          <div>
+            <label for="q-detalle" class="field-label">Cuéntanos más <span class="font-normal text-gris">(opcional)</span></label>
+            <textarea id="q-detalle" name="detalle" rows="3" class="field resize-y" placeholder="Color o tela que te gusta, estado del mueble, fecha ideal…"></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <p id="q-error" class="mt-5 min-h-6 text-small font-medium text-terra-700" aria-live="assertive" data-q-error></p>
+
+      <div class="mt-4 flex items-center justify-between gap-3">
+        <button type="button" class="link-arrow invisible px-1 text-negro" data-q-back>
+          <Icon name="arrow-left" size={16} />
+          Atrás
+        </button>
+        <button type="button" class="btn btn-primary" data-q-next>
+          Siguiente
+          <Icon name="arrow" size={16} class="btn-arrow" />
+        </button>
+        <button type="submit" class="btn btn-primary" data-q-submit hidden>
+          <Icon name="whatsapp" size={20} />
+          Enviar por WhatsApp
+        </button>
+      </div>
+      <p class="mt-6 text-small text-gris" data-q-done hidden>
+        Abrimos WhatsApp en otra pestaña. ¿No se abrió? <a class="font-semibold text-terra-700 underline" href="#" target="_blank" rel="noopener" data-q-fallback>Toca aquí</a>.
+      </p>
+    </form>
+  </div>
+</section>
+
+<style>
+  /* La tarjeta es clara dentro de una sección oscura: el rótulo vuelve al tono legible sobre claro. */
+  .quote :global(.label) {
+    color: var(--color-sepia-700);
+  }
+  .choice {
+    display: block;
+    cursor: pointer;
+  }
+  .choice-box {
+    display: flex;
+    align-items: center;
+    min-height: 3.5rem;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid rgb(6 6 6 / 0.18);
+    border-radius: 10px;
+    font-weight: 500;
+    transition:
+      border-color 250ms,
+      background-color 250ms,
+      color 250ms;
+  }
+  .choice:hover .choice-box {
+    border-color: var(--color-negro);
+  }
+  .choice input:checked + .choice-box {
+    background: var(--color-esmeralda);
+    border-color: var(--color-esmeralda);
+    color: var(--color-crema);
+  }
+  .choice input:focus-visible + .choice-box {
+    outline: 2px solid var(--color-terra-700);
+    outline-offset: 3px;
+  }
+  .field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  .field {
+    width: 100%;
+    min-height: 3.1rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-crema);
+    border: 1px solid rgb(6 6 6 / 0.18);
+    border-radius: 10px;
+    transition: border-color 250ms;
+  }
+  .field::placeholder {
+    color: var(--color-gris);
+    opacity: 1;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-esmeralda);
+    box-shadow: 0 0 0 1px var(--color-esmeralda);
+  }
+  .field[aria-invalid='true'] {
+    border-color: var(--color-terra-700);
+  }
+  .q-bar {
+    transition: transform 500ms var(--ease-salida);
+  }
+  fieldset:not([hidden]) {
+    animation: fade-up 450ms var(--ease-salida) both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    fieldset:not([hidden]) {
+      animation: fade-only 150ms linear both;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-quote]');
+  if (form) {
+    const steps = [...form.querySelectorAll<HTMLFieldSetElement>('[data-q-step]')];
+    const back = form.querySelector<HTMLButtonElement>('[data-q-back]')!;
+    const next = form.querySelector<HTMLButtonElement>('[data-q-next]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-q-submit]')!;
+    const bar = form.querySelector<HTMLElement>('[data-q-bar]')!;
+    const label = form.querySelector<HTMLElement>('[data-q-label]')!;
+    const name = form.querySelector<HTMLElement>('[data-q-name]')!;
+    const error = form.querySelector<HTMLElement>('[data-q-error]')!;
+    const done = form.querySelector<HTMLElement>('[data-q-done]')!;
+    const fallback = form.querySelector<HTMLAnchorElement>('[data-q-fallback]')!;
+    let current = 0;
+
+    const val = (n: string) => (new FormData(form).get(n) as string | null)?.trim() ?? '';
+
+    const go = (i: number, focus = true) => {
+      current = i;
+      steps.forEach((s, k) => (s.hidden = k !== i));
+      back.classList.toggle('invisible', i === 0);
+      next.hidden = i === steps.length - 1;
+      submit.hidden = i !== steps.length - 1;
+      bar.style.transform = `scaleX(${(i + 1) / steps.length})`;
+      label.textContent = `Paso ${i + 1} de ${steps.length}`;
+      name.textContent = steps[i].dataset.qTitle ?? '';
+      error.textContent = '';
+      if (focus) steps[i].querySelector<HTMLElement>('input, textarea')?.focus();
+    };
+
+    const validate = () => {
+      if (current === 0 && !val('servicio')) return 'Elige una opción para continuar.';
+      if (current === 1 && !val('mueble')) return 'Elige el tipo de mueble para continuar.';
+      if (current === 2 && !val('nombre')) {
+        form.querySelector('#q-nombre')!.setAttribute('aria-invalid', 'true');
+        return 'Escribe tu nombre para saber cómo saludarte.';
+      }
+      return '';
+    };
+
+    next.addEventListener('click', () => {
+      const msg = validate();
+      if (msg) return void (error.textContent = msg);
+      go(current + 1);
+    });
+    back.addEventListener('click', () => go(current - 1));
+
+    // Con clic/tap avanza solo al elegir en pasos 1 y 2 (con teclado no, para poder recorrer las opciones).
+    let byPointer = false;
+    form.addEventListener('pointerdown', () => (byPointer = true));
+    form.addEventListener('keydown', () => (byPointer = false));
+    form.addEventListener('change', (e) => {
+      const t = e.target as HTMLInputElement;
+      if (t.type === 'radio' && current < 2 && byPointer) setTimeout(() => go(current + 1), 260);
+    });
+    form.querySelector('#q-nombre')!.addEventListener('input', (e) => (e.target as HTMLElement).removeAttribute('aria-invalid'));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = validate();
+      if (msg) return void (error.textContent = msg);
+      const lines = [
+        `Hola, soy ${val('nombre')}. Quiero una cotización:`,
+        `• Necesito: ${val('servicio')}`,
+        `• Mueble: ${val('mueble')}`,
+        val('medidas') ? `• Medidas aproximadas: ${val('medidas')}` : null,
+        val('detalle') ? `• Detalles: ${val('detalle')}` : null,
+        '',
+        '(Enviado desde la página web)',
+      ].filter((l): l is string => l !== null);
+      const href = `${form.dataset.waBase}?text=${encodeURIComponent(lines.join('\n'))}`;
+      fallback.href = href;
+      done.hidden = false;
+      window.open(href, '_blank', 'noopener');
+    });
+
+    go(0, false);
+  }
+</script>

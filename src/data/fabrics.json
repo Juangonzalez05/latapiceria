@@ -1,0 +1,62 @@
+[
+  {
+    "id": "boucle-taupe",
+    "name": "Bouclé taupe",
+    "family": "Bouclé",
+    "swatch": "#6d6058",
+    "image": "tela-boucle-taupe",
+    "alt": "Tela bouclé color taupe con textura de rizo",
+    "summary": "Textura de rizo suave al tacto, cálida y con mucho carácter. Ideal para sillones y piezas protagonistas.",
+    "uses": ["Sillones", "Butacas", "Cabeceros"]
+  },
+  {
+    "id": "chenilla-oliva",
+    "name": "Chenilla oliva",
+    "family": "Chenilla",
+    "swatch": "#5c6544",
+    "image": "muestrario-verde",
+    "alt": "Muestras de tela chenilla y tejido en tonos oliva",
+    "summary": "Verde profundo con brillo sutil. Aporta calidez y se ve elegante con maderas claras.",
+    "uses": ["Sofás", "Camas", "Sillas de comedor"]
+  },
+  {
+    "id": "tejido-grafito",
+    "name": "Tejido grafito",
+    "family": "Tejido plano",
+    "swatch": "#4b4c4e",
+    "image": "tela-grafito",
+    "alt": "Detalle de costura en tela tejida color grafito",
+    "summary": "Tejido firme y sobrio en gris oscuro. Disimula el uso diario y combina con casi todo.",
+    "uses": ["Sofás", "Cabeceros", "Uso diario"]
+  },
+  {
+    "id": "tejido-perla",
+    "name": "Tejido perla",
+    "family": "Tejido plano",
+    "swatch": "#c9c6bf",
+    "image": "tela-perla",
+    "alt": "Primer plano de tela tejida color perla en el borde de un cojín",
+    "summary": "Gris muy claro y luminoso. Da amplitud a los espacios y resalta las líneas del mueble.",
+    "uses": ["Sofás modulares", "Cabeceros", "Espacios con luz"]
+  },
+  {
+    "id": "lino-arena",
+    "name": "Arena",
+    "family": "Textura lino",
+    "swatch": "#dcd6cb",
+    "image": "tela-arena",
+    "alt": "Cabecero tapizado en tela color arena con ribete",
+    "summary": "Tono neutro y natural con aspecto de lino. Calma visual para habitaciones y salas.",
+    "uses": ["Cabeceros", "Camas", "Sillas"]
+  },
+  {
+    "id": "boucle-terracota",
+    "name": "Bouclé terracota",
+    "family": "Bouclé",
+    "swatch": "#c4572f",
+    "image": "sofa-terracota-taller",
+    "alt": "Módulo de sofá tapizado en bouclé terracota en el taller",
+    "summary": "Color intenso y textura envolvente para una pieza que se roba las miradas.",
+    "uses": ["Sofás de diseño", "Puffs", "Butacas"]
+  }
+]

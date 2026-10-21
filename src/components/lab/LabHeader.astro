@@ -1,0 +1,42 @@
+---
+// Header de prototipo para el laboratorio de heros (no es el header real del sitio).
+// tone="light": tinta oscura sobre fondo claro desde el primer pixel.
+// tone="overlay": sobre foto, con velo superior propio para garantizar contraste.
+import { Image } from 'astro:assets';
+import logoDark from '../../assets/brand/logo-compact-dark.png';
+import logoLight from '../../assets/brand/logo-compact-light.png';
+import Icon from '../Icon.astro';
+import { waLink } from '../../lib/whatsapp';
+
+interface Props {
+  tone?: 'light' | 'overlay';
+}
+const { tone = 'light' } = Astro.props;
+const links = ['Servicios', 'Proceso', 'Proyectos', 'Telas', 'Contacto'];
+const dark = tone === 'light';
+---
+
+<header class:list={['lab-header relative z-20', dark ? 'text-negro' : 'text-crema']}>
+  <div class="container-x flex h-[4.25rem] items-center justify-between gap-6 lg:h-[5.25rem]">
+    <a href="#" class="block h-10 shrink-0 lg:h-12" aria-label="La Tapicería, inicio">
+      <Image src={dark ? logoDark : logoLight} alt="" class="h-full w-auto" widths={[140, 280]} sizes="140px" loading="eager" />
+    </a>
+    <nav aria-label="Principal (prototipo)" class="hidden lg:block">
+      <ul class="flex items-center gap-9 text-[0.95rem] font-medium">
+        {links.map((l) => <li><a href="#" class="link-line">{l}</a></li>)}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a
+        href={waLink()}
+        class:list={['btn !min-h-11 !px-5 hidden sm:inline-flex', dark ? 'btn-primary' : 'btn-light']}
+      >
+        <Icon name="whatsapp" size={18} />
+        Cotizar
+      </a>
+      <button type="button" class="grid size-11 place-items-center rounded-full lg:hidden" aria-label="Abrir menú">
+        <Icon name="menu" size={24} />
+      </button>
+    </div>
+  </div>
+</header>

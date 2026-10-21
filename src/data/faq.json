@@ -1,0 +1,30 @@
+[
+  {
+    "q": "¿Cómo pido una cotización?",
+    "a": "Escríbenos por WhatsApp con fotos del mueble o de tu espacio y unas medidas aproximadas. También puedes usar el cotizador de esta página: arma el mensaje por ti."
+  },
+  {
+    "q": "¿Qué muebles retapizan?",
+    "a": "Sofás, sillas, camas y cabeceros, entre otros. Si tienes una pieza especial, cuéntanos y la revisamos."
+  },
+  {
+    "q": "¿Puedo ver las telas antes de decidir?",
+    "a": "Sí. Elige la que te guste en la sección de telas y pídenos la muestra por WhatsApp.",
+    "todo": "Confirmar si la muestra tiene costo y cómo se entrega"
+  },
+  {
+    "q": "¿Van hasta mi casa a tomar medidas?",
+    "a": "Sí, la visita y toma de medidas hace parte de nuestro proceso.",
+    "todo": "Zonas de cobertura y costo de la visita"
+  },
+  {
+    "q": "¿Cuánto tarda un trabajo?",
+    "a": "Depende del tipo de mueble y de la tela elegida. Te damos una fecha estimada en la propuesta.",
+    "todo": "Rangos de tiempo reales por tipo de trabajo"
+  },
+  {
+    "q": "¿Cómo son los pagos y la garantía?",
+    "a": "Te explicamos las condiciones en la propuesta, antes de empezar.",
+    "todo": "Anticipo, medios de pago y garantía"
+  }
+]

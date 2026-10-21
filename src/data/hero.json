@@ -1,0 +1,13 @@
+{
+  "_doc": "Hero (concepto A · editorial enmarcado). titleLines: cada línea es un renglón; la última va en itálica. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
+  "titleLines": ["Tu mueble,", "como siempre", "lo imaginaste"],
+  "subtitle": "Retapizamos, restauramos y fabricamos muebles a la medida. Cuéntanos tu idea y la llevamos a tu espacio.",
+  "ctaPrimary": "Cotizar por WhatsApp",
+  "ctaMessage": "Hola, quiero cotizar un trabajo con La Tapicería.",
+  "ctaSecondary": "Ver proyectos",
+  "image": "hero-arco",
+  "imageAlt": "Sofá modular claro en medio de un camino entre árboles",
+  "detail": "tapizando-verde",
+  "detailAlt": "Manos de tapicero ajustando la tela de un sillón",
+  "trust": ["Diseño y producción propia", "Retapizado · Restauración · A la medida", "Atención por WhatsApp"]
+}

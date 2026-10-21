@@ -1,0 +1,324 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/literata/wght.css';
+@import '@fontsource-variable/literata/wght-italic.css';
+@import '@fontsource-variable/figtree/wght.css';
+
+/*
+  Sistema visual de La Tapicería (ver AUDITORIA.md §3).
+  Paleta oficial de ./brand + derivados solo para contraste AA. Nada de tonos ajenos.
+*/
+@theme {
+  /* Marca */
+  --color-negro: #060606;
+  --color-esmeralda: #2e3d35;
+  --color-champana: #cfc3ab;
+  --color-crema: #eaeae5;
+  --color-menta: #979a83;
+  --color-terra: #a86639;
+  --color-sepia: #9b764b;
+
+  /* Derivados (contraste y superficies) */
+  --color-tinta: #1d211e; /* texto principal */
+  --color-gris: #55594f; /* texto secundario sobre claros (≥ 5,9:1) */
+  --color-esmeralda-800: #26332c;
+  --color-esmeralda-900: #1f2a24;
+  --color-champana-200: #ddd4c2;
+  --color-crema-50: #f4f3ee;
+  --color-terra-700: #8c5230; /* texto/acento pequeño sobre claros (≥ 5,1:1); campo del cierre */
+  --color-terra-800: #74431f;
+  --color-sepia-700: #6f522f; /* sepia legible en texto pequeño */
+
+  --font-serif: 'Literata Variable', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Figtree Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Escala tipográfica fluida: text-display, text-h2, text-h3, text-lead, text-body, text-small, text-label */
+  --text-display: clamp(2.5rem, 2rem + 3.4vw, 4.6rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.025em;
+  --text-h2: clamp(2rem, 1.55rem + 2.1vw, 3.4rem);
+  --text-h2--line-height: 1.06;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.35rem, 1.2rem + 0.6vw, 1.7rem);
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.01em;
+  --text-lead: clamp(1.1rem, 1.04rem + 0.3vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+  --text-body: 1.0625rem;
+  --text-body--line-height: 1.65;
+  --text-small: 0.9375rem;
+  --text-small--line-height: 1.5;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.3;
+  --text-label--letter-spacing: 0.06em;
+
+  /* Ritmo vertical: py-section, py-section-sm, mb-head */
+  --spacing-section: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+  --spacing-section-sm: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  --spacing-head: clamp(2.5rem, 2rem + 2vw, 4rem);
+
+  /* Formas: píldora en controles, 14px en marcos y tarjetas, arco en imágenes clave */
+  --radius-card: 14px;
+  --shadow-soft: 0 18px 40px -18px rgb(6 6 6 / 0.45);
+
+  --ease-suave: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    interpolate-size: allow-keywords;
+    scrollbar-color: var(--color-sepia) var(--color-crema);
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-crema-50 font-sans text-tinta antialiased;
+    font-size: var(--text-body);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    caret-color: var(--color-terra-700);
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif text-negro;
+    font-weight: 400;
+    text-wrap: balance;
+  }
+  h3 {
+    font-weight: 450;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    @apply bg-champana text-negro;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-terra-700);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-champana);
+  }
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1320px] px-5 sm:px-8 lg:px-12;
+  }
+  .section-y {
+    padding-block: var(--spacing-section);
+  }
+  .section-y-sm {
+    padding-block: var(--spacing-section-sm);
+  }
+
+  /* Tipografía de apoyo */
+  .lead {
+    font-size: var(--text-lead);
+    line-height: 1.6;
+    color: var(--color-gris);
+  }
+  .on-dark .lead {
+    color: rgb(234 234 229 / 0.82);
+  }
+  /* Rótulo de metadatos (categoría, paso). Nunca encima de un titular. */
+  .label {
+    font-family: var(--font-sans);
+    font-size: var(--text-label);
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-sepia-700);
+  }
+  .on-dark .label {
+    color: var(--color-champana);
+  }
+
+  /* Botones: píldora esmeralda (primario), píldora crema (sobre oscuro) */
+  .btn {
+    @apply relative inline-flex min-h-12 items-center justify-center gap-3 rounded-full px-6 py-3 font-sans text-[0.95rem] font-semibold;
+    letter-spacing: 0.01em;
+    transition:
+      background-color 300ms var(--ease-suave),
+      color 300ms var(--ease-suave),
+      box-shadow 300ms var(--ease-suave),
+      transform 200ms var(--ease-suave);
+  }
+  .btn:active {
+    transform: translateY(1px);
+  }
+  .btn-primary {
+    @apply bg-esmeralda text-crema;
+  }
+  .btn-primary:hover {
+    @apply bg-esmeralda-900;
+    box-shadow: 0 10px 28px -14px rgb(31 42 36 / 0.7);
+  }
+  .btn-light {
+    @apply bg-crema text-negro;
+  }
+  .btn-light:hover {
+    @apply bg-white;
+  }
+  .btn-lg {
+    @apply min-h-[3.25rem] px-7;
+  }
+  .btn-arrow {
+    transition: transform 300ms var(--ease-salida);
+  }
+  .btn:hover .btn-arrow,
+  .btn:focus-visible .btn-arrow,
+  .link-arrow:hover .btn-arrow,
+  .link-arrow:focus-visible .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Acción secundaria: enlace con subrayado que crece y flecha */
+  .link-arrow {
+    @apply inline-flex min-h-11 items-center gap-2 font-semibold;
+  }
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 350ms var(--ease-salida);
+    padding-bottom: 2px;
+  }
+  .link-arrow .link-line {
+    background-size: 100% 1px;
+    background-image: linear-gradient(color-mix(in srgb, currentColor 35%, transparent), color-mix(in srgb, currentColor 35%, transparent));
+  }
+  .link-line:hover,
+  .link-line:focus-visible,
+  .link-arrow:hover .link-line,
+  .link-arrow:focus-visible .link-line {
+    background-size: 100% 1px;
+    background-image: linear-gradient(currentColor, currentColor);
+  }
+
+  /* Marco de foto uniforme (proyectos, telas, pasos) */
+  .frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-champana-200);
+  }
+
+  /* Píldora de opción (filtros, pestañas): objetivo táctil de 44px */
+  .chip {
+    @apply inline-flex min-h-11 shrink-0 items-center rounded-full border px-4 text-small font-medium;
+    border-color: rgb(6 6 6 / 0.2);
+    transition:
+      background-color 250ms,
+      color 250ms,
+      border-color 250ms;
+  }
+  .chip:hover {
+    border-color: var(--color-negro);
+  }
+  .chip[aria-pressed='true'],
+  .chip[aria-selected='true'] {
+    background: var(--color-negro);
+    color: var(--color-crema);
+    border-color: var(--color-negro);
+  }
+  .on-dark .chip {
+    border-color: rgb(234 234 229 / 0.35);
+  }
+  .on-dark .chip:hover {
+    border-color: var(--color-crema);
+  }
+  .on-dark .chip[aria-pressed='true'],
+  .on-dark .chip[aria-selected='true'] {
+    background: var(--color-crema);
+    color: var(--color-negro);
+    border-color: var(--color-crema);
+  }
+
+  /* Marca TODO: solo se renderiza en desarrollo (ver src/lib/flags.ts) */
+  .todo {
+    @apply inline-flex items-center gap-1.5 rounded-sm border border-dashed border-terra bg-terra/10 px-1.5 py-0.5 align-middle font-sans text-[0.75rem] font-semibold uppercase tracking-wider text-terra-700;
+    line-height: 1.3;
+  }
+  .on-dark .todo {
+    @apply border-champana bg-champana/15 text-champana;
+  }
+}
+
+/* Revelado al hacer scroll: opacidad y un desplazamiento corto, una vez por bloque. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 650ms var(--ease-salida),
+    transform 750ms var(--ease-salida);
+  transition-delay: calc(var(--reveal-delay, 0) * 80ms);
+}
+.js [data-reveal='fade'] {
+  transform: none;
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fade-only {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/*
+  Movimiento reducido: alternativa intencional, no un apagado global.
+  Se quitan desplazamientos, zooms y scroll suave; los cambios de estado conservan un fundido breve.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js [data-reveal] {
+    transform: none;
+    transition: opacity 200ms linear;
+    transition-delay: 0ms;
+  }
+  .btn:active,
+  .btn-arrow,
+  [data-motion='transform'] {
+    transform: none !important;
+  }
+  [data-motion='entrance'] {
+    animation: fade-only 200ms linear both !important;
+  }
+}

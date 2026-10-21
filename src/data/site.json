@@ -1,0 +1,28 @@
+{
+  "_doc": "Datos del negocio. Un campo vacío (\"\" o []) se muestra en la página como TODO visible. Llénalos y desaparecen solos.",
+  "name": "La Tapicería",
+  "tagline": "Diseño y producción",
+  "taglineAlt": "Comodidad hecha diseño",
+  "description": "Retapizamos, restauramos y fabricamos muebles a medida. Cuéntanos tu idea y te enviamos una cotización por WhatsApp.",
+  "city": "",
+  "region": "",
+  "coverage": "",
+  "whatsapp": "",
+  "whatsappDisplay": "",
+  "email": "",
+  "instagram": "",
+  "instagramUrl": "",
+  "address": "",
+  "mapsUrl": "",
+  "hours": [],
+  "announcement": "",
+  "url": "https://latapiceria.example",
+  "services": [
+    "Retapizado de sofás",
+    "Retapizado de sillas",
+    "Retapizado de camas y cabeceros",
+    "Muebles a la medida",
+    "Restauración"
+  ],
+  "servicesTodo": "Otros servicios por confirmar"
+}

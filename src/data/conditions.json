@@ -1,0 +1,6 @@
+[
+  { "title": "Visita y medidas", "text": "", "todo": "Costo de la visita y zonas que cubren" },
+  { "title": "Tiempos de entrega", "text": "", "todo": "Plazo típico por tipo de trabajo" },
+  { "title": "Anticipo y pagos", "text": "", "todo": "Porcentaje de anticipo y medios de pago" },
+  { "title": "Garantía", "text": "", "todo": "Cobertura y duración de la garantía" }
+]

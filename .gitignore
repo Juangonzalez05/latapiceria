@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+.env
+.contact-sheet/
+.audit/
+
+# Claude Code: permisos locales y copias de skills de terceros (se reinstalan con skills-lock.json)
+.claude/settings.local.json
+.claude/skills/

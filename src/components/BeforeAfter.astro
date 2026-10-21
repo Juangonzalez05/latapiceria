@@ -1,0 +1,200 @@
+---
+// Antes y después. El slider se limita a ~544px CSS (origen de 1143px: nítido en 2x) y va junto al texto.
+// En producción solo se muestran pares con ambas fotos; las pestañas aparecen si hay más de un par.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import Todo from './Todo.astro';
+import allPairs from '../data/beforeAfter.json';
+import { photo } from '../lib/photos';
+import { SHOW_TODOS } from '../lib/flags';
+
+const pairs = allPairs.filter((p) => (p.before && p.after) || SHOW_TODOS);
+const tabs = pairs.length > 1;
+---
+
+{pairs.length > 0 && (
+  <section class="section-y bg-esmeralda-900 text-crema on-dark" aria-labelledby="ba-titulo">
+    <div class="container-x grid grid-cols-[minmax(0,1fr)] items-center gap-10 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-5" data-reveal>
+        <h2 id="ba-titulo" class="text-h2 !text-crema">De la idea a tu casa</h2>
+        <p class="lead mt-5 max-w-[28rem]">
+          Arrastra la línea para comparar. Así se ve el camino entre lo que imaginas y lo que entregamos.
+        </p>
+        {tabs && (
+          <div role="tablist" aria-label="Comparaciones" class="mt-8 flex flex-wrap gap-2" data-ba-tabs>
+            {pairs.map((p, i) => (
+              <button
+                type="button"
+                role="tab"
+                id={`ba-tab-${p.id}`}
+                aria-controls={`ba-panel-${p.id}`}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                tabindex={i === 0 ? 0 : -1}
+                class="chip"
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        )}
+        <p class="mt-8 hidden items-center gap-2 text-small text-crema/75 lg:flex">
+          <Icon name="drag" size={18} />
+          También con las flechas del teclado.
+        </p>
+      </div>
+
+      <div class="lg:col-span-7">
+        {pairs.map((p, i) => (
+          <div role={tabs ? 'tabpanel' : undefined} id={`ba-panel-${p.id}`} aria-labelledby={tabs ? `ba-tab-${p.id}` : undefined} hidden={i !== 0} data-reveal="fade">
+            <div class="ba relative mx-auto aspect-[1143/1190] w-full max-w-[34rem] lg:mr-0 touch-pan-y select-none overflow-hidden rounded-card bg-esmeralda" data-ba style="--pos: 50%">
+              {p.after ? (
+                <Image src={photo(p.after)} alt={p.afterAlt} widths={[400, 544, 800, 1088]} sizes="(min-width: 640px) 544px, 92vw" class="absolute inset-0 h-full w-full object-cover" draggable="false" />
+              ) : (
+                <div class="absolute inset-0 grid place-items-center bg-champana-200 p-6 text-center text-negro">
+                  <span class="todo">TODO · Foto «{p.afterLabel}»</span>
+                </div>
+              )}
+              <div class="ba-before absolute inset-0" aria-hidden={p.before ? undefined : 'true'}>
+                {p.before ? (
+                  <Image src={photo(p.before)} alt={p.beforeAlt} widths={[400, 544, 800, 1088]} sizes="(min-width: 640px) 544px, 92vw" class="absolute inset-0 h-full w-full object-cover" draggable="false" />
+                ) : (
+                  <div class="absolute inset-0 grid place-items-center bg-sepia/60 p-6 text-center">
+                    <span class="todo">TODO · Foto «{p.beforeLabel}»</span>
+                  </div>
+                )}
+              </div>
+
+              <span class="pointer-events-none absolute left-3 top-3 rounded-full bg-negro/65 px-3 py-1 text-label font-semibold uppercase text-crema">{p.beforeLabel}</span>
+              <span class="pointer-events-none absolute right-3 top-3 rounded-full bg-crema/90 px-3 py-1 text-label font-semibold uppercase text-negro">{p.afterLabel}</span>
+
+              <div
+                class="ba-handle absolute inset-y-0 w-11 -translate-x-1/2 cursor-ew-resize"
+                role="slider"
+                tabindex="0"
+                aria-label={`Comparar ${p.beforeLabel.toLowerCase()} y ${p.afterLabel.toLowerCase()}`}
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+                aria-valuetext={`50% ${p.beforeLabel.toLowerCase()}`}
+                data-ba-handle
+              >
+                <span class="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-crema" aria-hidden="true" />
+                <span class="ba-knob absolute left-1/2 top-1/2 grid size-12 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-crema text-negro shadow-soft" aria-hidden="true">
+                  <Icon name="drag" size={20} />
+                </span>
+              </div>
+            </div>
+            {p.todo && <p class="mx-auto mt-4 max-w-[34rem]"><Todo text={p.todo} /></p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .ba-before {
+    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  }
+  .ba-handle {
+    left: var(--pos);
+  }
+  .ba-knob {
+    transition: transform 250ms var(--ease-salida);
+  }
+  .ba-handle:hover .ba-knob,
+  .ba[data-dragging] .ba-knob {
+    transform: scale(1.08);
+  }
+  .ba-handle:focus-visible {
+    outline: none;
+  }
+  .ba-handle:focus-visible .ba-knob {
+    outline: 2px solid var(--color-champana);
+    outline-offset: 3px;
+  }
+</style>
+
+<script>
+  // Slider antes/después: arrastre con puntero + teclado (flechas, Re Pág/Av Pág, Inicio/Fin).
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((box) => {
+    const handle = box.querySelector<HTMLElement>('[data-ba-handle]')!;
+    const label = (handle.getAttribute('aria-valuetext') || '').replace(/^\d+%\s*/, '');
+    let pos = 50;
+
+    const set = (v: number) => {
+      pos = Math.round(Math.min(100, Math.max(0, v)));
+      box.style.setProperty('--pos', `${pos}%`);
+      handle.setAttribute('aria-valuenow', String(pos));
+      handle.setAttribute('aria-valuetext', `${pos}% ${label}`);
+    };
+    const fromEvent = (e: PointerEvent) => {
+      const r = box.getBoundingClientRect();
+      set(((e.clientX - r.left) / r.width) * 100);
+    };
+
+    box.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      box.setPointerCapture(e.pointerId);
+      box.toggleAttribute('data-dragging', true);
+      fromEvent(e);
+      handle.focus({ preventScroll: true });
+    });
+    box.addEventListener('pointermove', (e) => {
+      if (box.hasPointerCapture(e.pointerId)) fromEvent(e);
+    });
+    const end = (e: PointerEvent) => {
+      if (box.hasPointerCapture(e.pointerId)) box.releasePointerCapture(e.pointerId);
+      box.removeAttribute('data-dragging');
+    };
+    box.addEventListener('pointerup', end);
+    box.addEventListener('pointercancel', end);
+    // Si se pierde la captura (gesto interrumpido, cambio de ventana), el estado de arrastre no queda pegado.
+    box.addEventListener('lostpointercapture', () => box.removeAttribute('data-dragging'));
+
+    handle.addEventListener('keydown', (e) => {
+      const step = e.shiftKey ? 10 : 2;
+      const map: Record<string, number> = {
+        ArrowLeft: pos - step,
+        ArrowDown: pos - step,
+        ArrowRight: pos + step,
+        ArrowUp: pos + step,
+        PageDown: pos - 10,
+        PageUp: pos + 10,
+        Home: 0,
+        End: 100,
+      };
+      if (e.key in map) {
+        e.preventDefault();
+        set(map[e.key]);
+      }
+    });
+  });
+
+  // Pestañas accesibles (flechas izquierda/derecha)
+  const tablist = document.querySelector<HTMLElement>('[data-ba-tabs]');
+  if (tablist) {
+    const tabs = [...tablist.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls')!)!;
+        panel.hidden = !on;
+        if (on) panel.classList.add('is-visible');
+      });
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!dir) return;
+        e.preventDefault();
+        const next = tabs[(i + dir + tabs.length) % tabs.length];
+        next.focus();
+        select(next);
+      });
+    });
+  }
+</script>

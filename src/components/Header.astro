@@ -1,0 +1,271 @@
+---
+// Header fijo, legible desde el primer pixel: tinta oscura sobre crema.
+// Al hacer scroll se compacta y gana fondo sólido; marca la sección activa.
+import { Image } from 'astro:assets';
+import logoDark from '../assets/brand/logo-compact-dark.png';
+import logoLight from '../assets/brand/logo-compact-light.png';
+import Icon from './Icon.astro';
+import { waLink } from '../lib/whatsapp';
+import site from '../data/site.json';
+
+const links = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#proceso', label: 'Proceso' },
+  { href: '#telas', label: 'Telas' },
+  { href: '#contacto', label: 'Contacto' },
+];
+const wa = waLink('Hola, quiero cotizar un trabajo con La Tapicería.');
+---
+
+<header class="site-header sticky top-0 z-50 text-negro" data-header>
+  <div class="header-bg absolute inset-0 -z-10" aria-hidden="true"></div>
+  <div class="container-x header-row flex items-center justify-between gap-6">
+    <a href="#inicio" class="logo relative block shrink-0" aria-label={`${site.name}, ir al inicio`} translate="no">
+      <Image src={logoDark} alt="" class="logo-dark h-full w-auto" loading="eager" widths={[120, 240, 360]} sizes="(min-width: 1024px) 120px, 100px" />
+      <Image src={logoLight} alt="" class="logo-light absolute inset-0 h-full w-auto" loading="eager" widths={[120, 240, 360]} sizes="(min-width: 1024px) 120px, 100px" />
+    </a>
+
+    <nav aria-label="Principal" class="hidden lg:block">
+      <ul class="flex items-center gap-9 text-[0.95rem] font-medium">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} class="nav-link link-line" data-nav-link>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a href={wa} target="_blank" rel="noopener" class="btn btn-primary btn-wa hidden !min-h-11 !px-5 sm:inline-flex">
+        <Icon name="whatsapp" size={18} />
+        <span>Cotizar</span>
+      </a>
+      <button
+        type="button"
+        class="menu-btn grid size-11 place-items-center rounded-full lg:hidden"
+        aria-expanded="false"
+        aria-controls="menu-movil"
+        aria-label="Abrir menú"
+        data-menu-toggle
+      >
+        <span class="burger" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+
+  <div id="menu-movil" class="mobile-menu on-dark fixed inset-x-0 bottom-0 top-0 z-40 overflow-y-auto overscroll-contain bg-esmeralda text-crema lg:hidden" data-menu hidden>
+    <nav aria-label="Menú móvil" class="container-x flex min-h-full flex-col justify-between gap-10 pb-10 pt-8">
+      <ul class="space-y-1">
+        {links.map((l, i) => (
+          <li class="menu-item" style={`--i:${i}`}>
+            <a href={l.href} class="block py-2 font-serif text-[2.4rem] leading-tight" data-menu-link>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="menu-item space-y-5" style="--i:5">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-light w-full">
+          <Icon name="whatsapp" size={20} />
+          Cotizar por WhatsApp
+        </a>
+        <p class="text-center text-small text-crema/75">{site.tagline}</p>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header-row {
+    height: 4.25rem;
+    transition: height 300ms var(--ease-suave);
+  }
+  .logo {
+    height: 2.6rem;
+    transition: height 300ms var(--ease-suave);
+  }
+  @media (min-width: 1024px) {
+    .header-row {
+      height: 5.25rem;
+    }
+    .logo {
+      height: 3rem;
+    }
+  }
+  /* Arriba del todo el header se funde con el hero crema; al bajar gana fondo sólido y una línea. */
+  .header-bg {
+    background: var(--color-crema);
+    transition:
+      background-color 300ms var(--ease-suave),
+      box-shadow 300ms var(--ease-suave);
+  }
+  .logo-light {
+    opacity: 0;
+  }
+  .menu-btn:hover {
+    background: rgb(6 6 6 / 0.06);
+  }
+  .nav-link[aria-current='true'] {
+    background-size: 100% 1px;
+  }
+
+  .site-header[data-scrolled] .header-bg {
+    background: var(--color-crema-50);
+    box-shadow: 0 1px 0 rgb(6 6 6 / 0.08);
+  }
+  @media (min-width: 1024px) {
+    .site-header[data-scrolled] .header-row {
+      height: 4.25rem;
+    }
+    .site-header[data-scrolled] .logo {
+      height: 2.6rem;
+    }
+  }
+
+  /* Menú abierto: la fila del header pasa al esmeralda del panel. */
+  .site-header[data-open] {
+    color: var(--color-crema);
+  }
+  .site-header[data-open] .header-bg {
+    background: var(--color-esmeralda);
+    box-shadow: none;
+  }
+  .site-header[data-open] .logo-dark {
+    opacity: 0;
+  }
+  .site-header[data-open] .logo-light {
+    opacity: 1;
+  }
+  .site-header[data-open] .btn-wa {
+    background: var(--color-crema);
+    color: var(--color-negro);
+  }
+  .site-header[data-open] .menu-btn:hover {
+    background: rgb(234 234 229 / 0.12);
+  }
+  .site-header[data-open] .header-row {
+    position: relative;
+    z-index: 50;
+  }
+
+  .burger {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 10px;
+  }
+  .burger span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transition:
+      transform 300ms var(--ease-salida),
+      top 300ms var(--ease-salida);
+  }
+  .burger span:first-child {
+    top: 0;
+  }
+  .burger span:last-child {
+    top: 100%;
+  }
+  [aria-expanded='true'] .burger span:first-child {
+    top: 50%;
+    transform: rotate(45deg);
+  }
+  [aria-expanded='true'] .burger span:last-child {
+    top: 50%;
+    transform: rotate(-45deg);
+  }
+
+  .mobile-menu:not([hidden]) {
+    animation: menu-in 380ms var(--ease-salida) both;
+  }
+  .mobile-menu:not([hidden]) .menu-item {
+    animation: fade-up 520ms var(--ease-salida) both;
+    animation-delay: calc(100ms + var(--i) * 50ms);
+  }
+  @keyframes menu-in {
+    from {
+      clip-path: inset(0 0 100% 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-menu:not([hidden]),
+    .mobile-menu:not([hidden]) .menu-item {
+      animation: fade-only 150ms linear both;
+    }
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const menu = header.querySelector<HTMLElement>('[data-menu]')!;
+
+  // Compactar al hacer scroll
+  const onScroll = () => header.toggleAttribute('data-scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Sección activa en la navegación
+  const navLinks = [...header.querySelectorAll<HTMLAnchorElement>('[data-nav-link]')];
+  const targets = navLinks.map((a) => document.querySelector<HTMLElement>(a.hash)).filter(Boolean) as HTMLElement[];
+  if ('IntersectionObserver' in window && targets.length) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          navLinks.forEach((a) => (a.hash === `#${e.target.id}` ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+        }
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    targets.forEach((t) => io.observe(t));
+  }
+
+  // Menú móvil con trampa de foco y Esc
+  const focusables = () =>
+    [...header.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')].filter(
+      (el) => el.offsetParent !== null || el === toggle
+    );
+
+  function setOpen(open: boolean) {
+    // El panel arranca justo debajo de la fila del header.
+    if (open) menu.style.top = `${header.getBoundingClientRect().bottom}px`;
+    menu.hidden = !open;
+    header.toggleAttribute('data-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+    if (open) menu.querySelector<HTMLElement>('a')?.focus();
+  }
+
+  toggle.addEventListener('click', () => setOpen(menu.hidden));
+  menu.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+
+  document.addEventListener('keydown', (e) => {
+    if (menu.hidden) return;
+    if (e.key === 'Escape') {
+      setOpen(false);
+      toggle.focus();
+    }
+    if (e.key === 'Tab') {
+      const items = focusables();
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => e.matches && setOpen(false));
+</script>

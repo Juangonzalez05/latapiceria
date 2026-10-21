@@ -1,0 +1,78 @@
+---
+import Icon from './Icon.astro';
+import { waLink } from '../lib/whatsapp';
+---
+
+<a
+  href={waLink('Hola, vengo de la página web y quiero una cotización.')}
+  target="_blank"
+  rel="noopener"
+  class="wa-float fixed z-40 grid size-14 place-items-center rounded-full bg-esmeralda text-crema ring-1 ring-crema/40 shadow-soft"
+  aria-label="Escríbenos por WhatsApp"
+  data-wa-float
+>
+  <Icon name="whatsapp" size={28} />
+  <span class="wa-tip pointer-events-none absolute right-full mr-3 hidden whitespace-nowrap rounded-full bg-negro px-3 py-1.5 text-sm text-crema sm:block" aria-hidden="true">¿Hablamos?</span>
+</a>
+
+<style>
+  .wa-float {
+    /* Respeta la zona segura de iPhone (barra inferior). */
+    right: calc(1.25rem + env(safe-area-inset-right));
+    bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    opacity: 0;
+    transform: translateY(16px) scale(0.9);
+    pointer-events: none;
+    transition:
+      opacity 350ms var(--ease-suave),
+      transform 450ms var(--ease-salida),
+      background-color 300ms;
+  }
+  @media (min-width: 640px) {
+    .wa-float {
+      right: calc(1.75rem + env(safe-area-inset-right));
+      bottom: calc(1.75rem + env(safe-area-inset-bottom));
+    }
+  }
+  .wa-float.is-shown {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .wa-float:hover {
+    background: var(--color-esmeralda-900);
+  }
+  .wa-tip {
+    opacity: 0;
+    transform: translateX(6px);
+    transition:
+      opacity 250ms,
+      transform 300ms var(--ease-salida);
+  }
+  .wa-float:hover .wa-tip,
+  .wa-float:focus-visible .wa-tip {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+
+<script>
+  // Aparece tras pasar el hero y se oculta en la sección de contacto (ya tiene su propio CTA).
+  const btn = document.querySelector<HTMLElement>('[data-wa-float]');
+  const hero = document.getElementById('inicio');
+  const contact = document.getElementById('contacto');
+  if (btn && hero) {
+    let pastHero = false;
+    let inContact = false;
+    const sync = () => btn.classList.toggle('is-shown', pastHero && !inContact);
+    new IntersectionObserver(([e]) => {
+      pastHero = !e.isIntersecting;
+      sync();
+    }).observe(hero);
+    if (contact)
+      new IntersectionObserver(([e]) => {
+        inContact = e.isIntersecting;
+        sync();
+      }, { threshold: 0.25 }).observe(contact);
+  }
+</script>

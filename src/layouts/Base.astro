@@ -1,0 +1,98 @@
+---
+import '../styles/global.css';
+import site from '../data/site.json';
+import faq from '../data/faq.json';
+// Fuente del titular del hero: se precarga para que el H1 no cambie de forma al cargar.
+import literataUrl from '@fontsource-variable/literata/files/literata-latin-wght-normal.woff2?url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Páginas internas (laboratorio de diseño): fuera de buscadores y sin datos estructurados. */
+  noindex?: boolean;
+}
+
+const {
+  title = `${site.name} · Tapicería y muebles a la medida`,
+  description = site.description,
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const ogImage = new URL('/og-image.jpg', Astro.site ?? site.url).href;
+const orTodo = (v: string) => (v && v.trim() ? v : 'TODO');
+
+// Datos estructurados LocalBusiness. Los campos con "TODO" deben completarse con datos reales.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: site.name,
+  slogan: site.tagline,
+  description: site.description,
+  url: site.url,
+  image: ogImage,
+  telephone: site.whatsappDisplay || 'TODO',
+  email: orTodo(site.email),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: orTodo(site.address),
+    addressLocality: orTodo(site.city),
+    addressRegion: orTodo(site.region),
+    addressCountry: 'CO',
+  },
+  areaServed: orTodo(site.coverage),
+  openingHours: site.hours.length ? site.hours : 'TODO',
+  sameAs: site.instagramUrl ? [site.instagramUrl] : [],
+  makesOffer: site.services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s } })),
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<!doctype html>
+<html lang="es-CO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="theme-color" content="#eaeae5" />
+    <link rel="preload" href={literataUrl} as="font" type="font/woff2" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />}
+  </head>
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-esmeralda focus:px-5 focus:py-3 focus:text-crema"
+      >Saltar al contenido</a
+    >
+    <slot />
+    <script>
+      import '../scripts/reveal';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+---
+// Hero · concepto A «editorial enmarcado» (ver AUDITORIA.md §4).
+// La foto vive en un arco (eco del respaldo de la silla del logo) y nunca supera su resolución:
+// máx. 464px CSS para un origen de 1081px, nítida en pantallas 2x.
+import { Image } from 'astro:assets';
+import ArchFrame from './ui/ArchFrame.astro';
+import Pespunte from './ui/Pespunte.astro';
+import Icon from './Icon.astro';
+import Todo from './Todo.astro';
+import hero from '../data/hero.json';
+import site from '../data/site.json';
+import { photo } from '../lib/photos';
+import { waLink } from '../lib/whatsapp';
+
+const lines = hero.titleLines;
+const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust;
+---
+
+<section id="inicio" class="hero relative overflow-hidden bg-crema" aria-labelledby="hero-titulo">
+  <div class="hero-grid container-x grid grid-cols-[minmax(0,1fr)] items-center gap-9 pb-16 pt-4 lg:grid-cols-12 lg:gap-12 lg:pb-20 lg:pt-6">
+    <div class="relative mx-auto w-full max-w-[17.5rem] sm:max-w-[21rem] lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:mx-0 lg:max-w-[29rem] lg:justify-self-end">
+      <div class="hero-arch">
+        <ArchFrame
+          src={photo(hero.image)}
+          alt={hero.imageAlt}
+          sizes="(min-width: 1024px) 464px, (min-width: 640px) 336px, 280px"
+          widths={[280, 336, 464, 560, 672, 928, 1081]}
+          quality={72}
+          eager
+        />
+      </div>
+      <div class="hero-detail absolute -bottom-7 -left-5 w-[34%] overflow-hidden rounded-card shadow-soft ring-[6px] ring-crema sm:-left-10 lg:-bottom-10 lg:-left-16 lg:w-[36%]" data-motion="entrance">
+        <Image
+          src={photo(hero.detail)}
+          alt={hero.detailAlt}
+          widths={[96, 168, 200, 336]}
+          sizes="(min-width: 1024px) 168px, (min-width: 640px) 114px, 96px"
+          class="aspect-[4/5] h-full w-full object-cover"
+          loading="eager"
+        />
+      </div>
+    </div>
+
+    <div class="hero-copy lg:col-span-7 lg:row-start-1 lg:pr-6">
+      <h1 id="hero-titulo" class="text-display text-negro">
+        {lines.map((l, i) => (
+          <><span class:list={['block', i === lines.length - 1 && 'italic text-esmeralda']}>{l}</span>{i < lines.length - 1 && ' '}</>
+        ))}
+      </h1>
+      <p class="mt-6 max-w-[34rem] text-lead text-gris">{hero.subtitle}</p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-7">
+        <a href={waLink(hero.ctaMessage)} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <Icon name="whatsapp" size={20} />
+          {hero.ctaPrimary}
+        </a>
+        <a href="#proyectos" class="link-arrow justify-center text-negro sm:justify-start">
+          <span class="link-line">{hero.ctaSecondary}</span>
+          <Icon name="arrow" size={16} class="btn-arrow" />
+        </a>
+      </div>
+      <div class="mt-10 max-w-[34rem]">
+        <Pespunte class="text-sepia" />
+        <div class="mt-4 overflow-hidden">
+          <ul class="hero-trust grid gap-1.5 text-small text-gris sm:flex sm:flex-wrap">
+            {trust.map((t) => <li>{t}</li>)}
+          </ul>
+        </div>
+        {!site.city && <Todo text="ciudad y zona de cobertura para la línea de confianza" class="mt-3" />}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    /* Ocupa la primera pantalla bajo el header, sin pasarse en monitores altos. */
+    min-height: calc(100svh - 4.25rem);
+  }
+  @media (min-width: 1024px) {
+    .hero {
+      min-height: min(calc(100svh - 5.25rem), 58rem);
+      display: grid;
+      align-items: center;
+    }
+  }
+  /* En fila: un punto sepia entre datos. El contenedor recorta el punto del primer dato de cada renglón. */
+  @media (min-width: 640px) {
+    .hero-trust {
+      margin-left: -1.6rem;
+    }
+    .hero-trust li {
+      position: relative;
+      margin-left: 1.6rem;
+    }
+    .hero-trust li::before {
+      content: '';
+      position: absolute;
+      left: -0.95rem;
+      top: 50%;
+      width: 4px;
+      height: 4px;
+      margin-top: -2px;
+      border-radius: 50%;
+      background: var(--color-sepia);
+    }
+  }
+  /*
+    Un solo momento de entrada. El arco y el titular nunca están invisibles (son el LCP):
+    solo se asientan con un movimiento corto; el detalle de manos aparece después.
+  */
+  .hero-arch {
+    animation: hero-settle 1200ms var(--ease-salida) both;
+  }
+  .hero-copy {
+    animation: hero-rise 900ms var(--ease-salida) both;
+  }
+  .hero-detail {
+    animation: fade-up 900ms var(--ease-salida) 350ms both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-arch,
+    .hero-copy {
+      animation: none;
+    }
+  }
+  @keyframes hero-settle {
+    from {
+      transform: scale(1.025);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes hero-rise {
+    from {
+      transform: translateY(10px);
+    }
+    to {
+      transform: none;
+    }
+  }
+</style>

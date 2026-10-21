@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import AnnouncementBar from '../components/AnnouncementBar.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Paths from '../components/Paths.astro';
+import Projects from '../components/Projects.astro';
+import Intro from '../components/Intro.astro';
+import Process from '../components/Process.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import Fabrics from '../components/Fabrics.astro';
+import QuoteWizard from '../components/QuoteWizard.astro';
+import Conditions from '../components/Conditions.astro';
+import Faq from '../components/Faq.astro';
+import Testimonials from '../components/Testimonials.astro';
+import ClosingCta from '../components/ClosingCta.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+---
+
+<!--
+  Recorrido: oferta (hero, servicios) → prueba (proyectos) → oficio y proceso →
+  materia (antes/después, telas) → cotizar → dudas → cierre. Ver AUDITORIA.md §3.
+-->
+<Base>
+  <AnnouncementBar />
+  <Header />
+  <main id="contenido">
+    <Hero />
+    <Paths />
+    <Projects />
+    <Intro />
+    <Process />
+    <BeforeAfter />
+    <Fabrics />
+    <QuoteWizard />
+    <Conditions />
+    <Faq />
+    <Testimonials />
+    <ClosingCta />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</Base>

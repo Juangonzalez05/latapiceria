@@ -1,0 +1,67 @@
+---
+// Concepto C · Inmersivo corregido: foto a sangre con el sofá centrado y visible,
+// texto en la zona de los árboles, velo solo arriba y abajo, titular en 2 líneas.
+import { Image } from 'astro:assets';
+import LabHeader from './LabHeader.astro';
+import Icon from '../Icon.astro';
+import { photo } from '../../lib/photos';
+import { waLink } from '../../lib/whatsapp';
+import { heroTrust } from './heroCopy';
+---
+
+<section id="concepto-c" class="hero-c relative isolate flex min-h-svh flex-col overflow-hidden bg-esmeralda-900 text-crema on-dark" aria-labelledby="c-titulo">
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <Image
+      src={photo('hero-arco')}
+      alt=""
+      widths={[480, 768, 1081]}
+      sizes="100vw"
+      class="h-full w-full object-cover object-[50%_86%] lg:object-[50%_80%]"
+      loading="eager"
+    />
+    <div class="absolute inset-x-0 top-0 h-[78%] bg-gradient-to-b from-negro/75 via-negro/45 to-transparent lg:h-[62%] lg:from-negro/70 lg:via-negro/35"></div>
+    <div class="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-negro/60 to-transparent"></div>
+  </div>
+
+  <LabHeader tone="overlay" />
+
+  <div class="container-x flex flex-1 flex-col justify-between pb-8 pt-6 lg:pb-10 lg:pt-10">
+    <div class="hero-c-copy max-w-3xl">
+      <h1 id="c-titulo" class="hero-c-title !text-crema">
+        Tu mueble, como siempre <span class="italic">lo imaginaste</span>
+      </h1>
+      <p class="mt-5 max-w-[32rem] text-[1.075rem] leading-relaxed text-crema/90 md:text-[1.15rem]">
+        Retapizamos, restauramos y fabricamos muebles a la medida. Cuéntanos tu idea y la llevamos a tu espacio.
+      </p>
+    </div>
+    <div class="hero-c-cta flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+        <a href={waLink('Hola, quiero cotizar un trabajo con La Tapicería.')} class="btn btn-light !min-h-[3.25rem] !px-7">
+          <Icon name="whatsapp" size={20} />
+          Cotizar por WhatsApp
+        </a>
+        <a href="#" class="inline-flex min-h-11 items-center justify-center gap-2 font-semibold">
+          <span class="link-line">Ver proyectos</span>
+          <Icon name="arrow" size={16} />
+        </a>
+      </div>
+      <ul class="hidden flex-wrap gap-x-5 text-[0.9rem] text-crema/85 md:flex">
+        {heroTrust.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-c-title {
+    font-size: clamp(2.4rem, 1.8rem + 3vw, 4.4rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    max-width: 16ch;
+    text-shadow: 0 1px 24px rgb(6 6 6 / 0.25);
+  }
+  .hero-c-copy,
+  .hero-c-cta {
+    animation: fade-up 900ms var(--ease-salida) 150ms both;
+  }
+</style>

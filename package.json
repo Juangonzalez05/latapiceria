@@ -1,0 +1,28 @@
+{
+  "name": "la-tapiceria",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "media": "node scripts/prepare-media.mjs",
+    "contact-sheet": "node scripts/contact-sheet.mjs",
+    "shoot": "node scripts/shoot.mjs",
+    "audit:scan": "node scripts/audit-scan.mjs",
+    "qa": "node scripts/qa.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource-variable/literata": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.1",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.1"
+  }
+}

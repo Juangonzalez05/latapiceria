@@ -1,0 +1,48 @@
+---
+// Encabezado de sección. Sin eyebrow: el titular carga su propio peso.
+//  split  → titular a la izquierda, lead alineado abajo a la derecha (secciones anchas).
+//  center → titular centrado con un pespunte corto debajo (momentos de pausa).
+//  aside  → titular y lead en columna estrecha; pensado para ir junto al contenido (sticky en escritorio).
+import Pespunte from './Pespunte.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  lead?: string;
+  variant?: 'split' | 'center' | 'aside';
+  /** Ancho máximo del titular en ch. */
+  measure?: number;
+  class?: string;
+}
+const { id, title, lead, variant = 'split', measure, class: cls = '' } = Astro.props;
+const hasSlot = Astro.slots.has('default');
+---
+
+{variant === 'split' && (
+  <div class:list={['mb-head grid grid-cols-[minmax(0,1fr)] gap-5 md:grid-cols-12 md:items-end md:gap-10', cls]} data-reveal>
+    <h2 id={id} class="text-h2 md:col-span-7" style={measure ? `max-width:${measure}ch` : undefined}>{title}</h2>
+    {(lead || hasSlot) && (
+      <div class="md:col-span-5 md:justify-self-end">
+        {lead && <p class="lead max-w-[30rem]">{lead}</p>}
+        <slot />
+      </div>
+    )}
+  </div>
+)}
+
+{variant === 'center' && (
+  <div class:list={['mx-auto mb-head max-w-3xl text-center', cls]} data-reveal>
+    <h2 id={id} class="text-h2 mx-auto" style={measure ? `max-width:${measure}ch` : undefined}>{title}</h2>
+    <Pespunte class="mx-auto mt-6 max-w-[14rem] text-sepia" />
+    {lead && <p class="lead mx-auto mt-6 max-w-[34rem]">{lead}</p>}
+    <slot />
+  </div>
+)}
+
+{variant === 'aside' && (
+  <div class:list={['lg:sticky lg:top-28', cls]} data-reveal>
+    <h2 id={id} class="text-h2" style={measure ? `max-width:${measure}ch` : undefined}>{title}</h2>
+    {lead && <p class="lead mt-5 max-w-[26rem]">{lead}</p>}
+    <slot />
+  </div>
+)}

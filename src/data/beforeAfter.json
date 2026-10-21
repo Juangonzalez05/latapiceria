@@ -1,0 +1,23 @@
+[
+  {
+    "id": "boceto",
+    "label": "Del boceto al comedor",
+    "before": "comedor-boceto",
+    "after": "comedor-resultado",
+    "beforeLabel": "Boceto",
+    "afterLabel": "Resultado",
+    "beforeAlt": "Boceto a mano del comedor con lámpara de madera y ventana",
+    "afterAlt": "Comedor terminado con mesa y sillas de madera tapizadas en blanco"
+  },
+  {
+    "id": "retapizado",
+    "label": "Retapizado",
+    "before": "",
+    "after": "",
+    "beforeLabel": "Antes",
+    "afterLabel": "Después",
+    "beforeAlt": "",
+    "afterAlt": "",
+    "todo": "Agregar par de fotos reales antes/después de un retapizado (mismo ángulo)"
+  }
+]

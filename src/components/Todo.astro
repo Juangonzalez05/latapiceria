@@ -1,0 +1,13 @@
+---
+// Marca visible para datos que el cliente aún no ha entregado. Solo se renderiza en desarrollo
+// (o con PUBLIC_SHOW_TODOS=true). Buscar "TODO" en src/ para encontrarlos.
+import { SHOW_TODOS } from '../lib/flags';
+
+interface Props {
+  text: string;
+  class?: string;
+}
+const { text, class: cls = '' } = Astro.props;
+---
+
+{SHOW_TODOS && <span class:list={['todo', cls]} data-todo>TODO · {text}</span>}

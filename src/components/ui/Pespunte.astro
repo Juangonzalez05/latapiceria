@@ -1,0 +1,45 @@
+---
+// Motivo de marca tomado del logo: hilo punteado + ondulación + ojo y aguja.
+// Decorativo (aria-hidden). La parte punteada se estira; la aguja mantiene su tamaño.
+interface Props {
+  class?: string;
+  /** Dibuja la aguja al final del hilo. */
+  needle?: boolean;
+  /** Invierte la dirección (aguja a la izquierda). */
+  flip?: boolean;
+}
+const { class: cls = '', needle = true, flip = false } = Astro.props;
+---
+
+<span class:list={['pespunte', flip && 'pespunte--flip', cls]} aria-hidden="true">
+  <svg class="pespunte-hilo" width="100%" height="12" preserveAspectRatio="none" focusable="false">
+    <line x1="0" y1="6" x2="100%" y2="6" stroke="currentColor" stroke-width="1.25" stroke-dasharray="5 5" stroke-linecap="round"></line>
+  </svg>
+  {needle && (
+    <svg class="pespunte-aguja" width="112" height="16" viewBox="0 0 112 16" focusable="false">
+      <path d="M0 9 C 8 9, 12 3, 20 3 S 30 9.5, 36 8.6" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"></path>
+      <circle cx="39.5" cy="8.2" r="2.6" fill="currentColor"></circle>
+      <path d="M42 7.4 L 112 8.1 L 42 9" fill="currentColor"></path>
+    </svg>
+  )}
+</span>
+
+<style>
+  .pespunte {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+  }
+  .pespunte-hilo {
+    flex: 1 1 auto;
+    min-width: 1.5rem;
+    margin-right: -1px;
+  }
+  .pespunte-aguja {
+    flex: none;
+  }
+  .pespunte--flip {
+    transform: scaleX(-1);
+  }
+</style>

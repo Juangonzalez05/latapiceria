@@ -1,0 +1,63 @@
+---
+// Servicios · dos caminos de entrada. Tarjetas horizontales: foto enmarcada (≤ 300px CSS, nítida en 2x)
+// y contenido siempre visible, sin depender de hover en táctil.
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import SectionHeader from './ui/SectionHeader.astro';
+import paths from '../data/paths.json';
+import { photo } from '../lib/photos';
+import { waLink } from '../lib/whatsapp';
+---
+
+<section id="servicios" class="section-y bg-crema-50" aria-labelledby="servicios-titulo">
+  <div class="container-x">
+    <SectionHeader
+      id="servicios-titulo"
+      title="Dos caminos para empezar"
+      lead="Renueva la pieza que ya quieres o crea una nueva desde cero. En ambos casos te acompañamos de principio a fin."
+    />
+
+    <div class="grid gap-5 lg:grid-cols-2 lg:gap-6">
+      {paths.map((p, i) => (
+        <article class="path-card group grid grid-cols-[minmax(0,1fr)] gap-6 rounded-card bg-crema p-4 sm:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] sm:items-center sm:gap-7 sm:p-5" data-reveal style={`--reveal-delay:${i}`} aria-labelledby={`path-${p.id}`}>
+          <div class="frame aspect-[4/3] sm:aspect-[4/5]">
+            <Image
+              src={photo(p.image)}
+              alt={p.alt}
+              widths={[300, 420, 600]}
+              sizes="(min-width: 1024px) 248px, (min-width: 640px) 40vw, 92vw"
+              class="path-img h-full w-full object-cover"
+              data-motion="transform"
+            />
+          </div>
+          <div class="px-1 pb-2 sm:px-0 sm:pb-0 sm:pr-3">
+            <h3 id={`path-${p.id}`} class="text-h3 text-negro">{p.title}</h3>
+            <p class="label mt-2">{p.kicker}</p>
+            <p class="mt-4 text-gris">{p.text}</p>
+            <ul class="mt-5 flex flex-wrap gap-2" aria-label="Incluye">
+              {p.items.map((it) => (
+                <li class="rounded-full border border-negro/15 px-3 py-1 text-small">{it}</li>
+              ))}
+            </ul>
+            <a href={waLink(p.message)} target="_blank" rel="noopener" class="link-arrow mt-5 text-esmeralda">
+              <Icon name="whatsapp" size={18} />
+              <span class="link-line">{p.cta}</span>
+              <Icon name="arrow" size={16} class="btn-arrow" />
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .path-img {
+    transition: transform 900ms var(--ease-salida);
+  }
+  @media (hover: hover) {
+    .path-card:hover .path-img {
+      transform: scale(1.03);
+    }
+  }
+</style>

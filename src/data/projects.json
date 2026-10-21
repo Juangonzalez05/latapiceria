@@ -1,0 +1,26 @@
+{
+  "_doc": "category: tapiceria | medida | restauracion. TODO: confirmar con el cliente la categoría de cada proyecto y agregar fotos de restauración.",
+  "categories": [
+    { "id": "todos", "label": "Todos" },
+    { "id": "tapiceria", "label": "Tapicería" },
+    { "id": "medida", "label": "Muebles a medida" },
+    { "id": "restauracion", "label": "Restauración" }
+  ],
+  "items": [
+    { "image": "sofa-terracota", "title": "Sofá modular terracota", "category": "medida", "alt": "Sofá modular de cojines capitoné en bouclé terracota" },
+    { "image": "comedor-resultado", "title": "Comedor en madera", "category": "medida", "alt": "Comedor en madera con sillas tapizadas en blanco junto a un ventanal" },
+    { "image": "sofa-gris-taller", "title": "Sofá esquinero gris", "category": "tapiceria", "alt": "Sofá esquinero en tela gris claro recién terminado en el taller" },
+    { "image": "silla-madera", "title": "Butaca de madera y bouclé", "category": "medida", "alt": "Butaca con estructura de madera maciza y cojines en bouclé blanco" },
+    { "image": "cama-verde", "title": "Cama tapizada verde", "category": "tapiceria", "alt": "Cama con base y cabecero tapizados en tela verde" },
+    { "image": "sofa-verde-modular", "title": "Sofá modular oliva", "category": "medida", "alt": "Sofá modular largo en tela verde oliva con puff" },
+    { "image": "butaca-curva", "title": "Butaca curva", "category": "tapiceria", "alt": "Butaca de líneas curvas tapizada en tela gris jaspeada" },
+    { "image": "dormitorio-verde", "title": "Cabecero en lino", "category": "tapiceria", "alt": "Habitación con cabecero tapizado claro y pared verde salvia" },
+    { "image": "sala-modulos", "title": "Sala de módulos", "category": "medida", "alt": "Sala con módulos de sofá blancos frente a un ventanal" },
+    { "image": "sofa-verde", "title": "Sofá tres puestos", "category": "tapiceria", "alt": "Sofá de tres puestos en tela verde con cojines" },
+    { "image": "butaca-noche", "title": "Butaca para lectura", "category": "medida", "alt": "Butaca de madera y bouclé en un rincón oscuro junto a la ventana" },
+    { "image": "cama-gris", "title": "Cama gris", "category": "tapiceria", "alt": "Cama tapizada en gris con cabecero alto" },
+    { "image": "sofa-blanco-chaise", "title": "Sofá con chaise", "category": "medida", "alt": "Sofá con chaise longue en tela blanca" },
+    { "image": "habitacion-luz", "title": "Habitación completa", "category": "medida", "alt": "Habitación con cama tapizada, cabecero y mesas de noche" },
+    { "image": "chaise-sala", "title": "Chaise de sala", "category": "tapiceria", "alt": "Sofá chaise beige con cojines en tonos terracota" }
+  ]
+}

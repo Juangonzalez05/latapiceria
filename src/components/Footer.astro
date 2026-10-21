@@ -1,0 +1,54 @@
+---
+// Footer: logo completo (con tagline), navegación y contacto real. Más aire que antes.
+import { Image } from 'astro:assets';
+import logoLight from '../assets/brand/logo-light.png';
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+import { waLink } from '../lib/whatsapp';
+import { has } from '../lib/flags';
+
+const year = new Date().getFullYear();
+const nav = [
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#proceso', label: 'Proceso' },
+  { href: '#telas', label: 'Telas' },
+  { href: '#cotizar', label: 'Cotizar' },
+  { href: '#preguntas', label: 'Preguntas' },
+];
+---
+
+<footer class="bg-esmeralda-900 text-crema/85 on-dark">
+  <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 py-16 md:grid-cols-12 md:py-20">
+    <div class="md:col-span-5">
+      <Image src={logoLight} alt={site.name} class="h-16 w-auto" widths={[200, 400]} sizes="200px" />
+      <p class="mt-6 max-w-xs text-small">{site.taglineAlt}. Retapizado, restauración y muebles a la medida.</p>
+    </div>
+
+    <nav aria-label="Pie de página" class="md:col-span-3">
+      <p class="label mb-4">Secciones</p>
+      <ul class="grid grid-cols-2 gap-x-6 gap-y-1 text-small md:grid-cols-1">
+        {nav.map((l) => (
+          <li><a class="inline-flex min-h-11 items-center md:min-h-9 link-line" href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="md:col-span-4">
+      <p class="label mb-4">Hablemos</p>
+      <a href={waLink()} target="_blank" rel="noopener" class="btn btn-light">
+        <Icon name="whatsapp" size={18} />
+        Escríbenos por WhatsApp
+      </a>
+      <ul class="mt-6 space-y-2 text-small">
+        {has(site.email) && <li><a class="link-line" href={`mailto:${site.email}`}>{site.email}</a></li>}
+        {has(site.instagramUrl) && <li><a class="link-line" href={site.instagramUrl} target="_blank" rel="noopener">{site.instagram}</a></li>}
+        {has(site.address) && <li>{site.address}{site.city && `, ${site.city}`}</li>}
+        {has(site.hours) && <li>{site.hours.join(' · ')}</li>}
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-crema/10">
+    <p class="container-x py-6 text-label normal-case tracking-normal text-crema/70">© {year} <span translate="no">{site.name}</span>. Todos los derechos reservados.</p>
+  </div>
+</footer>

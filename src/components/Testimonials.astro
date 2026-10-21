@@ -1,0 +1,69 @@
+---
+// Testimonios: oculto mientras testimonials.json tenga show: false (no hay testimonios reales aún).
+// En producción, los items con todo: true nunca se muestran.
+import Icon from './Icon.astro';
+import data from '../data/testimonials.json';
+import { SHOW_TODOS } from '../lib/flags';
+
+const items = data.items.filter((t) => !t.todo || SHOW_TODOS);
+const render = data.show && items.length > 0;
+---
+
+{render && (
+  <section class="section-y bg-champana-200" aria-labelledby="testimonios-titulo" aria-roledescription="carrusel" data-testimonials>
+    <div class="container-x">
+      <div class="mx-auto max-w-4xl text-center">
+        <h2 id="testimonios-titulo" class="text-h2" data-reveal>Lo que dicen quienes ya nos escribieron</h2>
+        <div class="mt-head grid min-h-[14rem] items-center" aria-live="polite">
+          {items.map((t, i) => (
+            <figure class="testimonial" role="group" aria-roledescription="testimonio" aria-label={`${i + 1} de ${items.length}`} hidden={i !== 0} data-slide>
+              {t.todo && <span class="todo mb-6">TODO · testimonio real</span>}
+              <blockquote class="font-serif text-[clamp(1.5rem,1.2rem+1.4vw,2.4rem)] leading-snug text-negro">
+                <p>«{t.quote}»</p>
+              </blockquote>
+              <figcaption class="mt-8 text-small">
+                <span class="font-semibold">{t.name}</span>
+                <span class="mx-2 text-sepia-700" aria-hidden="true">·</span>
+                <span class="text-gris">{t.detail}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        {items.length > 1 && (
+          <div class="mt-10 flex items-center justify-center gap-4">
+            <button type="button" class="carousel-arrow" aria-label="Testimonio anterior" data-t-prev><Icon name="arrow-left" /></button>
+            <p class="min-w-16 text-small text-gris" data-t-count>1 / {items.length}</p>
+            <button type="button" class="carousel-arrow" aria-label="Testimonio siguiente" data-t-next><Icon name="arrow" /></button>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .testimonial:not([hidden]) {
+    animation: fade-up 500ms var(--ease-salida) both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial:not([hidden]) {
+      animation: fade-only 150ms linear both;
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-testimonials]');
+  if (root) {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const count = root.querySelector<HTMLElement>('[data-t-count]');
+    let i = 0;
+    const go = (n: number) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => (s.hidden = k !== i));
+      if (count) count.textContent = `${i + 1} / ${slides.length}`;
+    };
+    root.querySelector('[data-t-prev]')?.addEventListener('click', () => go(i - 1));
+    root.querySelector('[data-t-next]')?.addEventListener('click', () => go(i + 1));
+  }
+</script>
