@@ -1,18 +1,21 @@
 // Copia y limpia las fotos de ./brand hacia src/assets según scripts/media-map.json.
-// - Recorta overlays de interfaz (WhatsApp/Instagram) y normaliza a JPEG de calidad alta.
-// - Convierte el logo raster (línea negra sobre crema) en PNG transparente, en tinta oscura y clara.
+// - Recorta solo overlays de interfaz (WhatsApp/Instagram) y normaliza a JPEG de calidad alta.
+// - Genera los recortes de textura de las muestras de tela, el favicon (la silla del logo) y el cursor.
+// La imagen Open Graph sale de scripts/og-image.mjs (npm run og), que necesita las fuentes reales.
 // Uso: npm run media
 import sharp from 'sharp';
-import { readFile, mkdir } from 'node:fs/promises';
+import { readFile, readdir, mkdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { sillaSvg } from '../src/lib/silla.mjs';
 
 const root = path.resolve('.');
 const map = JSON.parse(await readFile(path.join(root, 'scripts/media-map.json'), 'utf8'));
 const brand = (f) => path.join(root, 'brand', f);
 const photosDir = path.join(root, 'src/assets/photos');
-const brandDir = path.join(root, 'src/assets/brand');
 await mkdir(photosDir, { recursive: true });
-await mkdir(brandDir, { recursive: true });
+// Fuera las fotos que ya no están en el mapa, para que no queden huérfanas en src/assets.
+const wanted = new Set([...Object.keys(map.photos), ...Object.keys(map.muestras).map((s) => `${s}-muestra`)].map((s) => `${s}.jpg`));
+for (const f of await readdir(photosDir)) if (!wanted.has(f)) await rm(path.join(photosDir, f));
 
 const toRect = ([left, top, width, height]) => ({ left, top, width, height });
 
@@ -27,39 +30,30 @@ for (const [slug, cfg] of Object.entries(map.photos)) {
   console.log('foto', slug);
 }
 
-// Logo: alfa a partir de la luminancia (tinta oscura = opaca, fondo crema = transparente).
-// hide = [x, y, w, h] relativo al recorte: zona que se vuelve transparente (p. ej. el tagline).
-async function inkPng(rect, color, out, hide) {
-  const { data, info } = await sharp(brand(map.logo.src))
+// Muestras de tela: recorte cuadrado solo de la tela, a 2x del círculo más grande (56px CSS).
+for (const [slug, rect] of Object.entries(map.muestras)) {
+  await sharp(path.join(photosDir, `${slug}.jpg`))
     .extract(toRect(rect))
-    .greyscale()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const rgba = Buffer.alloc(info.width * info.height * 4);
-  const [r, g, b] = color;
-  for (let i = 0; i < info.width * info.height; i++) {
-    const v = data[i];
-    const x = i % info.width;
-    const y = Math.floor(i / info.width);
-    const hidden = hide && x >= hide[0] && y >= hide[1] && x < hide[0] + hide[2] && y < hide[1] + hide[3];
-    const a = hidden ? 0 : Math.max(0, Math.min(255, Math.round(((215 - v) / (215 - 60)) * 255)));
-    rgba[i * 4] = r;
-    rgba[i * 4 + 1] = g;
-    rgba[i * 4 + 2] = b;
-    rgba[i * 4 + 3] = a;
-  }
-  await sharp(rgba, { raw: { width: info.width, height: info.height, channels: 4 } })
-    .trim()
-    .png()
-    .toFile(out);
-  console.log('logo', path.basename(out));
+    .resize(168, 168)
+    .jpeg({ quality: 86, mozjpeg: true })
+    .toFile(path.join(photosDir, `${slug}-muestra.jpg`));
+  console.log('muestra', slug);
 }
-await inkPng(map.logo.crop, [6, 6, 6], path.join(brandDir, 'logo-dark.png'));
-await inkPng(map.logo.crop, [234, 234, 229], path.join(brandDir, 'logo-light.png'));
-await inkPng(map.logo.chair, [46, 61, 53], path.join(root, 'public/favicon.png'));
-// Versión compacta para el header: silla + nombre + pespunte, sin el tagline (ilegible a ~48px de alto).
-await inkPng(map.logo.crop, [6, 6, 6], path.join(brandDir, 'logo-compact-dark.png'), map.logo.hideTagline);
-await inkPng(map.logo.crop, [234, 234, 229], path.join(brandDir, 'logo-compact-light.png'), map.logo.hideTagline);
+
+// Favicon: la silla del logo a color. Línea más gruesa para que se lea a 16-32px.
+const favicon = sillaSvg({ id: 'f', width: 64, height: 92, ink: '#060606', stroke: 14 });
+await writeFile(path.join(root, 'public/favicon.svg'), favicon);
+await sharp(Buffer.from(favicon))
+  .resize(64, 64, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png()
+  .toFile(path.join(root, 'public/favicon.png'));
+await sharp(Buffer.from(sillaSvg({ id: 'a', width: 124, height: 180, ink: '#060606', stroke: 9 })))
+  .resize(132, 132, { fit: 'contain', background: '#eaeae5' })
+  .extend({ top: 24, bottom: 24, left: 24, right: 24, background: '#eaeae5' })
+  .flatten({ background: '#eaeae5' })
+  .png()
+  .toFile(path.join(root, 'public/apple-touch-icon.png'));
+console.log('favicon');
 
 // Cursor «silla»: versión simplificada de la silla del logo (la original es de línea muy fina y
 // desaparece a 32px). Respaldo con rodillo, asiento redondo y 4 patas; halo crema para fondos oscuros.
@@ -87,10 +81,3 @@ for (const [name, ink] of [['silla', '#060606'], ['silla-terra', '#8c5230']]) {
   }
 }
 console.log('cursor silla');
-
-// Imagen Open Graph 1200x630 a partir del hero.
-await sharp(path.join(photosDir, `${map.og}.jpg`))
-  .resize(1200, 630, { fit: 'cover', position: 'centre' })
-  .jpeg({ quality: 82 })
-  .toFile(path.join(root, 'public/og-image.jpg'));
-console.log('og-image');

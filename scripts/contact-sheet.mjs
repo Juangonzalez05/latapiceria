@@ -1,10 +1,10 @@
 // Genera hojas de contacto numeradas de ./brand para clasificar fotos sin abrirlas una a una.
-// Uso: node scripts/contact-sheet.mjs [carpeta-salida]
+// Uso: node scripts/contact-sheet.mjs [carpeta-salida] [carpeta-origen (por defecto ./brand)]
 import sharp from 'sharp';
 import { readdir, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const BRAND = path.resolve('brand');
+const BRAND = path.resolve(process.argv[3] ?? 'brand');
 const OUT = path.resolve(process.argv[2] ?? '.contact-sheet');
 const COLS = 6;
 const CELL = 220;

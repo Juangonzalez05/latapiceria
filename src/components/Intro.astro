@@ -1,7 +1,7 @@
 ---
 // Banda «Hecho a mano» (campo esmeralda): el mensaje central del taller y calidad antes que cantidad.
-import { Image } from 'astro:assets';
 import Todo from './Todo.astro';
+import Foto from './ui/Foto.astro';
 import Pespunte from './ui/Pespunte.astro';
 import values from '../data/values.json';
 import site from '../data/site.json';
@@ -11,13 +11,12 @@ import { photo } from '../lib/photos';
 <section id="hecho-a-mano" class="section-y bg-esmeralda text-crema on-dark" aria-labelledby="intro-titulo">
   <div class="container-x grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-12 lg:gap-16">
     <div class="lg:col-span-4" data-reveal>
-      <div class="frame mx-auto aspect-[4/5] max-w-[22rem] lg:mx-0">
-        <Image
-          src={photo('midiendo-madera')}
-          alt="Manos de artesano marcando medidas sobre una tabla de madera"
-          widths={[320, 440, 640, 880]}
-          sizes="(min-width: 1024px) 352px, (min-width: 640px) 352px, 88vw"
-          class="h-full w-full object-cover"
+      <div class="mx-auto max-w-[22rem] lg:mx-0">
+        <Foto
+          src={photo('taller-estructura-curva')}
+          alt="Artesano armando a mano la estructura curva de madera de un sofá en el taller"
+          widths={[320, 440, 640, 704, 880]}
+          sizes="(min-width: 640px) 352px, 88vw"
         />
       </div>
     </div>

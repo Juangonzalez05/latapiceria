@@ -1,69 +1,98 @@
 ---
 // Cuero · la especialidad del taller. Campo negro (de la paleta) con acentos champaña y terra.
-// Fotos de oficio enmarcadas: la principal ≤ 373px CSS (origen de 747px, nítida en 2x).
-import { Image } from 'astro:assets';
+// Fotos de oficio completas (sin recortes): la principal ≤ 336px CSS (origen de 842px, nítida en 2x).
+// Debajo, «Del corte al capitoné»: los detalles del catálogo del cliente, apoyados sobre una misma base.
 import Icon from './Icon.astro';
 import Todo from './Todo.astro';
+import Foto from './ui/Foto.astro';
 import Pespunte from './ui/Pespunte.astro';
 import leather from '../data/leather.json';
 import { photo } from '../lib/photos';
 import { waLink } from '../lib/whatsapp';
+
+const pad = (n: number) => String(n).padStart(2, '0');
 ---
 
 <section id="cuero" class="section-y relative overflow-hidden bg-negro text-crema on-dark" aria-labelledby="cuero-titulo">
-  <div class="container-x grid grid-cols-[minmax(0,1fr)] items-center gap-14 lg:grid-cols-12 lg:gap-16">
-    <!-- Fotos: costura grande + corte superpuesto -->
-    <div class="relative mx-auto w-full max-w-[19rem] pb-16 sm:max-w-[23rem] lg:col-span-5 lg:mx-0 lg:pb-20" data-reveal>
-      <div class="frame aspect-[4/5] bg-esmeralda-900">
-        <Image
+  <div class="container-x">
+    <div class="grid grid-cols-[minmax(0,1fr)] items-center gap-14 lg:grid-cols-12 lg:gap-16">
+      <!-- Fotos: tachuelas a mano + corte superpuesto, ambas completas -->
+      <div class="relative mx-auto w-full max-w-[16rem] pb-24 sm:max-w-[19rem] lg:col-span-5 lg:mx-0 lg:max-w-[21rem] lg:pb-28" data-reveal>
+        <Foto
           src={photo(leather.photoMain)}
           alt={leather.photoMainAlt}
-          widths={[304, 368, 608, 736]}
-          sizes="(min-width: 640px) 368px, 304px"
-          class="h-full w-full object-cover"
+          widths={[256, 304, 336, 512, 608, 672, 842]}
+          sizes="(min-width: 1024px) 336px, (min-width: 640px) 304px, 256px"
+          class="!bg-esmeralda-900"
         />
+        <div class="absolute -right-6 bottom-0 w-[50%] sm:-right-12 lg:-right-16">
+          <Foto
+            src={photo(leather.photoDetail)}
+            alt={leather.photoDetailAlt}
+            widths={[128, 168, 256, 336]}
+            sizes="(min-width: 1024px) 168px, (min-width: 640px) 152px, 128px"
+            class="!bg-esmeralda-900 shadow-soft ring-[6px] ring-negro"
+          />
+        </div>
       </div>
-      <div class="frame absolute -right-4 bottom-0 aspect-[4/5] w-[52%] shadow-soft ring-[6px] ring-negro sm:-right-10 lg:-right-14">
-        <Image
-          src={photo(leather.photoDetail)}
-          alt={leather.photoDetailAlt}
-          widths={[160, 200, 320, 400]}
-          sizes="(min-width: 640px) 192px, 158px"
-          class="h-full w-full object-cover"
-        />
+
+      <div class="lg:col-span-6 lg:col-start-7">
+        <h2 id="cuero-titulo" class="text-h2 !text-crema" data-reveal>
+          El cuero, <em class="text-champana">nuestra especialidad</em>
+        </h2>
+        <p class="lead mt-5 max-w-[34rem]" data-reveal>{leather.lead}</p>
+
+        <ol class="cuero-pasos mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2" aria-label="Cómo trabajamos el cuero">
+          {leather.steps.map((s, i) => (
+            <li class="relative pl-12" data-reveal style={`--reveal-delay:${i}`}>
+              <span class="absolute left-0 top-0 grid size-9 place-items-center rounded-full border border-sepia/70 font-serif text-[1rem] text-champana" aria-hidden="true">{i + 1}</span>
+              <h3 class="font-serif text-[1.2rem] leading-snug !text-crema">
+                <span class="sr-only">Paso {i + 1}: </span>{s.title}
+              </h3>
+              <p class="mt-1.5 text-small text-crema/80">{s.text}</p>
+            </li>
+          ))}
+        </ol>
+
+        <Pespunte class="mt-10 max-w-[34rem] text-terra" />
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7" data-reveal>
+          <a href={waLink(leather.message)} target="_blank" rel="noopener" class="btn btn-light btn-lg">
+            <Icon name="whatsapp" size={20} />
+            {leather.cta}
+            <Icon name="arrow" size={16} class="btn-arrow" />
+          </a>
+        </div>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {leather.todo.map((t) => <Todo text={t} />)}
+        </div>
       </div>
     </div>
 
-    <div class="lg:col-span-6 lg:col-start-7">
-      <h2 id="cuero-titulo" class="text-h2 !text-crema" data-reveal>
-        El cuero, <em class="text-champana">nuestra especialidad</em>
-      </h2>
-      <p class="lead mt-5 max-w-[34rem]" data-reveal>{leather.lead}</p>
-
-      <ol class="cuero-pasos mt-10 grid gap-x-8 gap-y-7 sm:grid-cols-2" aria-label="Cómo trabajamos el cuero">
-        {leather.steps.map((s, i) => (
-          <li class="relative pl-12" data-reveal style={`--reveal-delay:${i}`}>
-            <span class="absolute left-0 top-0 grid size-9 place-items-center rounded-full border border-sepia/70 font-serif text-[1rem] text-champana" aria-hidden="true">{i + 1}</span>
-            <h3 class="font-serif text-[1.2rem] leading-snug !text-crema">
-              <span class="sr-only">Paso {i + 1}: </span>{s.title}
-            </h3>
-            <p class="mt-1.5 text-small text-crema/80">{s.text}</p>
+    <!-- Del corte al capitoné: detalles completos, apoyados sobre la misma línea -->
+    <div class="mt-20 border-t border-crema/15 pt-12 lg:mt-28 lg:pt-16">
+      <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-3" data-reveal>
+        <h3 class="text-h3 !text-crema">{leather.detailsTitle} <em class="text-champana">{leather.detailsEmphasis}</em></h3>
+        <p class="max-w-[26rem] text-small text-crema/75">{leather.detailsLead}</p>
+      </div>
+      <ul class="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory scroll-px-5 items-end gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible lg:px-0 lg:pb-0" aria-label="Detalles del trabajo en cuero" tabindex="0">
+        {leather.details.map((d, i) => (
+          <li class="w-[56%] shrink-0 snap-start sm:w-[32%] lg:w-auto" data-reveal style={`--reveal-delay:${i}`}>
+            <figure>
+              <Foto
+                src={photo(d.image)}
+                alt={d.alt}
+                widths={[200, 240, 400, 480]}
+                sizes="(min-width: 1024px) 224px, (min-width: 640px) 32vw, 56vw"
+                class="!bg-esmeralda-900"
+              />
+              <figcaption class="mt-3 text-small text-crema/80">
+                <span class="text-champana">{pad(i + 1)}</span> · {d.title}
+              </figcaption>
+            </figure>
           </li>
         ))}
-      </ol>
-
-      <Pespunte class="mt-10 max-w-[34rem] text-terra" />
-
-      <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7" data-reveal>
-        <a href={waLink(leather.message)} target="_blank" rel="noopener" class="btn btn-light btn-lg">
-          <Icon name="whatsapp" size={20} />
-          {leather.cta}
-          <Icon name="arrow" size={16} class="btn-arrow" />
-        </a>
-      </div>
-      <div class="mt-5 flex flex-wrap gap-2">
-        {leather.todo.map((t) => <Todo text={t} />)}
-      </div>
+      </ul>
     </div>
   </div>
 </section>

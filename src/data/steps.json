@@ -1,40 +1,41 @@
 [
   {
-    "title": "Brief del proyecto",
-    "text": "Cuéntanos el espacio, su uso y las piezas que necesitas. Puedes enviarnos planos, fotos y referencias por WhatsApp.",
-    "image": "sillon-hogar",
-    "alt": "Mujer sentada en un sillón tapizado junto a una ventana con luz natural"
-  },
-  {
-    "title": "Visita y medidas",
-    "text": "Vamos al espacio, tomamos medidas exactas y revisamos el estado del mobiliario si se trata de una renovación.",
-    "todo": "Confirmar si la visita tiene costo y en qué zonas",
+    "title": "Análisis",
+    "text": "Revisamos contigo los planos, el espacio y el listado de muebles. Puedes enviarnos fotos y referencias por WhatsApp.",
+    "todo": "Confirmar si hay visita a la obra para tomar medidas, su costo y en qué zonas",
     "image": "cinta-metrica",
     "alt": "Cinta métrica de costura sobre la mesa de corte del taller"
   },
   {
-    "title": "Propuesta y muestras",
-    "text": "Te enviamos la propuesta con diseño, materiales y valor, y muestras de cuero y tela para decidir con ellas en la mano.",
-    "image": "comedor-boceto",
-    "alt": "Boceto a mano de un comedor con lámpara colgante y ventana al jardín"
-  },
-  {
-    "title": "Aprobación",
-    "text": "Ajustamos lo que haga falta junto a ti o a tu estudio. Con el visto bueno, agendamos la producción.",
+    "title": "Cotización",
+    "text": "Te enviamos costos y cronograma, con muestras de cuero y tela antes de producir para que decidas con ellas en la mano.",
     "todo": "Confirmar condiciones de anticipo",
     "image": "muestrario-verde",
     "alt": "Muestras de telas en tonos verdes con distintas texturas"
   },
   {
-    "title": "Hecho a mano en el taller",
-    "text": "Armamos la estructura, cortamos, cosemos y tapizamos a mano. Te contamos cómo avanza cada pieza.",
+    "title": "Fabricación",
+    "text": "Producción propia en nuestro taller: estructura en madera maciza, esponja de alta densidad y corte, costura y tapizado a mano.",
     "image": "costura-terracota",
     "alt": "Costura de una tela terracota en máquina industrial"
   },
   {
-    "title": "Entrega e instalación",
-    "text": "Llevamos las piezas al espacio y revisamos juntos que todo quede como se aprobó.",
-    "todo": "Confirmar si la entrega incluye transporte e instalación",
+    "title": "Control de calidad",
+    "text": "Inspeccionamos cada pieza (costuras, esquinas y acabados) antes del embalaje.",
+    "image": "tapizando-verde",
+    "alt": "Manos de tapicero ajustando la tela de un sillón"
+  },
+  {
+    "title": "Envío e instalación",
+    "text": "Coordinamos la logística y la instalación en sitio, para que cada pieza quede donde va.",
+    "todo": "Confirmar zonas de cobertura del envío",
+    "image": "taller-ensamble",
+    "alt": "Manos atornillando a mano la estructura de madera de un mueble"
+  },
+  {
+    "title": "Entrega final",
+    "text": "Hacemos una inspección conjunta de cada pieza y te entregamos la garantía.",
+    "todo": "Condiciones de la garantía",
     "image": "sofa-hogar",
     "alt": "Sofá claro con cojines en una sala iluminada por el sol"
   }

@@ -12,3 +12,8 @@ export function photo(slug: string): ImageMetadata {
   if (!img) throw new Error(`Foto no encontrada: "${slug}". Revisa scripts/media-map.json y corre npm run media.`);
   return img;
 }
+
+/** Dentro de una caja de proporción `box` (ancho / alto): ¿la foto llena el ancho o el alto? */
+export function ajuste(img: ImageMetadata, box: number): 'is-ancha' | 'is-alta' {
+  return img.width / img.height >= box ? 'is-ancha' : 'is-alta';
+}

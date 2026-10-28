@@ -1,12 +1,13 @@
 ---
 // Telas y acabados: campo champaña («material»). Selector de muestras (radios nativos, flechas del teclado)
-// que actualiza la foto, el resumen y el mensaje de WhatsApp. Foto destacada ≤ 448px CSS (nítida en 2x).
+// que actualiza la foto, el resumen y el mensaje de WhatsApp. Foto destacada ≤ 448px CSS (nítida en 2x),
+// completa sobre un paspartú. Los círculos usan recortes solo de tela (<slug>-muestra, npm run media).
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import Todo from './Todo.astro';
 import Pespunte from './ui/Pespunte.astro';
 import fabrics from '../data/fabrics.json';
-import { photo } from '../lib/photos';
+import { photo, ajuste } from '../lib/photos';
 import { waLink } from '../lib/whatsapp';
 
 const msg = (name: string) => `Hola, me gustaría pedir una muestra de la tela «${name}». ¿Cómo la puedo recibir?`;
@@ -16,14 +17,14 @@ const first = fabrics[0];
 <section id="telas" class="section-y bg-champana-200" aria-labelledby="telas-titulo" data-fabrics>
   <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
     <div class="lg:col-span-6 lg:col-start-7 lg:row-start-1" data-reveal>
-      <div class="frame relative mx-auto aspect-[4/5] w-full max-w-[28rem] bg-champana lg:mr-0">
+      <div class="foto-caja has-mat relative mx-auto w-full max-w-[28rem] !bg-champana lg:mr-0" style="aspect-ratio:4 / 5" data-align="centro">
         {fabrics.map((f, i) => (
           <Image
             src={photo(f.image)}
             alt={f.alt}
             widths={[360, 448, 720, 896]}
             sizes="(min-width: 640px) 448px, 90vw"
-            class:list={['fabric-img absolute inset-0 h-full w-full object-cover', i === 0 && 'is-active']}
+            class:list={['foto-ajuste fabric-img', ajuste(photo(f.image), 4 / 5), i === 0 && 'is-active']}
             data-fabric-img={f.id}
             aria-hidden={i === 0 ? undefined : 'true'}
           />
@@ -40,13 +41,13 @@ const first = fabrics[0];
 
       <fieldset class="mt-9" data-reveal>
         <legend class="label mb-4">Elige una muestra</legend>
-        <div class="flex flex-wrap gap-2 sm:gap-3">
+        <div class="flex flex-wrap gap-2 sm:gap-2.5">
           {fabrics.map((f, i) => (
             <label class="swatch relative cursor-pointer" title={f.name}>
               <input type="radio" name="tela" value={f.id} class="peer sr-only" checked={i === 0} data-fabric-input />
               <span class="swatch-ring block rounded-full p-[3px] transition-[box-shadow] duration-300 peer-checked:shadow-[0_0_0_2px_var(--color-terra-700)] peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-terra-700">
-                <span class="block size-11 overflow-hidden rounded-full sm:size-14" style={`background:${f.swatch}`}>
-                  <Image src={photo(f.image)} alt="" width={112} height={112} class="h-full w-full scale-150 object-cover" />
+                <span class="block size-11 overflow-hidden rounded-full sm:size-12" style={`background:${f.swatch}`}>
+                  <Image src={photo(`${f.image}-muestra`)} alt="" width={112} height={112} class="h-full w-full" data-muestra />
                 </span>
               </span>
               <span class="sr-only">{f.name}</span>

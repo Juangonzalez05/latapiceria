@@ -32,7 +32,8 @@ for (const w of widths) {
         window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY, behavior: 'instant' });
       }, `#${id}`);
       await page.waitForTimeout(1800);
-      await page.locator(`#${id} img`).evaluateAll((imgs) => Promise.all(imgs.map((i) => i.decode().catch(() => {}))));
+      // Solo las fotos que se pintan: una diferida dentro de un bloque oculto nunca carga y decode() no terminaría.
+      await page.locator(`#${id} img`).evaluateAll((imgs) => Promise.race([Promise.all(imgs.filter((i) => i.getClientRects().length).map((i) => i.decode().catch(() => {}))), new Promise((r) => setTimeout(r, 5000))]));
       await page.waitForTimeout(300);
       // Captura de viewport (la sección ocupa una pantalla): la captura por elemento de Playwright
       // deja imágenes sin pintar en secciones que estaban fuera de pantalla.

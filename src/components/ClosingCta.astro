@@ -1,5 +1,6 @@
 ---
-// Cierre: campo terra (acento cálido, texto crema AA 5,1:1) con foto en arco.
+// Cierre: campo terra (acento cálido, texto crema AA 5,1:1) con la foto completa delante de un arco,
+// firmado con el eslogan de la marca.
 // Solo se muestran los datos de contacto reales; los faltantes son TODO en desarrollo.
 import ArchFrame from './ui/ArchFrame.astro';
 import Pespunte from './ui/Pespunte.astro';
@@ -28,6 +29,7 @@ const rows = contact.filter((c) => has(c.value) || SHOW_TODOS);
         Escríbenos con el tipo de espacio, la cantidad aproximada de piezas y tus referencias. Te respondemos por WhatsApp,
         con calma y con todas las respuestas.
       </p>
+      <p class="mt-4 font-serif text-[1.25rem] italic text-crema" data-reveal>{site.tagline}.</p>
       <div class="mt-9" data-reveal>
         <a href={waLink('Hola, tenemos un proyecto y queremos cotizar con La Tapicería.')} target="_blank" rel="noopener" class="btn btn-light btn-lg">
           <Icon name="whatsapp" size={22} />
@@ -67,11 +69,11 @@ const rows = contact.filter((c) => has(c.value) || SHOW_TODOS);
 
     <div class="mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:col-span-4 lg:col-start-9 lg:mx-0 lg:max-w-[25rem] lg:justify-self-end" data-reveal>
       <ArchFrame
-        src={photo('sofa-hogar')}
-        alt="Sofá claro con cojines en una sala iluminada por el sol"
-        sizes="(min-width: 1024px) 400px, (min-width: 640px) 352px, 288px"
-        widths={[288, 352, 400, 576, 704, 800, 963]}
-        position="50% 60%"
+        src={photo('cuero-butaca-metal')}
+        alt="Butaca de cuero color coñac con cojines amplios sobre una estructura de acero negro"
+        sizes="(min-width: 1024px) 336px, (min-width: 640px) 296px, 242px"
+        widths={[242, 296, 336, 484, 592, 672, 800]}
+        class="[--arco-color:var(--color-terra)]"
       />
     </div>
   </div>

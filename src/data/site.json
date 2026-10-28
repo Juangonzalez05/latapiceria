@@ -1,9 +1,8 @@
 {
   "_doc": "Datos del negocio. Un campo vacío (\"\" o []) se muestra en la página como TODO visible. Llénalos y desaparecen solos.",
   "name": "La Tapicería",
-  "tagline": "Diseño y producción",
-  "taglineAlt": "Comodidad hecha diseño",
-  "description": "Mobiliario hecho a mano para hoteles, restaurantes, galerías y casas de arquitecto. Tapicería en cuero, piezas a la medida y retapizado. Cotiza tu proyecto por WhatsApp.",
+  "tagline": "Comodidad hecha diseño",
+  "description": "Comodidad hecha diseño: mobiliario hecho a mano, con el cuero como especialidad, para hoteles, restaurantes, galerías y casas de arquitecto. Piezas a la medida y producción por lotes. Cotiza tu proyecto por WhatsApp.",
   "city": "",
   "region": "",
   "coverage": "",

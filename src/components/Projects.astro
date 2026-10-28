@@ -1,16 +1,20 @@
 ---
-// Proyectos · selección curada de 6 piezas (calidad antes que cantidad).
-// Escritorio: grilla editorial 5-4-3 / 3-4-5 (máx. ~496px CSS por foto, nítida en 2x). Móvil: carrusel.
-import { Image, getImage } from 'astro:assets';
+// Proyectos · selección curada de 6 piezas (calidad antes que cantidad), casi todas en cuero.
+// Cada foto va completa, en su proporción. Escritorio: grilla editorial 5-4-3 / 3-4-5 (máx. ~490px CSS
+// por foto, nítida en 2x): las horizontales van en las columnas anchas y las verticales en las angostas.
+// Móvil: carrusel.
+import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
 import Lightbox from './Lightbox.astro';
+import Foto from './ui/Foto.astro';
 import SectionHeader from './ui/SectionHeader.astro';
 import data from '../data/projects.json';
 import { photo } from '../lib/photos';
 
 const items = await Promise.all(
   data.items.map(async (p) => {
-    const full = await getImage({ src: photo(p.image), width: 1100, format: 'webp', quality: 82 });
+    const src = photo(p.image);
+    const full = await getImage({ src, width: Math.min(1100, src.width), format: 'webp', quality: 82 });
     return { ...p, full: full.src };
   })
 );
@@ -20,7 +24,7 @@ const items = await Promise.all(
   <div class="container-x">
     <SectionHeader id="proyectos-titulo" title={data.title} lead={data.lead} />
 
-    <ul class="projects no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:grid lg:snap-none lg:grid-cols-12 lg:gap-x-6 lg:gap-y-12 lg:overflow-visible lg:px-0 lg:pb-0" data-track aria-label="Proyectos">
+    <ul class="projects no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 items-end gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:grid lg:snap-none lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-14 lg:overflow-visible lg:px-0 lg:pb-0" data-track aria-label="Proyectos">
       {items.map((p, i) => (
         <li class="project relative w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-auto" data-slot={i % 6}>
           <button
@@ -33,14 +37,13 @@ const items = await Promise.all(
             data-cat={p.note}
             aria-label={`Ampliar: ${p.title}`}
           >
-            <span class="frame project-frame block">
-              <Image
+            <span class="relative block">
+              <Foto
                 src={photo(p.image)}
                 alt={p.alt}
-                widths={[300, 400, 500, 800, 1000]}
-                sizes="(min-width: 1024px) 34vw, (min-width: 640px) 46vw, 78vw"
-                class="h-full w-full object-cover transition-transform duration-[900ms] ease-[var(--ease-salida)] group-hover:scale-[1.03]"
-                data-motion="transform"
+                widths={[300, 400, 500, 640, 800, 1000]}
+                sizes="(min-width: 1280px) 490px, (min-width: 1024px) 38vw, (min-width: 640px) 46vw, 78vw"
+                imgClass="project-img"
               />
               <span class="absolute right-3 top-3 grid size-10 place-items-center rounded-full bg-crema/90 text-negro opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">
                 <Icon name="expand" size={16} />
@@ -63,39 +66,37 @@ const items = await Promise.all(
 </section>
 
 <style>
-  .project-frame {
-    aspect-ratio: 4 / 5;
+  /* Sin zoom (recortaría los bordes de la foto): la foto se eleva con una sombra suave. */
+  .project :global(.project-img) {
+    transition: box-shadow 500ms var(--ease-salida);
+  }
+  @media (hover: hover) {
+    .project:hover :global(.project-img) {
+      box-shadow: 0 24px 44px -26px rgb(6 6 6 / 0.55);
+    }
   }
   /* Escritorio: dos filas espejo (5-4-3 / 3-4-5 columnas de 12) con desfases suaves. */
   @media (min-width: 1024px) {
-    .project[data-slot='0'] {
+    .project[data-slot='0'],
+    .project[data-slot='5'] {
       grid-column: span 5;
     }
-    .project[data-slot='1'] {
-      grid-column: span 4;
-      margin-top: 3rem;
-    }
-    .project[data-slot='2'] {
-      grid-column: span 3;
-    }
-    .project[data-slot='2'] .project-frame,
-    .project[data-slot='3'] .project-frame {
-      aspect-ratio: 3 / 4;
-    }
-    .project[data-slot='3'] {
-      grid-column: span 3;
-      margin-top: 1.5rem;
-    }
+    .project[data-slot='1'],
     .project[data-slot='4'] {
       grid-column: span 4;
     }
-    .project[data-slot='5'] {
-      grid-column: span 5;
-      margin-top: 2.5rem;
+    .project[data-slot='2'],
+    .project[data-slot='3'] {
+      grid-column: span 3;
     }
-    .project[data-slot='0'] .project-frame,
-    .project[data-slot='5'] .project-frame {
-      aspect-ratio: 1 / 1;
+    .project[data-slot='1'] {
+      margin-top: 3rem;
+    }
+    .project[data-slot='3'] {
+      margin-top: 1.5rem;
+    }
+    .project[data-slot='5'] {
+      margin-top: 2.5rem;
     }
   }
 </style>

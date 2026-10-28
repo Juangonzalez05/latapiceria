@@ -1,10 +1,9 @@
 ---
 // Header fijo, legible desde el primer pixel: tinta oscura sobre crema.
+// Logo «Comodidad hecha diseño» en vector (toma el color del header: negro, o crema con el menú abierto).
 // Al hacer scroll se compacta y gana fondo sólido; marca la sección activa.
-import { Image } from 'astro:assets';
-import logoDark from '../assets/brand/logo-compact-dark.png';
-import logoLight from '../assets/brand/logo-compact-light.png';
 import Icon from './Icon.astro';
+import Logo from './ui/Logo.astro';
 import { waLink } from '../lib/whatsapp';
 import site from '../data/site.json';
 
@@ -21,9 +20,8 @@ const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
 <header class="site-header sticky top-0 z-50 text-negro" data-header>
   <div class="header-bg absolute inset-0 -z-10" aria-hidden="true"></div>
   <div class="container-x header-row flex items-center justify-between gap-6">
-    <a href="#inicio" class="logo relative block shrink-0" aria-label={`${site.name}, ir al inicio`} translate="no">
-      <Image src={logoDark} alt="" class="logo-dark h-full w-auto" loading="eager" widths={[130, 160, 260, 320, 480]} sizes="(min-width: 1024px) 160px, 130px" />
-      <Image src={logoLight} alt="" class="logo-light absolute inset-0 h-full w-auto" loading="eager" widths={[130, 160, 260, 320, 480]} sizes="(min-width: 1024px) 160px, 130px" />
+    <a href="#inicio" class="brand-link block shrink-0" aria-label={`${site.name}, ${site.tagline}. Ir al inicio`}>
+      <Logo />
     </a>
 
     <nav aria-label="Principal" class="hidden lg:block">
@@ -75,21 +73,26 @@ const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
 </header>
 
 <style>
-  /* Logo protagonista: 3,25rem en móvil y 4rem en escritorio; se compacta a 3,1rem al bajar. */
+  /*
+    Logo protagonista con el eslogan legible: 1,65rem en móvil (eslogan de 13px) y 2rem en escritorio;
+    al bajar vuelve a 1,65rem. Todo el logo escala con --logo-size.
+  */
   .header-row {
     height: 4.75rem;
     transition: height 300ms var(--ease-suave);
   }
-  .logo {
-    height: 3.25rem;
-    transition: height 300ms var(--ease-suave);
+  .brand-link {
+    --logo-size: 1.65rem;
+  }
+  .brand-link :global(.logo) {
+    transition: font-size 300ms var(--ease-suave);
   }
   @media (min-width: 1024px) {
     .header-row {
       height: 6.25rem;
     }
-    .logo {
-      height: 4rem;
+    .brand-link {
+      --logo-size: 2rem;
     }
   }
   /* Arriba del todo el header se funde con el hero crema; al bajar gana fondo sólido y una línea. */
@@ -98,9 +101,6 @@ const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
     transition:
       background-color 300ms var(--ease-suave),
       box-shadow 300ms var(--ease-suave);
-  }
-  .logo-light {
-    opacity: 0;
   }
   .menu-btn:hover {
     background: rgb(6 6 6 / 0.06);
@@ -117,8 +117,8 @@ const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
     .site-header[data-scrolled] .header-row {
       height: 4.75rem;
     }
-    .site-header[data-scrolled] .logo {
-      height: 3.1rem;
+    .site-header[data-scrolled] .brand-link {
+      --logo-size: 1.65rem;
     }
   }
 
@@ -129,12 +129,6 @@ const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
   .site-header[data-open] .header-bg {
     background: var(--color-esmeralda);
     box-shadow: none;
-  }
-  .site-header[data-open] .logo-dark {
-    opacity: 0;
-  }
-  .site-header[data-open] .logo-light {
-    opacity: 1;
   }
   .site-header[data-open] .btn-wa {
     background: var(--color-crema);

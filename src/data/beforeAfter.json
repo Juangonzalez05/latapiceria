@@ -1,13 +1,13 @@
 [
   {
-    "id": "boceto",
-    "label": "Del boceto al comedor",
-    "before": "comedor-boceto",
-    "after": "comedor-resultado",
-    "beforeLabel": "Boceto",
-    "afterLabel": "Resultado",
-    "beforeAlt": "Boceto a mano del comedor con lámpara de madera y ventana",
-    "afterAlt": "Comedor terminado con mesa y sillas de madera tapizadas en blanco"
+    "id": "estructura",
+    "label": "De la estructura al sofá",
+    "before": "estructura-cinchas",
+    "after": "sofa-boucle-terminado",
+    "beforeLabel": "Estructura",
+    "afterLabel": "Terminado",
+    "beforeAlt": "Estructura de madera de un sofá modular con chaise, con cinchas verdes entrelazadas, frente a un panel claro",
+    "afterAlt": "Sofá modular con chaise tapizado en bouclé blanco, frente al mismo panel claro"
   },
   {
     "id": "retapizado",

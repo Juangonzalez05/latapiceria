@@ -1,13 +1,13 @@
 {
-  "_doc": "Selección curada (calidad antes que cantidad): 6 piezas. note = nota breve de material u oficio, sin claims nuevos. Ver origen de cada foto en scripts/media-map.json.",
+  "_doc": "Selección curada (calidad antes que cantidad): 6 piezas. Orden = espacio en la grilla de escritorio (5-4-3 / 3-4-5 columnas): las fotos horizontales van en las posiciones 1 y 6 (anchas) y las más verticales en la 3 y la 4 (angostas). Títulos = nombres del catálogo del cliente. note = nota breve de material u oficio, sin claims nuevos. Ver origen de cada foto en scripts/media-map.json.",
   "title": "Piezas que hablan por nosotros",
-  "lead": "Una selección corta de piezas recientes. Preferimos mostrarte pocas y bien hechas.",
+  "lead": "Una selección corta de piezas, casi todas en cuero. Preferimos mostrarte pocas y bien hechas.",
   "items": [
-    { "image": "sofa-terracota", "title": "Sofá modular terracota", "note": "Bouclé terracota, módulos capitoné", "alt": "Sofá modular de cojines capitoné en bouclé terracota" },
+    { "image": "cuero-cognac", "title": "Sofá en cuero cognac", "note": "Líneas rectas, cuero envejecido", "alt": "Sofá de líneas rectas tapizado en cuero cognac con una manta tejida sobre el respaldo" },
+    { "image": "cuero-chesterfield-clasico", "title": "Chesterfield clásico", "note": "Capitoné y tachuelas a mano", "alt": "Sofá chesterfield de cuero café con capitoné y tachuelas, recién instalado en una sala" },
+    { "image": "cuero-tejido", "title": "Cuero tejido", "note": "Silla y cojín en tiras de cuero", "alt": "Silla de estructura metálica con asiento y respaldo de tiras de cuero tejidas y un cojín a juego" },
+    { "image": "cuero-negro-nogal", "title": "Cuero negro y nogal", "note": "Poltrona de madera y cuero", "alt": "Poltrona de madera de nogal con asiento y respaldo tapizados en cuero negro" },
     { "image": "habitacion-luz", "title": "Habitación completa", "note": "Cama y cabecero tapizados", "alt": "Habitación con cama tapizada, cabecero y mesas de noche" },
-    { "image": "sofa-gris-taller", "title": "Sofá esquinero gris", "note": "Recién salido del taller", "alt": "Sofá esquinero en tela gris claro recién terminado en el taller" },
-    { "image": "butaca-noche", "title": "Butaca de lectura", "note": "Madera y bouclé", "alt": "Butaca de madera y bouclé en un rincón oscuro junto a la ventana" },
-    { "image": "cama-verde", "title": "Cama tapizada verde", "note": "Base y cabecero en tela", "alt": "Cama con base y cabecero tapizados en tela verde" },
-    { "image": "sofa-verde-modular", "title": "Sofá modular oliva", "note": "Módulos a la medida con puff", "alt": "Sofá modular largo en tela verde oliva con puff" }
+    { "image": "cuero-chesterfield-puf", "title": "Chesterfield con puf", "note": "Sofá y puf en cuero", "alt": "Sofá chesterfield de cuero café con cojines claros y un puf redondo de cuero frente a una pared oscura" }
   ]
 }

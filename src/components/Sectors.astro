@@ -1,8 +1,9 @@
 ---
 // Sectores: hoteles, restaurantes, galerías y casas de arquitecto (reemplaza «Dos caminos»).
-// Escritorio: 4 columnas con foto 4:5 (≤ 300px CSS, nítida en 2x). Móvil: carrusel deslizable.
-import { Image } from 'astro:assets';
+// Escritorio: 4 columnas; cada foto va completa, apoyada sobre una base común (caja 3:4) para que los
+// títulos queden alineados (≤ 300px CSS, nítida en 2x). Móvil: carrusel deslizable.
 import Icon from './Icon.astro';
+import Foto from './ui/Foto.astro';
 import Todo from './Todo.astro';
 import SectionHeader from './ui/SectionHeader.astro';
 import data from '../data/sectors.json';
@@ -18,19 +19,17 @@ import { waLink } from '../lib/whatsapp';
       {data.items.map((s, i) => (
         <li class="sector group relative w-[76%] shrink-0 snap-start sm:w-[44%] lg:w-auto" data-reveal style={`--reveal-delay:${i}`}>
           <article aria-labelledby={`sector-${s.id}`} class="flex h-full flex-col">
-            <div class="frame aspect-[4/5]">
-              <Image
-                src={photo(s.image)}
-                alt={s.alt}
-                widths={[280, 300, 420, 560, 600]}
-                sizes="(min-width: 1024px) 300px, (min-width: 640px) 44vw, 76vw"
-                class="sector-img h-full w-full object-cover"
-                data-motion="transform"
-              />
-            </div>
+            <Foto
+              src={photo(s.image)}
+              alt={s.alt}
+              widths={[280, 300, 420, 560, 600]}
+              sizes="(min-width: 1024px) 300px, (min-width: 640px) 44vw, 76vw"
+              box={3 / 4}
+              imgClass="sector-img"
+            />
             <h3 id={`sector-${s.id}`} class="mt-5 text-h3">{s.name}</h3>
             <p class="mt-2 text-gris">{s.text}</p>
-            <Todo text={s.todo} class="mt-3" />
+            {s.todo && <Todo text={s.todo} class="mt-3" />}
             <a href={waLink(s.message)} target="_blank" rel="noopener" class="link-arrow mt-auto pt-4 text-esmeralda">
               <Icon name="whatsapp" size={18} />
               <span class="link-line">{s.cta}</span>
@@ -60,12 +59,13 @@ import { waLink } from '../lib/whatsapp';
 </section>
 
 <style>
-  .sector-img {
-    transition: transform 900ms var(--ease-salida);
+  /* Sin zoom (recortaría los bordes de la foto): la foto se eleva con una sombra suave. */
+  .sector :global(.sector-img) {
+    transition: box-shadow 500ms var(--ease-salida);
   }
   @media (hover: hover) {
-    .sector:hover .sector-img {
-      transform: scale(1.03);
+    .sector:hover :global(.sector-img) {
+      box-shadow: 0 22px 40px -24px rgb(6 6 6 / 0.55);
     }
   }
 </style>

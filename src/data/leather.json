@@ -1,9 +1,9 @@
 {
-  "_doc": "Sección Cuero (especialidad del taller). Pasos = descripción del oficio, sin cifras. 'todo' = lo que el cliente debe aportar.",
+  "_doc": "Sección Cuero (especialidad del taller). Pasos = descripción del oficio, sin cifras. details = «Del corte al capitoné», con los nombres que les da el catálogo del cliente (p. 10). 'todo' = lo que el cliente debe aportar.",
   "title": "El cuero, nuestra especialidad",
-  "lead": "El cuero se trabaja con las manos y con tiempo. Lo seleccionamos, lo cortamos y lo cosemos en el taller para que cada pieza gane carácter con el uso.",
-  "photoMain": "cuero-costura",
-  "photoMainAlt": "Costura de una tira de cuero negro en máquina de coser de taller",
+  "lead": "Un material noble, trabajado a mano: se hace más bello con el tiempo. Lo seleccionamos, lo cortamos y lo cosemos en el taller para que cada pieza gane carácter con el uso.",
+  "photoMain": "cuero-tachuelas",
+  "photoMainAlt": "Manos de tapicero clavando a mano las tachuelas decorativas en el brazo de un sofá chesterfield de cuero",
   "photoDetail": "cuero-corte",
   "photoDetailAlt": "Artesano cortando pieles sobre una mesa de trabajo, en blanco y negro",
   "steps": [
@@ -24,7 +24,17 @@
       "text": "Revisamos cada costura y cada esquina antes de que la pieza salga del taller."
     }
   ],
+  "detailsTitle": "Del corte al",
+  "detailsEmphasis": "capitoné",
+  "detailsLead": "El oficio está en lo pequeño: el pliegue, el botón y cada costura, hechos a mano.",
+  "details": [
+    { "image": "cuero-capitone", "title": "Capitoné a mano", "alt": "Mano acomodando los pliegues de un capitoné en cuero color malva" },
+    { "image": "cuero-costura-remate", "title": "Costura y remate", "alt": "Brazo de un sofá de cuero cognac con la costura y el remate a la vista" },
+    { "image": "cuero-costura-vista", "title": "Costura a la vista", "alt": "Detalle de una costura a la vista en cuero color miel" },
+    { "image": "cuero-y-madera", "title": "Cuero y madera", "alt": "Respaldo de cuero negro abrazado por un brazo curvo de madera" },
+    { "image": "cuero-costura", "title": "Ribete en máquina", "alt": "Costura de una tira de cuero negro en máquina de coser de taller" }
+  ],
   "cta": "Pedir muestras de cuero",
   "message": "Hola, quiero ver muestras de cuero para un proyecto.",
-  "todo": ["Tipos de cuero, procedencia y cuidados recomendados", "Fotos de piezas terminadas en cuero"]
+  "todo": ["Tipos de cuero, procedencia y cuidados recomendados"]
 }

@@ -48,6 +48,24 @@ async function run(width) {
   r.sections = await page.evaluate(() => ['sectores', 'hecho-a-mano', 'cuero', 'proyectos', 'proceso', 'cotizar', 'contacto'].filter((id) => !document.getElementById(id)));
   r.sectorCards = await page.evaluate(() => document.querySelectorAll('.sector').length);
 
+  // Logo «Comodidad hecha diseño» (vector) en header y footer, con el eslogan como texto real
+  r.logos = await page.evaluate(() =>
+    [...document.querySelectorAll('.logo')].map((l) => `${l.closest('header, footer')?.tagName} · ${l.querySelector('.logo-lema')?.textContent} · ${getComputedStyle(l.querySelector('.logo-lema')).fontSize}`)
+  );
+  r.faviconSvg = await page.evaluate(() => !!document.querySelector('link[rel="icon"][href="/favicon.svg"]'));
+
+  // Cuero: tira «Del corte al capitoné» y muestras de tela con recortes solo de textura
+  r.leatherDetails = await page.evaluate(() => document.querySelectorAll('#cuero figure').length);
+  r.swatchesFromTexture = await page.evaluate(() => [...document.querySelectorAll('[data-muestra]')].every((i) => i.src.includes('-muestra')));
+
+  // Antes/después: la caja tiene la misma proporción que las fotos (nada se recorta)
+  r.baRatio = await page.evaluate(() => {
+    const box = document.querySelector('[data-ba]');
+    const img = box.querySelector('img');
+    const br = box.getBoundingClientRect();
+    return `${(br.width / br.height).toFixed(3)} caja · ${(img.getAttribute('width') / img.getAttribute('height')).toFixed(3)} foto · ${img.alt.slice(0, 30)}`;
+  });
+
   // Cursor «silla» (solo con mouse): html y enlaces
   r.cursorHtml = await page.evaluate(() => getComputedStyle(document.documentElement).cursor.slice(0, 60));
   r.cursorLink = await page.evaluate(() => getComputedStyle(document.querySelector('a[href]')).cursor.slice(0, 60));

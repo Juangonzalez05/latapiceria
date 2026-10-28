@@ -1,0 +1,46 @@
+---
+// Foto completa, nunca recortada. Envuelve <Image> de astro:assets.
+// - Por defecto: proporción natural de la foto (ancho 100%, alto automático, sin saltos de layout).
+// - box: caja de proporción fija (ancho / alto) donde la foto se ajusta entera, apoyada abajo a la
+//   izquierda ('base', para galerías con títulos alineados) o centrada ('centro').
+// Mantener el ancho mostrado ≤ ancho nativo / 2 para que se vea nítida en pantallas 2x.
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { ajuste } from '../../lib/photos';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  widths: number[];
+  sizes: string;
+  /** Proporción de la caja (ancho / alto). Sin ella, la foto va en su proporción natural. */
+  box?: number;
+  align?: 'base' | 'centro';
+  /** Fondo champaña en la caja (paspartú). */
+  mat?: boolean;
+  eager?: boolean;
+  quality?: number;
+  class?: string;
+  imgClass?: string;
+  [key: `data-${string}`]: string | undefined;
+}
+const { src, alt, widths, sizes, box, align = 'base', mat = false, eager = false, quality, class: cls = '', imgClass = '', ...rest } = Astro.props;
+const img = {
+  src,
+  alt,
+  widths,
+  sizes,
+  quality,
+  loading: eager ? ('eager' as const) : ('lazy' as const),
+  fetchpriority: eager ? ('high' as const) : undefined,
+  ...rest,
+};
+---
+
+{box ? (
+  <span class:list={['foto-caja', mat && 'has-mat', cls]} style={`aspect-ratio:${box}`} data-align={align}>
+    <Image {...img} class:list={['foto-ajuste', ajuste(src, box), imgClass]} />
+  </span>
+) : (
+  <Image {...img} class:list={['foto', cls, imgClass]} />
+)}

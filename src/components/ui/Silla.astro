@@ -1,0 +1,17 @@
+---
+// La silla del logo a color (vector). La línea toma el color del texto (currentColor); respaldo y
+// asiento en Terra. Decorativa: el nombre de la marca siempre va como texto al lado.
+import { SILLA_VIEWBOX, sillaInner } from '../../lib/silla.mjs';
+
+interface Props {
+  class?: string;
+  /** Grosor de línea en unidades del dibujo (5,5 = el del logo original). */
+  stroke?: number;
+  fill?: string;
+  shade?: string;
+}
+const { class: cls = '', stroke, fill = 'var(--color-terra)', shade = 'var(--color-terra-700)' } = Astro.props;
+const id = `silla-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<svg class:list={['silla', cls]} viewBox={SILLA_VIEWBOX} aria-hidden="true" focusable="false" set:html={sillaInner({ id, fill, shade, stroke })} />

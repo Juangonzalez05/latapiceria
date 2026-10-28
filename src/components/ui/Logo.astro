@@ -1,0 +1,70 @@
+---
+// Logo «Comodidad hecha diseño» en vector: silla a color + nombre + hilo con aguja + eslogan.
+// Rehecho a partir del logo a color del cliente (brand/2026-10-02 … 1.20.36 PM, 330px, y la referencia
+// de 1169px en brand/2026-10-28). Los textos son texto real en Literata: nítidos a cualquier tamaño.
+// Todo se mide en em: el tamaño se controla con font-size (--logo-size). El eslogan es 0,5em, así que
+// --logo-size nunca debe bajar de 1,625rem (eslogan ≥ 13px).
+import Silla from './Silla.astro';
+import site from '../../data/site.json';
+
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+---
+
+<span class:list={['logo', cls]}>
+  <Silla class="logo-silla" />
+  <span class="logo-texto">
+    <span class="logo-nombre" translate="no">{site.name}</span>
+    <svg class="logo-aguja" viewBox="0 0 200 14" aria-hidden="true" focusable="false">
+      <line x1="1" y1="8" x2="30" y2="8" stroke="currentColor" stroke-width="1.6" stroke-dasharray="5 4.5" stroke-linecap="round" />
+      <path d="M33 8 C 42 8, 46 2.2, 55 2.2 S 68 9, 76 8.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <circle cx="80" cy="8.1" r="2.6" fill="currentColor" />
+      <path d="M83.5 7.1 L 200 8 L 83.5 9.1 Z" fill="currentColor" />
+    </svg>
+    <span class="logo-lema">{site.tagline}</span>
+  </span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.34em;
+    font-size: var(--logo-size, 1.65rem);
+    line-height: 1;
+  }
+  .logo :global(.logo-silla) {
+    flex: none;
+    height: 2.3em;
+    width: auto;
+    aspect-ratio: 272 / 393;
+  }
+  .logo-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .logo-nombre {
+    font-family: var(--font-serif);
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+  }
+  .logo-aguja {
+    display: block;
+    width: 4.7em;
+    height: auto;
+    margin: 0.16em 0 0.12em 0.3em;
+  }
+  .logo-lema {
+    font-family: var(--font-serif);
+    font-size: 0.5em;
+    font-style: italic;
+    letter-spacing: 0.07em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+</style>

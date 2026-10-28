@@ -1,13 +1,15 @@
 ---
-// Proceso compacto.
+// Proceso compacto: los seis pasos del catálogo del cliente (p. 16).
 // Escritorio: foto fija (sticky) que cambia con el paso activo + lista de pasos unida por un hilo que se llena al bajar.
 // Móvil: tarjetas deslizables (scroll-snap) con contador y flechas.
+// Las fotos van completas sobre un paspartú (caja fija, foto ajustada sin recortar).
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import Todo from './Todo.astro';
+import Foto from './ui/Foto.astro';
 import SectionHeader from './ui/SectionHeader.astro';
 import steps from '../data/steps.json';
-import { photo } from '../lib/photos';
+import { photo, ajuste } from '../lib/photos';
 import { waLink } from '../lib/whatsapp';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -18,7 +20,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <SectionHeader
       id="proceso-titulo"
       variant="center"
-      title="Del brief a la entrega, sin prisas"
+      title="Un proceso hecho con cuidado"
       lead="Seis pasos claros y un mismo equipo de principio a fin. Sabrás siempre en qué punto va cada pieza."
     />
 
@@ -26,18 +28,18 @@ const pad = (n: number) => String(n).padStart(2, '0');
       <!-- Foto fija (solo escritorio) -->
       <div class="hidden lg:col-span-5 lg:block" aria-hidden="true">
         <div class="sticky top-28">
-          <div class="frame relative aspect-[4/5] max-w-[28rem]">
+          <span class="foto-caja has-mat max-w-[28rem]" style="aspect-ratio:4 / 5" data-align="centro">
             {steps.map((s, i) => (
               <Image
                 src={photo(s.image)}
                 alt=""
                 widths={[448, 672, 896]}
                 sizes="448px"
-                class:list={['step-photo absolute inset-0 h-full w-full object-cover', i === 0 && 'is-active']}
+                class:list={['foto-ajuste step-photo', ajuste(photo(s.image), 4 / 5), i === 0 && 'is-active']}
                 data-step-photo={i}
               />
             ))}
-          </div>
+          </span>
         </div>
       </div>
 
@@ -49,9 +51,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <ol class="steps no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:block lg:snap-none lg:overflow-visible lg:px-0" data-steps aria-label="Pasos del proceso">
           {steps.map((s, i) => (
             <li class="step relative w-[82%] shrink-0 snap-start rounded-card bg-crema p-4 sm:w-[60%] lg:grid lg:w-auto lg:grid-cols-[3rem_minmax(0,1fr)] lg:gap-6 lg:bg-transparent lg:p-0 lg:py-7" data-step={i}>
-              <div class="frame mb-4 aspect-[4/3] lg:hidden">
-                <Image src={photo(s.image)} alt={s.alt} widths={[320, 480, 640]} sizes="(min-width: 640px) 60vw, 82vw" class="h-full w-full object-cover" />
-              </div>
+              <Foto src={photo(s.image)} alt={s.alt} widths={[240, 320, 480, 640]} sizes="(min-width: 640px) 40vw, 60vw" box={4 / 3} align="centro" mat class="mb-4 lg:hidden" />
               <span class="step-num relative z-10 hidden font-serif text-[1.35rem] leading-none lg:grid lg:size-12 lg:place-items-center lg:rounded-full" aria-hidden="true">{pad(i + 1)}</span>
               <div>
                 <p class="label lg:hidden">Paso {i + 1} de {steps.length}</p>

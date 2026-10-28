@@ -373,26 +373,25 @@ Para pasar de 83 a más de 90 en rendimiento móvil, Literata pasó de la varian
 
 ## 8. Inventario de derechos de las fotos (preparación)
 
-Cada foto de `scripts/media-map.json` tiene un campo `origen`. Esto **no** reemplaza ninguna foto todavía: deja lista la revisión de derechos que se hará más adelante. Varias fotos parecen venir de publicaciones de otras marcas, de México y de otros países.
+Cada foto de `scripts/media-map.json` tiene un campo `origen` y, si aparece en el catálogo del cliente (`Catalogo_Fabrica_La_Tapiceria_2026.pdf`), un campo `catalogo` con la página y el nombre que le da. Que una foto esté en el catálogo indica que el cliente la presenta como suya, pero **no** confirma la autoría. Esto no reemplaza ninguna foto: deja lista la revisión de derechos que se hará más adelante.
 
-| Estado | Fotos | Motivo |
+| Estado | Fotos en uso | Motivo |
 |---|---|---|
-| **riesgo-alto** | `hero-arco`, `hero-bosque`, `hero-sofa` | Carrusel de Instagram «5/13», de la misma sesión que el comedor |
-| **riesgo-alto** | `comedor-resultado`, `comedor-boceto` | La captura original muestra la marca «MUEBLES DE PUEBLITO» y el contador «2/13» |
-| **riesgo-alto** | `chaise-sala`, `sala-modulos`, `butaca-curva`, `silla-madera` | Aspecto de render o de foto de catálogo |
-| por-confirmar | Todas las demás, incluidas las de cuero | Capturas de WhatsApp o Instagram sin autoría confirmada |
+| **riesgo-alto** | `cuero-chesterfield-puf` (Proyectos) | El original de WhatsApp es una captura de una publicación ajena (contadores de «me gusta» y comentarios) |
+| **riesgo-alto** | `cuero-tejido` (Proyectos) | El original es una captura de Instagram (íconos y contador «6») |
+| **riesgo-alto** | `cuero-oliva` (sector Casas de arquitecto) | Aspecto de render o de foto de catálogo |
+| por-confirmar | Todas las demás | Capturas de WhatsApp o fotos de catálogo sin autoría confirmada. La más probable como propia es `cuero-chesterfield-clasico` (instalación con muebles embalados en primer plano) |
 | propia | (ninguna confirmada aún) | — |
 
-**Dónde se usan las de riesgo alto:**
-- `hero-arco`: el hero.
-- `comedor-resultado` y `comedor-boceto`: el sector Restaurantes, el par antes/después y el paso 3 del proceso.
-- `butaca-curva`: el sector Galerías.
-- `sala-modulos`: el sector Casas de arquitecto.
+**Salieron del sitio** en la iteración del 28-10 (§10) todas las fotos de riesgo alto anteriores: `hero-arco`, `hero-bosque`, `hero-sofa`, `comedor-resultado`, `comedor-boceto`, `chaise-sala`, `sala-modulos`, `butaca-curva` y `silla-madera`. Siguen en `./brand`, pero ya no están en el mapa.
 
-**Prioridad de reemplazo:**
-1. El hero.
-2. Las tres fotos de sectores con riesgo alto (Restaurantes, Galerías y Casas de arquitecto).
-3. El par antes/después.
+**Se descartaron del contenido nuevo** y no se publican:
+- la serie 8.21.07 PM, que tiene la marca de agua «ar» de otra marca;
+- «Una idea» y «Un proceso», que traen texto incrustado;
+- el chesterfield con muro de ladrillo (8.21.12 PM (2)): el mueble ya viene cortado en el original y parece un render;
+- la versión de WhatsApp del chesterfield con puf (8.21.10 PM): quitar los íconos de Instagram cortaba el brazo del sofá. Se usa la versión del catálogo, que viene limpia.
+
+**Prioridad de reemplazo:** las tres de riesgo alto, empezando por `cuero-oliva`, que es la única en Sectores.
 
 Cuando una foto se confirme como propia, se cambia su `origen` a `propia` en el mapa.
 
@@ -440,3 +439,79 @@ Cuando una foto se confirme como propia, se cambia su `origen` a `propia` en el 
 - confirmar si trabajan a partir de planos del estudio;
 - capacidad de producción;
 - facturación a empresas.
+
+---
+
+## 10. Iteración del 28-10: cuero, logo «Comodidad hecha diseño» y fotos sin recortes
+
+**Pedido:**
+- rediseñar con las fotos de cuero del contenido nuevo (`brand/Nuevo contenido 28-10/`);
+- usar el logo con el eslogan «Comodidad hecha diseño» en todo el sitio;
+- que ninguna foto se recorte, porque los muebles se veían cortados.
+
+**Contenido nuevo:**
+- Llegaron 29 fotos sueltas, 4 zip (33 fotos) y el catálogo PDF del cliente (18 páginas).
+- `scripts/extract-pdf.mjs` extrae las 49 imágenes del catálogo, y pdf.js en Edge permite leer su texto.
+- Del catálogo salen datos reales:
+  - el nombre de cada pieza en cuero;
+  - «Del corte al capitoné»;
+  - el proceso de 6 pasos (Análisis, Cotización, Fabricación, Control de calidad, Envío e instalación, Entrega final);
+  - «Producción por lotes» y «Muestras antes de producir» para negocios;
+  - «Madera maciza, esponja de alta densidad».
+- Los datos de contacto del catálogo son de relleno (`[+57 000 000 0000]`, `[@usuario]`), así que siguen como TODO.
+- Las fotos elegidas se copiaron a `brand/2026-10-28/`. La entrega en bruto (zip, PDF y descartes) queda fuera del repositorio con `.gitignore`.
+
+**Diagnóstico de los recortes:**
+- Todas las secciones metían la foto en un marco de proporción fija (4:5, 3:4, 1:1 o 4:3) con `object-cover`. Por ejemplo, `sofa-gris-taller` (1,71:1) perdía el 53 % del ancho en Proyectos.
+- Además, el *zoom* al pasar el mouse recortaba los bordes, y el arco del hero cortaba las esquinas de la foto.
+
+**Regla nueva: ninguna foto se recorta.**
+- **`ui/Foto.astro`:** muestra la foto en su proporción natural. Para galerías y fundidos admite una caja fija (`box`) donde la foto se ajusta entera, apoyada en una base común (los títulos quedan alineados) o centrada sobre un paspartú.
+- **Arco:** ahora es un panel de fondo (`ui/ArchFrame.astro`) y la foto va completa delante.
+- **Hover:** se quitó el zoom; la foto se eleva con una sombra.
+- **Antes/después:** la caja toma la proporción real del par. En el pipeline, las dos fotos se igualan con un desplazamiento de (2, 1) px.
+- **Muestras de tela:** usan recortes solo de textura (`<slug>-muestra`), nunca de un mueble.
+- **`media-map.json`:** los `crop` solo quitan interfaz (contadores, íconos y barras).
+- **Control automático:** `npm run audit:scan` reporta `imagesCropped`, la parte visible de cada foto según `object-fit` y los ancestros con overflow oculto. También mide la nitidez a 2x con el candidato real del `srcset`.
+
+**Logo «Comodidad hecha diseño»:**
+- El original a color mide 330 px y su silla es roja (#B02020), un color fuera de la paleta.
+- Se rehízo en vector:
+  - la silla se dibujó sobre la referencia a color de 1169 px (`src/lib/silla.mjs`), con respaldo y asiento en **Terra** de la paleta;
+  - el nombre y el eslogan son texto real en Literata (`ui/Logo.astro`), y el eslogan nunca baja de 13 px.
+- Se usa en el header, el menú móvil, el footer, el sello del hero, el favicon (SVG y PNG), el `apple-touch-icon` y la imagen OG (`npm run og`).
+- El eslogan también está en el title, la description, el JSON-LD (`slogan`) y como firma del cierre.
+
+**Cuero como protagonista:**
+
+| Sección | Cambio |
+|---|---|
+| Hero | Sillas de comedor en cuero coñac, con el detalle «Botón y pliegues» |
+| Sectores | Las 4 fotos son piezas en cuero del catálogo |
+| Cuero | Foto principal de las tachuelas a mano y una tira nueva «Del corte al capitoné», con 5 detalles y los nombres del catálogo |
+| Proyectos | 5 de 6 piezas en cuero; las fotos horizontales van en las columnas anchas |
+| Hecho a mano | Foto de la estructura curva en el taller |
+| Proceso | Los 6 pasos del catálogo |
+| Antes/después | «De la estructura a la pieza» (cinchas → bouclé) |
+| Telas | Se suma «Tejido gris» |
+| Cierre | Butaca de cuero sobre un arco terra |
+
+Se borraron `/lab/hero`, que dependía de fotos de riesgo alto, y los PNG del logo anterior.
+
+**Verificación:**
+- **Build:** sin errores ni advertencias.
+- **Escaneo** en 360, 390, 768, 1024, 1440 y 1920:
+  - **0 fotos recortadas** y 0 fotos blandas a 2x;
+  - 0 fallos de contraste, 0 textos de menos de 13 px y 0 objetivos táctiles de menos de 24 px;
+  - sin desbordamiento horizontal.
+- **QA funcional:** completa en 390 y 1440, sin errores de consola. El logo con el eslogan aparece en el header (13,2 px) y en el footer, y la caja del antes/después tiene la misma proporción que la foto (0,764).
+- **CTA del hero:** dentro del primer pantallazo en todos los tamaños, de 360 × 780 a 1920 × 1080.
+- **TODO:** 0 en producción y 31 con `PUBLIC_SHOW_TODOS=true`.
+- **Lighthouse móvil:** **94 / 100 / 100 / 100**, con CLS 0.
+
+**Pendiente del cliente:**
+- tipos y procedencia del cuero;
+- datos de contacto reales (los del catálogo son de relleno);
+- condiciones de garantía y anticipo;
+- cobertura del envío;
+- revisión de derechos de las 3 fotos de riesgo alto (§8).

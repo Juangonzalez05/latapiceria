@@ -7,7 +7,11 @@
     "image": "tela-boucle-taupe",
     "alt": "Tela bouclé color taupe con textura de rizo",
     "summary": "Textura de rizo suave al tacto, cálida y con mucho carácter. Ideal para sillones y piezas protagonistas.",
-    "uses": ["Sillones", "Butacas", "Cabeceros"]
+    "uses": [
+      "Sillones",
+      "Butacas",
+      "Cabeceros"
+    ]
   },
   {
     "id": "chenilla-oliva",
@@ -17,7 +21,11 @@
     "image": "muestrario-verde",
     "alt": "Muestras de tela chenilla y tejido en tonos oliva",
     "summary": "Verde profundo con brillo sutil. Aporta calidez y se ve elegante con maderas claras.",
-    "uses": ["Sofás", "Camas", "Sillas de comedor"]
+    "uses": [
+      "Sofás",
+      "Camas",
+      "Sillas de comedor"
+    ]
   },
   {
     "id": "tejido-grafito",
@@ -27,7 +35,25 @@
     "image": "tela-grafito",
     "alt": "Detalle de costura en tela tejida color grafito",
     "summary": "Tejido firme y sobrio en gris oscuro. Disimula el uso diario y combina con casi todo.",
-    "uses": ["Sofás", "Cabeceros", "Uso diario"]
+    "uses": [
+      "Sofás",
+      "Cabeceros",
+      "Uso diario"
+    ]
+  },
+  {
+    "id": "tejido-gris",
+    "name": "Tejido gris",
+    "family": "Tejido plano",
+    "swatch": "#8c8c8a",
+    "image": "tela-gris",
+    "alt": "Cojín cilíndrico tapizado en tejido gris con ribete, sobre un respaldo del mismo tejido",
+    "summary": "Gris medio con la trama a la vista. Sobrio y fácil de combinar con cuero y madera.",
+    "uses": [
+      "Sofás",
+      "Cojines",
+      "Cabeceros"
+    ]
   },
   {
     "id": "tejido-perla",
@@ -37,7 +63,11 @@
     "image": "tela-perla",
     "alt": "Primer plano de tela tejida color perla en el borde de un cojín",
     "summary": "Gris muy claro y luminoso. Da amplitud a los espacios y resalta las líneas del mueble.",
-    "uses": ["Sofás modulares", "Cabeceros", "Espacios con luz"]
+    "uses": [
+      "Sofás modulares",
+      "Cabeceros",
+      "Espacios con luz"
+    ]
   },
   {
     "id": "lino-arena",
@@ -47,7 +77,11 @@
     "image": "tela-arena",
     "alt": "Cabecero tapizado en tela color arena con ribete",
     "summary": "Tono neutro y natural con aspecto de lino. Calma visual para habitaciones y salas.",
-    "uses": ["Cabeceros", "Camas", "Sillas"]
+    "uses": [
+      "Cabeceros",
+      "Camas",
+      "Sillas"
+    ]
   },
   {
     "id": "boucle-terracota",
@@ -57,6 +91,10 @@
     "image": "sofa-terracota-taller",
     "alt": "Módulo de sofá tapizado en bouclé terracota en el taller",
     "summary": "Color intenso y textura envolvente para una pieza que se roba las miradas.",
-    "uses": ["Sofás de diseño", "Puffs", "Butacas"]
+    "uses": [
+      "Sofás de diseño",
+      "Puffs",
+      "Butacas"
+    ]
   }
 ]

@@ -10,3 +10,6 @@ dist/
 # Claude Code: permisos locales y copias de skills de terceros (se reinstalan con skills-lock.json)
 .claude/settings.local.json
 .claude/skills/
+
+# Entrega en bruto del cliente (zip, catálogo PDF, descartes). Las fotos elegidas se copian a brand/2026-10-28/
+brand/Nuevo contenido 28-10/

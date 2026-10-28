@@ -208,10 +208,56 @@
     background-image: linear-gradient(currentColor, currentColor);
   }
 
-  /* Marco de foto uniforme (proyectos, telas, pasos) */
-  .frame {
+  /*
+    Fotos completas: ninguna se recorta (sin object-fit: cover ni marcos de proporción fija).
+    .foto = la imagen en su proporción natural. .foto-caja = caja de proporción fija donde la foto
+    se ajusta entera (la más ancha llena el ancho, la más alta llena el alto). Ver ui/Foto.astro.
+  */
+  .foto {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+    background: var(--color-champana-200);
+  }
+  .foto-caja {
     position: relative;
-    overflow: hidden;
+    display: block;
+    width: 100%;
+  }
+  .foto-caja > .foto-ajuste {
+    position: absolute;
+    max-width: none;
+    border-radius: var(--radius-card);
+    background: var(--color-champana-200);
+  }
+  .foto-ajuste.is-ancha {
+    left: 0;
+    width: 100%;
+    height: auto;
+  }
+  .foto-ajuste.is-alta {
+    top: 0;
+    height: 100%;
+    width: auto;
+  }
+  /* Apoyadas abajo a la izquierda (galerías: los títulos quedan alineados) o centradas (fundidos). */
+  .foto-caja[data-align='base'] > .is-ancha {
+    bottom: 0;
+  }
+  .foto-caja[data-align='base'] > .is-alta {
+    left: 0;
+  }
+  .foto-caja[data-align='centro'] > .is-ancha {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .foto-caja[data-align='centro'] > .is-alta {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  /* Paspartú: fondo de la caja para fundidos entre fotos de distinta proporción. */
+  .foto-caja.has-mat {
     border-radius: var(--radius-card);
     background: var(--color-champana-200);
   }
