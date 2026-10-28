@@ -40,15 +40,18 @@ async function run(width) {
   await page.keyboard.press('Home');
   r.sliderHome = await handle.getAttribute('aria-valuenow');
 
-  // Filtros de proyectos + «Ver todos» (escritorio)
-  await page.click('[data-filter="medida"]');
-  r.filterMedida = await page.evaluate(() => [...document.querySelectorAll('.project')].filter((p) => !p.hidden).every((p) => p.dataset.category === 'medida'));
-  await page.click('[data-filter="todos"]');
-  if (width >= 1024) {
-    r.visibleBeforeMore = await page.evaluate(() => [...document.querySelectorAll('.project')].filter((p) => p.offsetParent).length);
-    await page.click('[data-more]');
-    r.visibleAfterMore = await page.evaluate(() => [...document.querySelectorAll('.project')].filter((p) => p.offsetParent).length);
-  }
+  // Proyectos curados: 6 piezas visibles, sin filtros
+  r.projectsShown = await page.evaluate(() => document.querySelectorAll('.project').length);
+  r.projectFilters = await page.evaluate(() => document.querySelectorAll('[data-filter]').length);
+
+  // Secciones nuevas presentes
+  r.sections = await page.evaluate(() => ['sectores', 'hecho-a-mano', 'cuero', 'proyectos', 'proceso', 'cotizar', 'contacto'].filter((id) => !document.getElementById(id)));
+  r.sectorCards = await page.evaluate(() => document.querySelectorAll('.sector').length);
+
+  // Cursor «silla» (solo con mouse): html y enlaces
+  r.cursorHtml = await page.evaluate(() => getComputedStyle(document.documentElement).cursor.slice(0, 60));
+  r.cursorLink = await page.evaluate(() => getComputedStyle(document.querySelector('a[href]')).cursor.slice(0, 60));
+  r.cursorInput = await page.evaluate(() => getComputedStyle(document.querySelector('#q-nombre')).cursor);
 
   // Lightbox: abrir, flechas, Esc, foco devuelto
   const first = page.locator('[data-open-lightbox]').first();
@@ -74,12 +77,13 @@ async function run(width) {
   await page.locator('#cotizar').scrollIntoViewIfNeeded();
   await page.click('[data-q-next]');
   r.wizardValidation = await page.locator('[data-q-error]').textContent();
-  await page.click('label.choice:has(input[value="Retapizar"])');
+  await page.click('label.choice:has(input[value="Hotel"])');
   await page.waitForTimeout(400);
-  await page.click('label.choice:has(input[value="Sofá"])');
+  await page.click('label.choice:has(input[value="Tapizado en cuero"])');
   await page.waitForTimeout(400);
   await page.fill('#q-nombre', 'Ana');
-  await page.fill('#q-medidas', '2,20 m');
+  await page.fill('#q-empresa', 'Hotel Prueba');
+  await page.fill('#q-piezas', '12 sillas');
   await page.click('[data-q-submit]');
   r.wizardMessage = await page.evaluate(() => decodeURIComponent((window.__wa || '').split('text=')[1] || ''));
 
@@ -95,6 +99,10 @@ async function run(width) {
     await page.click('[data-step-next]');
     await page.waitForTimeout(700);
     r.stepCounter = await page.locator('[data-step-count]').textContent();
+    await page.locator('[data-sector-next]').scrollIntoViewIfNeeded();
+    await page.click('[data-sector-next]');
+    await page.waitForTimeout(700);
+    r.sectorCounter = await page.locator('[data-sector-count]').textContent();
   }
 
   r.consoleErrors = errors;

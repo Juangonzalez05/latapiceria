@@ -1,10 +1,12 @@
 ---
-// Hero · concepto A «editorial enmarcado» (ver AUDITORIA.md §4).
+// Hero · concepto A «editorial enmarcado» (ver AUDITORIA.md §4), enfocado a hoteles, restaurantes,
+// galerías y casas de arquitecto, con el «hecho a mano» como mensaje central.
 // La foto vive en un arco (eco del respaldo de la silla del logo) y nunca supera su resolución:
 // máx. 464px CSS para un origen de 1081px, nítida en pantallas 2x.
 import { Image } from 'astro:assets';
 import ArchFrame from './ui/ArchFrame.astro';
 import Pespunte from './ui/Pespunte.astro';
+import SelloHechoAMano from './ui/SelloHechoAMano.astro';
 import Icon from './Icon.astro';
 import Todo from './Todo.astro';
 import hero from '../data/hero.json';
@@ -17,8 +19,8 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
 ---
 
 <section id="inicio" class="hero relative overflow-hidden bg-crema" aria-labelledby="hero-titulo">
-  <div class="hero-grid container-x grid grid-cols-[minmax(0,1fr)] items-center gap-9 pb-16 pt-4 lg:grid-cols-12 lg:gap-12 lg:pb-20 lg:pt-6">
-    <div class="relative mx-auto w-full max-w-[17.5rem] sm:max-w-[21rem] lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:mx-0 lg:max-w-[29rem] lg:justify-self-end">
+  <div class="hero-grid container-x grid grid-cols-[minmax(0,1fr)] items-center gap-7 pb-16 pt-3 min-[390px]:gap-9 min-[390px]:pt-4 lg:grid-cols-12 lg:gap-12 lg:pb-20 lg:pt-6">
+    <div class="relative mx-auto w-full max-w-[13.5rem] min-[390px]:max-w-[17.5rem] sm:max-w-[21rem] lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:mx-0 lg:max-w-[29rem] lg:justify-self-end">
       <div class="hero-arch">
         <ArchFrame
           src={photo(hero.image)}
@@ -29,6 +31,7 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
           eager
         />
       </div>
+      <SelloHechoAMano class="hero-sello absolute -right-3 -top-4 w-[5.5rem] sm:-right-6 sm:w-[6.5rem] lg:-left-14 lg:right-auto lg:top-6 lg:w-[8rem]" />
       <div class="hero-detail absolute -bottom-7 -left-5 w-[34%] overflow-hidden rounded-card shadow-soft ring-[6px] ring-crema sm:-left-10 lg:-bottom-10 lg:-left-16 lg:w-[36%]" data-motion="entrance">
         <Image
           src={photo(hero.detail)}
@@ -42,18 +45,18 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
     </div>
 
     <div class="hero-copy lg:col-span-7 lg:row-start-1 lg:pr-6">
-      <h1 id="hero-titulo" class="text-display text-negro">
+      <h1 id="hero-titulo" class="hero-title text-display text-negro">
         {lines.map((l, i) => (
-          <><span class:list={['block', i === lines.length - 1 && 'italic text-esmeralda']}>{l}</span>{i < lines.length - 1 && ' '}</>
+          <><span class:list={['block', i === hero.emphasis && 'italic text-esmeralda']}>{l}</span>{i < lines.length - 1 && ' '}</>
         ))}
       </h1>
       <p class="mt-6 max-w-[34rem] text-lead text-gris">{hero.subtitle}</p>
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-7">
+      <div class="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-7">
         <a href={waLink(hero.ctaMessage)} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           <Icon name="whatsapp" size={20} />
           {hero.ctaPrimary}
         </a>
-        <a href="#proyectos" class="link-arrow justify-center text-negro sm:justify-start">
+        <a href={hero.ctaSecondaryHref} class="link-arrow justify-center text-negro sm:justify-start">
           <span class="link-line">{hero.ctaSecondary}</span>
           <Icon name="arrow" size={16} class="btn-arrow" />
         </a>
@@ -74,14 +77,18 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
 <style>
   .hero {
     /* Ocupa la primera pantalla bajo el header, sin pasarse en monitores altos. */
-    min-height: calc(100svh - 4.25rem);
+    min-height: calc(100svh - 4.75rem);
   }
   @media (min-width: 1024px) {
     .hero {
-      min-height: min(calc(100svh - 5.25rem), 58rem);
+      min-height: min(calc(100svh - 6.25rem), 58rem);
       display: grid;
       align-items: center;
     }
+  }
+  /* Titular en 4 renglones cortos: un punto más contenido que el display general. */
+  .hero-title {
+    font-size: clamp(2.15rem, 1.6rem + 3.4vw, 3.9rem);
   }
   /* En fila: un punto sepia entre datos. El contenedor recorta el punto del primer dato de cada renglón. */
   @media (min-width: 640px) {
@@ -114,13 +121,19 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
   .hero-copy {
     animation: hero-rise 900ms var(--ease-salida) both;
   }
-  .hero-detail {
+  /* El sello es otro componente: se alcanza con :global. */
+  .hero-detail,
+  :global(.hero-sello) {
     animation: fade-up 900ms var(--ease-salida) 350ms both;
   }
   @media (prefers-reduced-motion: reduce) {
     .hero-arch,
     .hero-copy {
       animation: none;
+    }
+    .hero-detail,
+    :global(.hero-sello) {
+      animation: fade-only 200ms linear both;
     }
   }
   @keyframes hero-settle {

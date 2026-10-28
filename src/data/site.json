@@ -3,7 +3,7 @@
   "name": "La Tapicería",
   "tagline": "Diseño y producción",
   "taglineAlt": "Comodidad hecha diseño",
-  "description": "Retapizamos, restauramos y fabricamos muebles a medida. Cuéntanos tu idea y te enviamos una cotización por WhatsApp.",
+  "description": "Mobiliario hecho a mano para hoteles, restaurantes, galerías y casas de arquitecto. Tapicería en cuero, piezas a la medida y retapizado. Cotiza tu proyecto por WhatsApp.",
   "city": "",
   "region": "",
   "coverage": "",
@@ -18,11 +18,16 @@
   "announcement": "",
   "url": "https://latapiceria.example",
   "services": [
-    "Retapizado de sofás",
-    "Retapizado de sillas",
-    "Retapizado de camas y cabeceros",
-    "Muebles a la medida",
+    "Mobiliario a la medida",
+    "Tapicería en cuero",
+    "Retapizado de mobiliario",
     "Restauración"
   ],
-  "servicesTodo": "Otros servicios por confirmar"
+  "servicesTodo": "Otros servicios por confirmar",
+  "sectors": [
+    "Hoteles",
+    "Restaurantes",
+    "Galerías",
+    "Casas de arquitecto"
+  ]
 }

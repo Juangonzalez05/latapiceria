@@ -368,3 +368,75 @@ Para pasar de 83 a más de 90 en rendimiento móvil, Literata pasó de la varian
 6. Confirmar «producción propia», las categorías de los proyectos y los nombres de las telas.
 7. Logo vectorial.
 8. Dominio para `site` y Open Graph.
+
+---
+
+## 8. Inventario de derechos de las fotos (preparación)
+
+Cada foto de `scripts/media-map.json` tiene un campo `origen`. Esto **no** reemplaza ninguna foto todavía: deja lista la revisión de derechos que se hará más adelante. Varias fotos parecen venir de publicaciones de otras marcas, de México y de otros países.
+
+| Estado | Fotos | Motivo |
+|---|---|---|
+| **riesgo-alto** | `hero-arco`, `hero-bosque`, `hero-sofa` | Carrusel de Instagram «5/13», de la misma sesión que el comedor |
+| **riesgo-alto** | `comedor-resultado`, `comedor-boceto` | La captura original muestra la marca «MUEBLES DE PUEBLITO» y el contador «2/13» |
+| **riesgo-alto** | `chaise-sala`, `sala-modulos`, `butaca-curva`, `silla-madera` | Aspecto de render o de foto de catálogo |
+| por-confirmar | Todas las demás, incluidas las de cuero | Capturas de WhatsApp o Instagram sin autoría confirmada |
+| propia | (ninguna confirmada aún) | — |
+
+**Dónde se usan las de riesgo alto:**
+- `hero-arco`: el hero.
+- `comedor-resultado` y `comedor-boceto`: el sector Restaurantes, el par antes/después y el paso 3 del proceso.
+- `butaca-curva`: el sector Galerías.
+- `sala-modulos`: el sector Casas de arquitecto.
+
+**Prioridad de reemplazo:**
+1. El hero.
+2. Las tres fotos de sectores con riesgo alto (Restaurantes, Galerías y Casas de arquitecto).
+3. El par antes/después.
+
+Cuando una foto se confirme como propia, se cambia su `origen` a `propia` en el mapa.
+
+---
+
+## 9. Iteración B2B: cuero, hecho a mano y cursor de la silla
+
+**Pedido:**
+- logo más grande;
+- énfasis en que todo es hecho a mano;
+- una sección para el cuero, que es la especialidad;
+- calidad antes que cantidad y énfasis en la experiencia del cliente;
+- cursor con la silla del logo;
+- foco en hoteles, restaurantes, galerías y casas de arquitecto.
+
+**Cambios:**
+- **Header:** el logo pasa de 3 a 4 rem en escritorio y de 2,6 a 3,25 rem en móvil. Navegación: Sectores · Cuero · Proyectos · Proceso · Contacto.
+- **Cursor:** silla del logo redibujada en SVG (la original es de línea muy fina para 32 px), negra con halo crema y en terra sobre clicables. Solo con mouse y sin modo de alto contraste; los campos de texto y el slider conservan sus cursores.
+- **Hero:**
+  - titular «Mobiliario / *hecho a mano* / para espacios / con carácter»;
+  - subtítulo con los cuatro sectores y «Pocas piezas, hechas con tiempo y cuidado»;
+  - CTA «Cotizar un proyecto» y «Conocer el cuero»;
+  - sello circular «Hecho a mano · Diseño y producción».
+- **Sectores** (nuevo, reemplaza «Dos caminos»): 4 tarjetas con mensaje de WhatsApp propio. El hogar queda como una línea secundaria.
+- **Hecho a mano** (antes «Oficio»): manifiesto de calidad antes que cantidad y tres principios (Hecho a mano · Calidad antes que cantidad · Acompañamiento).
+- **Cuero** (nuevo): campo negro, fotos de costura y corte de pieles, oficio en 4 pasos y CTA «Pedir muestras de cuero».
+- **Proyectos:** 6 piezas curadas, cada una con nota de material u oficio. Se quitan los filtros, el contador y «Ver todos».
+- **Contenido B2B:**
+  - proceso «Del brief a la entrega, sin prisas»;
+  - cotizador (espacio → necesidad → empresa, ciudad y piezas);
+  - FAQ (arquitectos, series cortas, cueros, facturación);
+  - cierre «¿Tienes un proyecto en mente?»;
+  - title y description de SEO.
+
+**Verificación:**
+- **QA funcional** (`scripts/qa.mjs`) completa en 390 y 1440. Comprueba el cursor calculado (silla en `html`, silla terra en `<a>`, `text` en campos), el mensaje B2B del cotizador y los carruseles. 0 errores de consola.
+- **Escaneo:** 0 TODO en producción (29 con `PUBLIC_SHOW_TODOS=true`), 0 textos de menos de 13 px, 0 fallos de contraste (incluido el campo negro de Cuero) y sin desbordamiento horizontal.
+- **Lighthouse móvil:** **91–92 / 100 / 100 / 100**.
+- **CTA del hero:** dentro del primer pantallazo en 360 × 780 y en 390 × 844.
+
+**Pendiente del cliente** (además de lo de §7):
+- tipos y procedencia del cuero;
+- fotos de piezas terminadas en cuero;
+- alcance real por sector (cantidades, plazos, instalación);
+- confirmar si trabajan a partir de planos del estudio;
+- capacidad de producción;
+- facturación a empresas.

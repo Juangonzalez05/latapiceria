@@ -1,13 +1,15 @@
 {
-  "_doc": "Hero (concepto A · editorial enmarcado). titleLines: cada línea es un renglón; la última va en itálica. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
-  "titleLines": ["Tu mueble,", "como siempre", "lo imaginaste"],
-  "subtitle": "Retapizamos, restauramos y fabricamos muebles a la medida. Cuéntanos tu idea y la llevamos a tu espacio.",
-  "ctaPrimary": "Cotizar por WhatsApp",
-  "ctaMessage": "Hola, quiero cotizar un trabajo con La Tapicería.",
-  "ctaSecondary": "Ver proyectos",
+  "_doc": "Hero. titleLines: cada elemento es un renglón; emphasis = índice del renglón en itálica esmeralda. trust: solo hechos reales (el cuero como especialidad y el trabajo a mano los indicó el cliente); la ciudad se añade sola desde site.json.",
+  "titleLines": ["Mobiliario", "hecho a mano", "para espacios", "con carácter"],
+  "emphasis": 1,
+  "subtitle": "Diseñamos, tapizamos y fabricamos a mano piezas a la medida para hoteles, restaurantes, galerías y casas de arquitecto. Pocas piezas, hechas con tiempo y cuidado.",
+  "ctaPrimary": "Cotizar un proyecto",
+  "ctaMessage": "Hola, quiero cotizar un proyecto con La Tapicería.",
+  "ctaSecondary": "Conocer el cuero",
+  "ctaSecondaryHref": "#cuero",
   "image": "hero-arco",
   "imageAlt": "Sofá modular claro en medio de un camino entre árboles",
   "detail": "tapizando-verde",
   "detailAlt": "Manos de tapicero ajustando la tela de un sillón",
-  "trust": ["Diseño y producción propia", "Retapizado · Restauración · A la medida", "Atención por WhatsApp"]
+  "trust": ["Hecho a mano en nuestro taller", "Especialistas en cuero", "Piezas a la medida"]
 }

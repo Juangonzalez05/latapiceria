@@ -1,0 +1,52 @@
+{
+  "_doc": "Sectores a los que se dirige el taller. Las fotos son ilustrativas: ningún texto afirma que se hicieron para ese sector. 'todo' marca lo que el cliente debe confirmar (alcance real por sector).",
+  "title": "Para espacios que se recuerdan",
+  "lead": "Trabajamos con hoteles, restaurantes, galerías y estudios de arquitectura que valoran una pieza bien hecha por encima de una pieza más.",
+  "home": {
+    "text": "¿Es para tu casa? También te acompañamos.",
+    "cta": "Escríbenos",
+    "message": "Hola, quiero una pieza hecha a mano para mi casa."
+  },
+  "items": [
+    {
+      "id": "hoteles",
+      "name": "Hoteles",
+      "text": "Cabeceros, camas, butacas y sofás para habitaciones y zonas comunes, hechos a mano y pensados para el uso diario.",
+      "cta": "Hablemos de tu hotel",
+      "image": "habitacion-luz",
+      "alt": "Habitación con cama tapizada, cabecero y mesas de noche",
+      "message": "Hola, tenemos un proyecto para un hotel y queremos cotizar piezas hechas a mano.",
+      "todo": "Confirmar alcance para hoteles (cantidades, plazos, instalación)"
+    },
+    {
+      "id": "restaurantes",
+      "name": "Restaurantes",
+      "text": "Sillas, bancas y asientos tapizados en cuero o tela, con terminaciones que se mantienen bien servicio tras servicio.",
+      "cta": "Hablemos de tu restaurante",
+      "image": "comedor-resultado",
+      "alt": "Comedor con mesa y sillas de madera tapizadas en blanco junto a un ventanal",
+      "message": "Hola, tenemos un proyecto para un restaurante y queremos cotizar mobiliario tapizado.",
+      "todo": "Confirmar alcance para restaurantes"
+    },
+    {
+      "id": "galerias",
+      "name": "Galerías",
+      "text": "Piezas únicas y bancas que acompañan la obra sin competir con ella: formas sobrias, materiales nobles.",
+      "cta": "Hablemos de tu galería",
+      "image": "butaca-curva",
+      "alt": "Butaca de líneas curvas tapizada en tela gris jaspeada",
+      "message": "Hola, tenemos un proyecto para una galería y queremos cotizar piezas a la medida.",
+      "todo": "Confirmar alcance para galerías"
+    },
+    {
+      "id": "arquitectura",
+      "name": "Casas de arquitecto",
+      "text": "Trabajamos junto al estudio: tomamos medidas, proponemos materiales y fabricamos la pieza que el espacio pide.",
+      "cta": "Hablemos de tu proyecto",
+      "image": "sala-modulos",
+      "alt": "Sala con módulos de sofá claros frente a un ventanal",
+      "message": "Hola, somos un estudio de arquitectura y tenemos un proyecto residencial.",
+      "todo": "Confirmar si trabajan a partir de planos o fichas del estudio"
+    }
+  ]
+}

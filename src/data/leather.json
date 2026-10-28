@@ -1,0 +1,30 @@
+{
+  "_doc": "Sección Cuero (especialidad del taller). Pasos = descripción del oficio, sin cifras. 'todo' = lo que el cliente debe aportar.",
+  "title": "El cuero, nuestra especialidad",
+  "lead": "El cuero se trabaja con las manos y con tiempo. Lo seleccionamos, lo cortamos y lo cosemos en el taller para que cada pieza gane carácter con el uso.",
+  "photoMain": "cuero-costura",
+  "photoMainAlt": "Costura de una tira de cuero negro en máquina de coser de taller",
+  "photoDetail": "cuero-corte",
+  "photoDetailAlt": "Artesano cortando pieles sobre una mesa de trabajo, en blanco y negro",
+  "steps": [
+    {
+      "title": "Selección de la piel",
+      "text": "Elegimos cada piel por su textura, su color y su comportamiento para el uso que tendrá la pieza."
+    },
+    {
+      "title": "Corte a mano",
+      "text": "Trazamos y cortamos a mano para aprovechar lo mejor de cada piel."
+    },
+    {
+      "title": "Costura y ribetes",
+      "text": "Cosemos y rematamos los bordes con calma: ahí es donde se nota el oficio."
+    },
+    {
+      "title": "Acabado y revisión",
+      "text": "Revisamos cada costura y cada esquina antes de que la pieza salga del taller."
+    }
+  ],
+  "cta": "Pedir muestras de cuero",
+  "message": "Hola, quiero ver muestras de cuero para un proyecto.",
+  "todo": ["Tipos de cuero, procedencia y cuidados recomendados", "Fotos de piezas terminadas en cuero"]
+}

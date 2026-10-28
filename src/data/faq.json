@@ -1,30 +1,36 @@
 [
   {
-    "q": "¿Cómo pido una cotización?",
-    "a": "Escríbenos por WhatsApp con fotos del mueble o de tu espacio y unas medidas aproximadas. También puedes usar el cotizador de esta página: arma el mensaje por ti."
+    "q": "¿Trabajan con arquitectos e interioristas?",
+    "a": "Sí. Trabajamos junto al estudio: recibimos referencias, tomamos medidas y proponemos materiales para cada pieza.",
+    "todo": "Confirmar si fabrican a partir de planos o fichas técnicas del estudio"
   },
   {
-    "q": "¿Qué muebles retapizan?",
-    "a": "Sofás, sillas, camas y cabeceros, entre otros. Si tienes una pieza especial, cuéntanos y la revisamos."
+    "q": "¿Pueden hacer varias piezas iguales para un hotel o restaurante?",
+    "a": "Sí, en series cortas y cuidadas, hechas a mano. Te confirmamos tiempos según la cantidad de piezas.",
+    "todo": "Capacidad de producción por proyecto"
   },
   {
-    "q": "¿Puedo ver las telas antes de decidir?",
-    "a": "Sí. Elige la que te guste en la sección de telas y pídenos la muestra por WhatsApp.",
-    "todo": "Confirmar si la muestra tiene costo y cómo se entrega"
+    "q": "¿Qué cueros manejan?",
+    "a": "El cuero es nuestra especialidad. Te mostramos muestras para elegir textura y color según el uso de cada pieza.",
+    "todo": "Tipos de cuero, procedencia y cuidados"
   },
   {
-    "q": "¿Van hasta mi casa a tomar medidas?",
-    "a": "Sí, la visita y toma de medidas hace parte de nuestro proceso.",
+    "q": "¿Van al espacio a tomar medidas?",
+    "a": "Sí, la visita y la toma de medidas hacen parte de nuestro proceso.",
     "todo": "Zonas de cobertura y costo de la visita"
   },
   {
-    "q": "¿Cuánto tarda un trabajo?",
-    "a": "Depende del tipo de mueble y de la tela elegida. Te damos una fecha estimada en la propuesta.",
-    "todo": "Rangos de tiempo reales por tipo de trabajo"
+    "q": "¿Cuánto tarda un proyecto?",
+    "a": "Depende del número de piezas, del material y del acabado. Te damos una fecha estimada en la propuesta.",
+    "todo": "Rangos de tiempo reales por tipo de proyecto"
   },
   {
-    "q": "¿Cómo son los pagos y la garantía?",
+    "q": "¿Facturan a empresas? ¿Cómo son los pagos?",
     "a": "Te explicamos las condiciones en la propuesta, antes de empezar.",
-    "todo": "Anticipo, medios de pago y garantía"
+    "todo": "Facturación a empresas, anticipo, medios de pago y garantía"
+  },
+  {
+    "q": "¿Cómo pido una cotización?",
+    "a": "Escríbenos por WhatsApp con el tipo de espacio, la cantidad aproximada de piezas y tus referencias. También puedes usar el cotizador de esta página: arma el mensaje por ti."
   }
 ]

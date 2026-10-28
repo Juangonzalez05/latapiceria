@@ -1,6 +1,6 @@
 # La Tapicería · Landing
 
-Landing de una página (Astro + Tailwind v4) para La Tapicería: retapizado, restauración y muebles a la medida. No tiene backend: todos los CTA abren WhatsApp con un mensaje prellenado.
+Landing de una página (Astro + Tailwind v4) para La Tapicería: mobiliario hecho a mano para hoteles, restaurantes, galerías y casas de arquitecto, con el cuero como especialidad. No tiene backend: todos los CTA abren WhatsApp con un mensaje prellenado.
 
 La dirección visual y el registro del rediseño están en [AUDITORIA.md](AUDITORIA.md). El contexto de producto está en [PRODUCT.md](PRODUCT.md).
 
@@ -20,16 +20,17 @@ npm run preview   # sirve ./dist
 |---|---|
 | Datos del negocio (WhatsApp, correo, Instagram, dirección, horario, cobertura, anuncio) | `src/data/site.json` |
 | Hero (titular, subtítulo, CTA, fotos, línea de confianza) | `src/data/hero.json` |
-| Dos caminos de entrada | `src/data/paths.json` |
-| Principios de oficio | `src/data/values.json` |
+| Sectores (hoteles, restaurantes, galerías, casas de arquitecto) | `src/data/sectors.json` |
+| Principios «hecho a mano» | `src/data/values.json` |
+| Sección Cuero (especialidad) | `src/data/leather.json` |
 | Pasos del proceso | `src/data/steps.json` |
 | Antes / después | `src/data/beforeAfter.json` |
 | Telas | `src/data/fabrics.json` |
-| Proyectos y categorías | `src/data/projects.json` |
+| Proyectos curados (6 piezas) | `src/data/projects.json` |
 | Condiciones del servicio | `src/data/conditions.json` |
 | Testimonios (`show: false` los oculta) | `src/data/testimonials.json` |
 | Preguntas frecuentes | `src/data/faq.json` |
-| Fotos (origen y recortes) | `scripts/media-map.json` → `npm run media` |
+| Fotos (origen, recortes y estado de derechos) | `scripts/media-map.json` → `npm run media` |
 | Colores, escala tipográfica, espaciado y formas | `src/styles/global.css` (`@theme`) |
 
 ### Datos que faltan (TODO)
@@ -51,9 +52,17 @@ npm run preview   # sirve ./dist
 - `npm run media` lee `scripts/media-map.json` y hace tres cosas:
   - recorta los overlays de interfaz (contadores «2/13», flechas, aros de historia de Instagram);
   - genera el logo en PNG transparente, en versión completa y compacta (sin tagline, para el header), oscura y clara;
-  - crea el favicon y `public/og-image.jpg`.
+  - crea el favicon, `public/og-image.jpg` y el cursor de la silla (`public/cursor/`).
 - Las fotos de WhatsApp miden como máximo unos 1170 px. Ninguna se muestra a más de unos 550 px CSS, para que se vean nítidas en pantallas 2x.
 - `npm run contact-sheet` genera hojas de contacto numeradas de `./brand` en `.contact-sheet/`.
+
+## Cursor de la silla
+
+Con mouse, el cursor es la silla del logo: oscura con borde claro en la página y en terra sobre enlaces y botones. En los campos de texto se mantiene el cursor de escribir, y en el slider antes/después el de arrastre. En pantallas táctiles y en modo de alto contraste se usa el cursor del sistema. Las imágenes salen de `npm run media` y las reglas están al final de `src/styles/global.css`.
+
+## Derechos de las fotos
+
+Cada foto en `scripts/media-map.json` tiene un campo `origen` (`propia`, `por-confirmar` o `riesgo-alto`). El inventario y las prioridades están en `AUDITORIA.md` §8. **Antes de publicar, reemplazar las marcadas `riesgo-alto`, empezando por el hero.**
 
 ## QA y capturas
 
@@ -71,8 +80,8 @@ npm run qa -- http://127.0.0.1:4400/                                # recorre to
 ## Estructura
 
 ```
-src/components/      una sección por componente (Hero, Paths, Projects, Intro, Process, BeforeAfter, Fabrics, …)
-src/components/ui/   piezas del sistema: SectionHeader, Pespunte (motivo del logo), ArchFrame (marco en arco)
+src/components/      una sección por componente (Hero, Sectors, Intro, Leather, Projects, Process, BeforeAfter, Fabrics, …)
+src/components/ui/   piezas del sistema: SectionHeader, Pespunte (motivo del logo), ArchFrame (marco en arco), SelloHechoAMano
 src/data/            contenido editable en JSON
 src/lib/             whatsapp.ts (enlaces), photos.ts (fotos por slug), flags.ts (TODO solo en desarrollo)
 src/scripts/         reveal.ts (revelado al scroll)

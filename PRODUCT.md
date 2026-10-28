@@ -10,8 +10,9 @@ web
 
 ## Users
 
-- Personas en Colombia que tienen un mueble tapizado que quieren conservar (sofá, sillas, cama, cabecero) y buscan renovarlo, o que necesitan una pieza a la medida de su espacio. *(inferido: hogares; segmento gama media-alta según el brief)*
-- Llegan desde el celular la mayoría de las veces y deciden si escribir por WhatsApp. *(inferido)*
+- **Público principal (confirmado por el cliente):** hoteles, restaurantes, galerías y casas de arquitecto, es decir, estudios de arquitectura e interiorismo y quienes compran mobiliario para esos espacios.
+- **Público secundario:** hogares particulares, como mención breve.
+- Llegan desde el celular o el computador y deciden si escribir por WhatsApp para cotizar un proyecto. *(inferido)*
 
 ## Product Purpose
 
@@ -19,7 +20,7 @@ Landing informativa de una sola página para La Tapicería. Su único objetivo e
 
 ## Positioning
 
-Taller de diseño y producción que retapiza, restaura y fabrica muebles a la medida, con acompañamiento en telas y acabados. El tagline del logo es «Diseño y producción» y la versión a color dice «Comodidad hecha diseño».
+Taller de diseño y producción donde **todo es hecho a mano**, con el **cuero como especialidad**. Prioriza la **calidad sobre la cantidad**: pocas piezas, materiales nobles y acompañamiento del brief a la entrega. El tagline del logo es «Diseño y producción»; la versión a color dice «Comodidad hecha diseño».
 
 ## Operating Context
 

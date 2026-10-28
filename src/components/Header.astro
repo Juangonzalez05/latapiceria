@@ -9,21 +9,21 @@ import { waLink } from '../lib/whatsapp';
 import site from '../data/site.json';
 
 const links = [
-  { href: '#servicios', label: 'Servicios' },
+  { href: '#sectores', label: 'Sectores' },
+  { href: '#cuero', label: 'Cuero' },
   { href: '#proyectos', label: 'Proyectos' },
   { href: '#proceso', label: 'Proceso' },
-  { href: '#telas', label: 'Telas' },
   { href: '#contacto', label: 'Contacto' },
 ];
-const wa = waLink('Hola, quiero cotizar un trabajo con La Tapicería.');
+const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
 ---
 
 <header class="site-header sticky top-0 z-50 text-negro" data-header>
   <div class="header-bg absolute inset-0 -z-10" aria-hidden="true"></div>
   <div class="container-x header-row flex items-center justify-between gap-6">
     <a href="#inicio" class="logo relative block shrink-0" aria-label={`${site.name}, ir al inicio`} translate="no">
-      <Image src={logoDark} alt="" class="logo-dark h-full w-auto" loading="eager" widths={[120, 240, 360]} sizes="(min-width: 1024px) 120px, 100px" />
-      <Image src={logoLight} alt="" class="logo-light absolute inset-0 h-full w-auto" loading="eager" widths={[120, 240, 360]} sizes="(min-width: 1024px) 120px, 100px" />
+      <Image src={logoDark} alt="" class="logo-dark h-full w-auto" loading="eager" widths={[130, 160, 260, 320, 480]} sizes="(min-width: 1024px) 160px, 130px" />
+      <Image src={logoLight} alt="" class="logo-light absolute inset-0 h-full w-auto" loading="eager" widths={[130, 160, 260, 320, 480]} sizes="(min-width: 1024px) 160px, 130px" />
     </a>
 
     <nav aria-label="Principal" class="hidden lg:block">
@@ -75,20 +75,21 @@ const wa = waLink('Hola, quiero cotizar un trabajo con La Tapicería.');
 </header>
 
 <style>
+  /* Logo protagonista: 3,25rem en móvil y 4rem en escritorio; se compacta a 3,1rem al bajar. */
   .header-row {
-    height: 4.25rem;
+    height: 4.75rem;
     transition: height 300ms var(--ease-suave);
   }
   .logo {
-    height: 2.6rem;
+    height: 3.25rem;
     transition: height 300ms var(--ease-suave);
   }
   @media (min-width: 1024px) {
     .header-row {
-      height: 5.25rem;
+      height: 6.25rem;
     }
     .logo {
-      height: 3rem;
+      height: 4rem;
     }
   }
   /* Arriba del todo el header se funde con el hero crema; al bajar gana fondo sólido y una línea. */
@@ -114,10 +115,10 @@ const wa = waLink('Hola, quiero cotizar un trabajo con La Tapicería.');
   }
   @media (min-width: 1024px) {
     .site-header[data-scrolled] .header-row {
-      height: 4.25rem;
+      height: 4.75rem;
     }
     .site-header[data-scrolled] .logo {
-      height: 2.6rem;
+      height: 3.1rem;
     }
   }
 

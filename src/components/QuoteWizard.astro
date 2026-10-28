@@ -2,16 +2,18 @@
 import Icon from './Icon.astro';
 import { waBase } from '../lib/whatsapp';
 
-const needs = ['Retapizar', 'Restaurar', 'Mueble a la medida', 'Aún no sé'];
-const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Comedor', 'Otro'];
+// Cotizador B2B: tipo de espacio → qué necesita → datos del proyecto. Sin backend: arma el mensaje de WhatsApp.
+const spaces = ['Hotel', 'Restaurante', 'Galería', 'Casa de arquitecto', 'Otro proyecto'];
+const needs = ['Piezas a la medida', 'Tapizado en cuero', 'Retapizar mobiliario existente', 'Asesoría en materiales'];
 ---
 
 <section id="cotizar" class="section-y bg-esmeralda text-crema on-dark" aria-labelledby="cotizar-titulo">
   <div class="container-x grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
     <div class="lg:col-span-5">
-      <h2 id="cotizar-titulo" class="text-h2 !text-crema" data-reveal>Tu cotización en tres pasos</h2>
+      <h2 id="cotizar-titulo" class="text-h2 !text-crema" data-reveal>Cotiza tu proyecto en tres pasos</h2>
       <p class="lead mt-5 max-w-md" data-reveal>
-        Responde tres preguntas y armamos el mensaje por ti. Lo envías por WhatsApp y te respondemos con los siguientes pasos.
+        Cuéntanos el tipo de espacio, lo que necesitas y unos datos del proyecto. Armamos el mensaje por ti y te respondemos
+        por WhatsApp.
       </p>
     </div>
 
@@ -19,7 +21,7 @@ const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Com
       <div class="mb-8">
         <div class="label flex justify-between">
           <span data-q-label>Paso 1 de 3</span>
-          <span data-q-name>Qué necesitas</span>
+          <span data-q-name>Tipo de espacio</span>
         </div>
         <div class="mt-3 h-[3px] overflow-hidden rounded-full bg-negro/10" aria-hidden="true">
           <div class="q-bar h-full origin-left bg-terra" style="transform: scaleX(0.3333)" data-q-bar></div>
@@ -27,12 +29,12 @@ const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Com
       </div>
 
       <!-- Paso 1 -->
-      <fieldset data-q-step="1" data-q-title="Qué necesitas">
-        <legend class="mb-6 text-h3">¿Qué necesitas?</legend>
+      <fieldset data-q-step="1" data-q-title="Tipo de espacio">
+        <legend class="mb-6 text-h3">¿Para qué espacio es?</legend>
         <div class="grid gap-3 sm:grid-cols-2">
-          {needs.map((n) => (
+          {spaces.map((n) => (
             <label class="choice">
-              <input type="radio" name="servicio" value={n} class="peer sr-only" required />
+              <input type="radio" name="espacio" value={n} class="peer sr-only" required />
               <span class="choice-box">{n}</span>
             </label>
           ))}
@@ -40,12 +42,12 @@ const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Com
       </fieldset>
 
       <!-- Paso 2 -->
-      <fieldset data-q-step="2" data-q-title="Tipo de mueble" hidden>
-        <legend class="mb-6 text-h3">¿Qué tipo de mueble?</legend>
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {furniture.map((f) => (
+      <fieldset data-q-step="2" data-q-title="Qué necesitas" hidden>
+        <legend class="mb-6 text-h3">¿Qué necesitas?</legend>
+        <div class="grid gap-3 sm:grid-cols-2">
+          {needs.map((f) => (
             <label class="choice">
-              <input type="radio" name="mueble" value={f} class="peer sr-only" required />
+              <input type="radio" name="servicio" value={f} class="peer sr-only" required />
               <span class="choice-box">{f}</span>
             </label>
           ))}
@@ -53,20 +55,28 @@ const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Com
       </fieldset>
 
       <!-- Paso 3 -->
-      <fieldset data-q-step="3" data-q-title="Medidas y nombre" hidden>
-        <legend class="mb-6 text-h3">Unos últimos datos</legend>
-        <div class="grid gap-5">
-          <div>
-            <label for="q-medidas" class="field-label">Medidas aproximadas <span class="font-normal text-gris">(opcional)</span></label>
-            <input id="q-medidas" name="medidas" type="text" class="field" placeholder="Ej.: 2,20 m de largo x 90 cm de fondo" autocomplete="off" />
-          </div>
+      <fieldset data-q-step="3" data-q-title="Datos del proyecto" hidden>
+        <legend class="mb-6 text-h3">Datos del proyecto</legend>
+        <div class="grid gap-5 sm:grid-cols-2">
           <div>
             <label for="q-nombre" class="field-label">Tu nombre</label>
-            <input id="q-nombre" name="nombre" type="text" class="field" required autocomplete="given-name" aria-describedby="q-error" />
+            <input id="q-nombre" name="nombre" type="text" class="field" required autocomplete="name" aria-describedby="q-error" />
           </div>
           <div>
+            <label for="q-empresa" class="field-label">Empresa o estudio <span class="font-normal text-gris">(opcional)</span></label>
+            <input id="q-empresa" name="empresa" type="text" class="field" autocomplete="organization" />
+          </div>
+          <div>
+            <label for="q-ciudad" class="field-label">Ciudad <span class="font-normal text-gris">(opcional)</span></label>
+            <input id="q-ciudad" name="ciudad" type="text" class="field" autocomplete="address-level2" />
+          </div>
+          <div>
+            <label for="q-piezas" class="field-label">Piezas aproximadas <span class="font-normal text-gris">(opcional)</span></label>
+            <input id="q-piezas" name="piezas" type="text" class="field" placeholder="Ej.: 12 sillas y 2 bancas" autocomplete="off" />
+          </div>
+          <div class="sm:col-span-2">
             <label for="q-detalle" class="field-label">Cuéntanos más <span class="font-normal text-gris">(opcional)</span></label>
-            <textarea id="q-detalle" name="detalle" rows="3" class="field resize-y" placeholder="Color o tela que te gusta, estado del mueble, fecha ideal…"></textarea>
+            <textarea id="q-detalle" name="detalle" rows="3" class="field resize-y" placeholder="Medidas, materiales que te gustan, fecha de apertura o de entrega…"></textarea>
           </div>
         </div>
       </fieldset>
@@ -199,8 +209,8 @@ const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Com
     };
 
     const validate = () => {
-      if (current === 0 && !val('servicio')) return 'Elige una opción para continuar.';
-      if (current === 1 && !val('mueble')) return 'Elige el tipo de mueble para continuar.';
+      if (current === 0 && !val('espacio')) return 'Elige el tipo de espacio para continuar.';
+      if (current === 1 && !val('servicio')) return 'Elige qué necesitas para continuar.';
       if (current === 2 && !val('nombre')) {
         form.querySelector('#q-nombre')!.setAttribute('aria-invalid', 'true');
         return 'Escribe tu nombre para saber cómo saludarte.';
@@ -230,10 +240,11 @@ const furniture = ['Sofá', 'Silla', 'Cama o cabecero', 'Sillón o butaca', 'Com
       const msg = validate();
       if (msg) return void (error.textContent = msg);
       const lines = [
-        `Hola, soy ${val('nombre')}. Quiero una cotización:`,
+        `Hola, soy ${val('nombre')}${val('empresa') ? ` de ${val('empresa')}` : ''}. Quiero cotizar un proyecto:`,
+        `• Espacio: ${val('espacio')}`,
         `• Necesito: ${val('servicio')}`,
-        `• Mueble: ${val('mueble')}`,
-        val('medidas') ? `• Medidas aproximadas: ${val('medidas')}` : null,
+        val('piezas') ? `• Piezas aproximadas: ${val('piezas')}` : null,
+        val('ciudad') ? `• Ciudad: ${val('ciudad')}` : null,
         val('detalle') ? `• Detalles: ${val('detalle')}` : null,
         '',
         '(Enviado desde la página web)',

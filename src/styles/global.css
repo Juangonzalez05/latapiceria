@@ -72,7 +72,7 @@
   }
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
   }
   body {
@@ -320,5 +320,40 @@
   }
   [data-motion='entrance'] {
     animation: fade-only 200ms linear both !important;
+  }
+}
+
+/*
+  Cursor «silla» (la silla del logo). Sin capa para ganar a utilidades como cursor-pointer.
+  Solo con mouse (pointer: fine) y sin preferencia de contraste alto: en táctil y en modo de
+  alto contraste se conserva el cursor del sistema. Hotspot: esquina superior izquierda del respaldo.
+*/
+@media (pointer: fine) and (prefers-contrast: no-preference) {
+  html {
+    cursor: url('/cursor/silla.png') 5 3, auto;
+    cursor: image-set(url('/cursor/silla.png') 1x, url('/cursor/silla@2x.png') 2x) 5 3, auto;
+  }
+  a[href],
+  button:not(:disabled),
+  label,
+  summary,
+  select,
+  [role='tab'],
+  [data-open-lightbox] {
+    cursor: url('/cursor/silla-terra.png') 5 3, pointer;
+    cursor: image-set(url('/cursor/silla-terra.png') 1x, url('/cursor/silla-terra@2x.png') 2x) 5 3, pointer;
+  }
+  input:not([type='radio']):not([type='checkbox']),
+  textarea {
+    cursor: text;
+  }
+  button:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+  /* El slider antes/después conserva el cursor de arrastre horizontal. */
+  [data-ba],
+  [data-ba-handle] {
+    cursor: ew-resize;
   }
 }

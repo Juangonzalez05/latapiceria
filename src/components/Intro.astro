@@ -1,5 +1,5 @@
 ---
-// Banda de oficio: campo esmeralda (momento «profundo»), foto enmarcada y tres principios.
+// Banda «Hecho a mano» (campo esmeralda): el mensaje central del taller y calidad antes que cantidad.
 import { Image } from 'astro:assets';
 import Todo from './Todo.astro';
 import Pespunte from './ui/Pespunte.astro';
@@ -8,7 +8,7 @@ import site from '../data/site.json';
 import { photo } from '../lib/photos';
 ---
 
-<section class="section-y bg-esmeralda text-crema on-dark" aria-labelledby="intro-titulo">
+<section id="hecho-a-mano" class="section-y bg-esmeralda text-crema on-dark" aria-labelledby="intro-titulo">
   <div class="container-x grid grid-cols-[minmax(0,1fr)] items-center gap-12 lg:grid-cols-12 lg:gap-16">
     <div class="lg:col-span-4" data-reveal>
       <div class="frame mx-auto aspect-[4/5] max-w-[22rem] lg:mx-0">
@@ -24,11 +24,11 @@ import { photo } from '../lib/photos';
 
     <div class="lg:col-span-8">
       <h2 id="intro-titulo" class="text-h2 !text-crema" data-reveal>
-        Oficio, criterio y <em class="text-champana">calma</em>
+        Hecho a mano, <em class="text-champana">pieza por pieza</em>
       </h2>
       <p class="mt-6 max-w-[40rem] font-serif text-[clamp(1.2rem,1.1rem+0.5vw,1.5rem)] leading-relaxed text-crema/90" data-reveal>
-        Somos un taller de diseño y producción. Escuchamos cómo vives tu espacio, te proponemos lo que mejor funciona y lo
-        construimos con las manos, sin prisa y con atención a cada costura.
+        Preferimos hacer menos piezas y hacerlas bien: cada mueble pasa por las manos de quien lo diseña, lo corta, lo
+        cose y lo revisa antes de llegar a tu espacio.
       </p>
 
       <Pespunte class="mt-10 max-w-[40rem] text-champana/70" />

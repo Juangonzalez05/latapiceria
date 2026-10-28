@@ -3,9 +3,10 @@ import Base from '../layouts/Base.astro';
 import AnnouncementBar from '../components/AnnouncementBar.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import Paths from '../components/Paths.astro';
-import Projects from '../components/Projects.astro';
+import Sectors from '../components/Sectors.astro';
 import Intro from '../components/Intro.astro';
+import Leather from '../components/Leather.astro';
+import Projects from '../components/Projects.astro';
 import Process from '../components/Process.astro';
 import BeforeAfter from '../components/BeforeAfter.astro';
 import Fabrics from '../components/Fabrics.astro';
@@ -19,17 +20,18 @@ import WhatsAppFloat from '../components/WhatsAppFloat.astro';
 ---
 
 <!--
-  Recorrido: oferta (hero, servicios) → prueba (proyectos) → oficio y proceso →
-  materia (antes/después, telas) → cotizar → dudas → cierre. Ver AUDITORIA.md §3.
+  Recorrido B2B: oferta (hero) → para quién (sectores) → hecho a mano → cuero (especialidad) →
+  prueba (proyectos curados) → proceso → materia (antes/después, telas) → cotizar → dudas → cierre.
 -->
 <Base>
   <AnnouncementBar />
   <Header />
   <main id="contenido">
     <Hero />
-    <Paths />
-    <Projects />
+    <Sectors />
     <Intro />
+    <Leather />
+    <Projects />
     <Process />
     <BeforeAfter />
     <Fabrics />

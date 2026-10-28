@@ -1,41 +1,234 @@
 {
-  "_doc": "Mapa de fotos de ./brand -> src/assets/photos/<slug>.jpg. crop = [left, top, width, height] en px del original (quita overlays de interfaz). scale se aplica antes del crop.",
+  "_doc": "Mapa de fotos de ./brand -> src/assets/photos/<slug>.jpg. crop = [left, top, width, height] en px del original (quita overlays de interfaz). scale se aplica antes del crop. origen: propia | por-confirmar | riesgo-alto (inventario para la revisión de derechos, ver AUDITORIA.md §8).",
   "photos": {
-    "hero-bosque":        { "src": "WhatsApp Image 2026-10-11 at 9.17.28 AM.jpeg",  "crop": [0, 140, 1081, 1140] },
-    "hero-arco":          { "src": "WhatsApp Image 2026-10-11 at 9.17.28 AM.jpeg",  "crop": [0, 20, 1081, 1260], "_nota": "Altura casi completa: el contador «5/13» queda fuera del arco del marco." },
-    "hero-sofa":          { "src": "WhatsApp Image 2026-10-11 at 9.17.28 AM.jpeg",  "crop": [200, 470, 680, 810] },
-    "comedor-resultado":  { "src": "WhatsApp Image 2026-10-11 at 9.17.11 AM.jpeg",  "crop": [0, 62, 1143, 1190] },
-    "comedor-boceto":     { "src": "WhatsApp Image 2026-10-11 at 9.16.38 AM.jpeg",  "scale": 1.26, "crop": [123, 390, 1143, 1190] },
-    "tapizando-verde":    { "src": "WhatsApp Image 2026-10-11 at 10.48.53 AM.jpeg", "crop": [0, 70, 700, 1170] },
-    "estructura-madera":  { "src": "WhatsApp Image 2026-10-11 at 10.47.55 AM.jpeg" },
-    "midiendo-madera":    { "src": "WhatsApp Image 2026-10-11 at 10.28.06 AM.jpeg" },
-    "sillon-hogar":       { "src": "WhatsApp Image 2026-10-11 at 11.55.10 AM.jpeg" },
-    "cinta-metrica":      { "src": "WhatsApp Image 2026-10-11 at 1.08.31 PM.jpeg" },
-    "muestrario-verde":   { "src": "WhatsApp Image 2026-10-11 at 10.42.17 AM.jpeg" },
-    "costura-terracota":  { "src": "WhatsApp Image 2026-10-11 at 10.50.07 AM.jpeg" },
-    "sofa-hogar":         { "src": "WhatsApp Image 2026-10-11 at 10.21.46 AM.jpeg" },
-    "sofa-gris-taller":   { "src": "WhatsApp Image 2026-10-11 at 10.46.04 AM.jpeg" },
-    "sofa-verde-modular": { "src": "WhatsApp Image 2026-10-11 at 10.41.47 AM.jpeg" },
-    "sofa-blanco-chaise": { "src": "WhatsApp Image 2026-10-11 at 10.47.20 AM.jpeg" },
-    "sofa-verde":         { "src": "WhatsApp Image 2026-10-11 at 10.49.21 AM.jpeg" },
-    "sofa-terracota-taller": { "src": "WhatsApp Image 2026-10-11 at 10.50.54 AM.jpeg" },
-    "sofa-terracota":     { "src": "WhatsApp Image 2026-10-11 at 10.52.00 AM.jpeg" },
-    "sala-modulos":       { "src": "WhatsApp Image 2026-10-11 at 10.15.59 AM.jpeg" },
-    "chaise-sala":        { "src": "WhatsApp Image 2026-10-11 at 10.17.03 AM.jpeg" },
-    "butaca-curva":       { "src": "WhatsApp Image 2026-10-11 at 10.17.23 AM.jpeg" },
-    "silla-madera":       { "src": "WhatsApp Image 2026-10-11 at 10.17.42 AM.jpeg" },
-    "butaca-noche":       { "src": "WhatsApp Image 2026-10-11 at 10.28.48 AM.jpeg" },
-    "cama-verde":         { "src": "WhatsApp Image 2026-10-11 at 12.26.03 PM.jpeg" },
-    "cabecero-claro":     { "src": "WhatsApp Image 2026-10-11 at 12.26.23 PM.jpeg" },
-    "dormitorio-verde":   { "src": "WhatsApp Image 2026-10-11 at 12.26.43 PM.jpeg" },
-    "cama-gris":          { "src": "WhatsApp Image 2026-10-11 at 12.30.00 PM.jpeg" },
-    "habitacion-luz":     { "src": "WhatsApp Image 2026-10-11 at 9.14.36 AM.jpeg" },
-    "tela-boucle-taupe":  { "src": "WhatsApp Image 2026-10-11 at 12.27.20 PM.jpeg", "crop": [0, 20, 1076, 1240] },
-    "tela-natural":       { "src": "WhatsApp Image 2026-10-11 at 1.13.31 PM.jpeg" },
-    "tela-grafito":       { "src": "WhatsApp Image 2026-10-11 at 12.29.30 PM.jpeg" },
-    "tela-perla":         { "src": "WhatsApp Image 2026-10-11 at 12.32.52 PM.jpeg" },
-    "tela-arena":         { "src": "WhatsApp Image 2026-10-11 at 12.32.20 PM.jpeg" }
+    "hero-bosque": {
+      "src": "WhatsApp Image 2026-10-11 at 9.17.28 AM.jpeg",
+      "crop": [
+        0,
+        140,
+        1081,
+        1140
+      ],
+      "origen": "riesgo-alto",
+      "nota": "Carrusel de Instagram «5/13»; misma sesión que el comedor con la marca «Muebles de Pueblito»."
+    },
+    "hero-arco": {
+      "src": "WhatsApp Image 2026-10-11 at 9.17.28 AM.jpeg",
+      "crop": [
+        0,
+        20,
+        1081,
+        1260
+      ],
+      "_nota": "Altura casi completa: el contador «5/13» queda fuera del arco del marco.",
+      "origen": "riesgo-alto",
+      "nota": "Misma foto que hero-bosque."
+    },
+    "hero-sofa": {
+      "src": "WhatsApp Image 2026-10-11 at 9.17.28 AM.jpeg",
+      "crop": [
+        200,
+        470,
+        680,
+        810
+      ],
+      "origen": "riesgo-alto",
+      "nota": "Misma foto que hero-bosque."
+    },
+    "comedor-resultado": {
+      "src": "WhatsApp Image 2026-10-11 at 9.17.11 AM.jpeg",
+      "crop": [
+        0,
+        62,
+        1143,
+        1190
+      ],
+      "origen": "riesgo-alto",
+      "nota": "La captura original muestra la marca «MUEBLES DE PUEBLITO» y el contador «2/13»."
+    },
+    "comedor-boceto": {
+      "src": "WhatsApp Image 2026-10-11 at 9.16.38 AM.jpeg",
+      "scale": 1.26,
+      "crop": [
+        123,
+        390,
+        1143,
+        1190
+      ],
+      "origen": "riesgo-alto",
+      "nota": "Boceto de la misma publicación del comedor."
+    },
+    "tapizando-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 10.48.53 AM.jpeg",
+      "crop": [
+        0,
+        70,
+        700,
+        1170
+      ],
+      "origen": "por-confirmar"
+    },
+    "estructura-madera": {
+      "src": "WhatsApp Image 2026-10-11 at 10.47.55 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "midiendo-madera": {
+      "src": "WhatsApp Image 2026-10-11 at 10.28.06 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sillon-hogar": {
+      "src": "WhatsApp Image 2026-10-11 at 11.55.10 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cinta-metrica": {
+      "src": "WhatsApp Image 2026-10-11 at 1.08.31 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "muestrario-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 10.42.17 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "costura-terracota": {
+      "src": "WhatsApp Image 2026-10-11 at 10.50.07 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-hogar": {
+      "src": "WhatsApp Image 2026-10-11 at 10.21.46 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-gris-taller": {
+      "src": "WhatsApp Image 2026-10-11 at 10.46.04 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-verde-modular": {
+      "src": "WhatsApp Image 2026-10-11 at 10.41.47 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-blanco-chaise": {
+      "src": "WhatsApp Image 2026-10-11 at 10.47.20 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 10.49.21 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-terracota-taller": {
+      "src": "WhatsApp Image 2026-10-11 at 10.50.54 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-terracota": {
+      "src": "WhatsApp Image 2026-10-11 at 10.52.00 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sala-modulos": {
+      "src": "WhatsApp Image 2026-10-11 at 10.15.59 AM.jpeg",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo."
+    },
+    "chaise-sala": {
+      "src": "WhatsApp Image 2026-10-11 at 10.17.03 AM.jpeg",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo."
+    },
+    "butaca-curva": {
+      "src": "WhatsApp Image 2026-10-11 at 10.17.23 AM.jpeg",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo."
+    },
+    "silla-madera": {
+      "src": "WhatsApp Image 2026-10-11 at 10.17.42 AM.jpeg",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo."
+    },
+    "butaca-noche": {
+      "src": "WhatsApp Image 2026-10-11 at 10.28.48 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cama-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 12.26.03 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cabecero-claro": {
+      "src": "WhatsApp Image 2026-10-11 at 12.26.23 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "dormitorio-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 12.26.43 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cama-gris": {
+      "src": "WhatsApp Image 2026-10-11 at 12.30.00 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "habitacion-luz": {
+      "src": "WhatsApp Image 2026-10-11 at 9.14.36 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "tela-boucle-taupe": {
+      "src": "WhatsApp Image 2026-10-11 at 12.27.20 PM.jpeg",
+      "crop": [
+        0,
+        20,
+        1076,
+        1240
+      ],
+      "origen": "por-confirmar"
+    },
+    "tela-natural": {
+      "src": "WhatsApp Image 2026-10-11 at 1.13.31 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "tela-grafito": {
+      "src": "WhatsApp Image 2026-10-11 at 12.29.30 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "tela-perla": {
+      "src": "WhatsApp Image 2026-10-11 at 12.32.52 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "tela-arena": {
+      "src": "WhatsApp Image 2026-10-11 at 12.32.20 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cuero-costura": {
+      "src": "WhatsApp Image 2026-10-11 at 1.10.50 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cuero-corte": {
+      "src": "WhatsApp Image 2026-10-11 at 10.33.51 AM.jpeg",
+      "crop": [
+        0,
+        13,
+        815,
+        1247
+      ],
+      "origen": "por-confirmar"
+    },
+    "cuero-cuchilla": {
+      "src": "WhatsApp Image 2026-10-11 at 12.17.11 PM.jpeg",
+      "origen": "por-confirmar"
+    }
   },
-  "logo": { "src": "WhatsApp Image 2026-10-11 at 6.06.27 PM.jpeg", "crop": [120, 100, 920, 400], "chair": [120, 100, 250, 400], "hideTagline": [280, 240, 640, 160] },
+  "logo": {
+    "src": "WhatsApp Image 2026-10-11 at 6.06.27 PM.jpeg",
+    "crop": [
+      120,
+      100,
+      920,
+      400
+    ],
+    "chair": [
+      120,
+      100,
+      250,
+      400
+    ],
+    "hideTagline": [
+      280,
+      240,
+      640,
+      160
+    ]
+  },
   "og": "hero-bosque"
 }
