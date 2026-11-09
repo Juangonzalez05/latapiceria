@@ -9,8 +9,9 @@ import site from '../data/site.json';
 
 const links = [
   { href: '#sectores', label: 'Sectores' },
+  { href: '#trabajos', label: 'Trabajos' },
   { href: '#cuero', label: 'Cuero' },
-  { href: '#proyectos', label: 'Proyectos' },
+  { href: '#telas', label: 'Telas' },
   { href: '#proceso', label: 'Proceso' },
   { href: '#contacto', label: 'Contacto' },
 ];
@@ -25,7 +26,7 @@ const wa = waLink('Hola, quiero cotizar un proyecto con La Tapicería.');
     </a>
 
     <nav aria-label="Principal" class="hidden lg:block">
-      <ul class="flex items-center gap-9 text-[0.95rem] font-medium">
+      <ul class="flex items-center gap-6 text-[0.95rem] font-medium xl:gap-9">
         {links.map((l) => (
           <li>
             <a href={l.href} class="nav-link link-line" data-nav-link>{l.label}</a>

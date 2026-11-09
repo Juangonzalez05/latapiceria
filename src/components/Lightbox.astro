@@ -63,8 +63,12 @@ import Icon from './Icon.astro';
     let index = 0;
     let opener: HTMLElement | null = null;
 
-    const visible = () =>
-      [...document.querySelectorAll<HTMLElement>('[data-open-lightbox]')].filter((b) => !b.closest('[hidden]'));
+    // Las flechas recorren solo el grupo de la foto abierta (data-lb-group: trabajos, cuero…) y lo visible:
+    // las fotos ocultas por un filtro o por «Ver más» quedan fuera.
+    const visible = (group?: string) =>
+      [...document.querySelectorAll<HTMLElement>('[data-open-lightbox]')].filter(
+        (b) => !b.closest('[hidden]') && b.dataset.lbGroup === group
+      );
 
     const show = (i: number) => {
       index = (i + list.length) % list.length;
@@ -84,7 +88,7 @@ import Icon from './Icon.astro';
     document.addEventListener('click', (e) => {
       const b = (e.target as HTMLElement).closest<HTMLElement>('[data-open-lightbox]');
       if (!b) return;
-      list = visible();
+      list = visible(b.dataset.lbGroup);
       opener = b;
       show(list.indexOf(b));
       dlg.showModal();

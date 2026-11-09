@@ -1,7 +1,10 @@
 ---
-// Cuero · la especialidad del taller. Campo negro (de la paleta) con acentos champaña y terra.
+// Cuero · la especialidad del taller y la ÚNICA sección donde el cuero es protagonista.
+// Campo negro (de la paleta) con acentos champaña y terra.
 // Fotos de oficio completas (sin recortes): la principal ≤ 336px CSS (origen de 842px, nítida en 2x).
-// Debajo, «Del corte al capitoné»: los detalles del catálogo del cliente, apoyados sobre una misma base.
+// Debajo, «Del corte al capitoné» (detalles) y «Piezas en cuero» (masonry con visor, grupo «cuero»),
+// con los nombres del catálogo del cliente.
+import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
 import Todo from './Todo.astro';
 import Foto from './ui/Foto.astro';
@@ -11,6 +14,13 @@ import { photo } from '../lib/photos';
 import { waLink } from '../lib/whatsapp';
 
 const pad = (n: number) => String(n).padStart(2, '0');
+const pieces = await Promise.all(
+  leather.pieces.map(async (p) => {
+    const src = photo(p.image);
+    const full = await getImage({ src, width: Math.min(1100, src.width), format: 'webp', quality: 82 });
+    return { ...p, full: full.src };
+  })
+);
 ---
 
 <section id="cuero" class="section-y relative overflow-hidden bg-negro text-crema on-dark" aria-labelledby="cuero-titulo">
@@ -94,5 +104,58 @@ const pad = (n: number) => String(n).padStart(2, '0');
         ))}
       </ul>
     </div>
+
+    <!-- Piezas en cuero: masonry (fotos completas, sin huecos) con visor -->
+    <div class="mt-20 border-t border-crema/15 pt-12 lg:mt-24 lg:pt-16">
+      <div class="flex flex-wrap items-end justify-between gap-x-10 gap-y-3" data-reveal>
+        <h3 class="text-h3 !text-crema">{leather.piecesTitle} <em class="text-champana">{leather.piecesEmphasis}</em></h3>
+        <p class="max-w-[28rem] text-small text-crema/80">{leather.piecesLead}</p>
+      </div>
+      <ul class="mt-8 columns-2 gap-4 sm:gap-5 lg:columns-4 lg:gap-6" aria-label="Piezas en cuero">
+        {pieces.map((p) => (
+          <li class="piece mb-5 break-inside-avoid lg:mb-7">
+            <button
+              type="button"
+              class="group block w-full text-left"
+              data-open-lightbox
+              data-lb-group="cuero"
+              data-full={p.full}
+              data-alt={p.alt}
+              data-title={p.title}
+              data-cat={`Cuero · ${p.note}`}
+              aria-label={`Ampliar: ${p.title}`}
+            >
+              <span class="relative block">
+                <Foto
+                  src={photo(p.image)}
+                  alt={p.alt}
+                  widths={[180, 240, 288, 400, 576, 720]}
+                  sizes="(min-width: 1280px) 282px, (min-width: 1024px) 22vw, 46vw"
+                  class="!bg-esmeralda-900"
+                  imgClass="piece-img"
+                />
+                <span class="absolute right-2.5 top-2.5 grid size-9 place-items-center rounded-full bg-crema/90 text-negro opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">
+                  <Icon name="expand" size={15} />
+                </span>
+              </span>
+              <span class="mt-2.5 block font-serif text-[1.05rem] leading-snug text-crema">{p.title}</span>
+              <span class="mt-0.5 block text-small text-crema/75">{p.note}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </section>
+
+<style>
+  /* Sin zoom (recortaría los bordes): al pasar el mouse la foto gana un filo champaña. */
+  .piece :global(.piece-img) {
+    transition: box-shadow 400ms var(--ease-salida);
+  }
+  @media (hover: hover) {
+    .piece:hover :global(.piece-img) {
+      box-shadow: 0 0 0 2px var(--color-champana);
+    }
+  }
+</style>

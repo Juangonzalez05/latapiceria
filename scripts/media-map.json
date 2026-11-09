@@ -42,7 +42,12 @@
     },
     "cuero-corte": {
       "src": "WhatsApp Image 2026-10-11 at 10.33.51 AM.jpeg",
-      "crop": [0, 13, 815, 1247],
+      "crop": [
+        0,
+        13,
+        815,
+        1247
+      ],
       "origen": "por-confirmar"
     },
     "cuero-chesterfield-clasico": {
@@ -76,7 +81,12 @@
     },
     "cuero-cognac": {
       "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.09 PM (1).jpeg",
-      "crop": [0, 8, 1105, 822],
+      "crop": [
+        0,
+        8,
+        1105,
+        822
+      ],
       "_nota": "Quita los puntos del carrusel abajo y una marca arriba; el sofá queda completo.",
       "catalogo": "p. 8 · Cuero cognac",
       "origen": "por-confirmar"
@@ -114,19 +124,34 @@
     },
     "estructura-cinchas": {
       "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.05 PM.jpeg",
-      "crop": [2, 1, 977, 1279],
+      "crop": [
+        2,
+        1,
+        977,
+        1279
+      ],
       "_nota": "Par antes/después: desplazado (2, 1) px para calzar con sofa-boucle-terminado.",
       "catalogo": "p. 14 · Madera y cinchas",
       "origen": "por-confirmar"
     },
     "sofa-boucle-terminado": {
       "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.05 PM (1).jpeg",
-      "crop": [0, 0, 977, 1279],
+      "crop": [
+        0,
+        0,
+        977,
+        1279
+      ],
       "origen": "por-confirmar"
     },
     "tapizando-verde": {
       "src": "WhatsApp Image 2026-10-11 at 10.48.53 AM.jpeg",
-      "crop": [0, 70, 700, 1170],
+      "crop": [
+        0,
+        70,
+        700,
+        1170
+      ],
       "origen": "por-confirmar"
     },
     "cinta-metrica": {
@@ -151,7 +176,12 @@
     },
     "tela-boucle-taupe": {
       "src": "WhatsApp Image 2026-10-11 at 12.27.20 PM.jpeg",
-      "crop": [0, 20, 1076, 1240],
+      "crop": [
+        0,
+        20,
+        1076,
+        1240
+      ],
       "origen": "por-confirmar"
     },
     "tela-grafito": {
@@ -168,7 +198,12 @@
     },
     "tela-gris": {
       "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.03 PM.jpeg",
-      "crop": [0, 0, 1139, 905],
+      "crop": [
+        0,
+        0,
+        1139,
+        905
+      ],
       "_nota": "Quita el círculo de interfaz de la esquina inferior derecha.",
       "catalogo": "p. 14 · Tela gris",
       "origen": "por-confirmar"
@@ -176,21 +211,332 @@
     "sofa-terracota-taller": {
       "src": "WhatsApp Image 2026-10-11 at 10.50.54 AM.jpeg",
       "origen": "por-confirmar"
+    },
+    "comedor-boceto": {
+      "src": "WhatsApp Image 2026-10-11 at 9.16.38 AM.jpeg",
+      "scale": 1.26,
+      "crop": [
+        123,
+        390,
+        1143,
+        1190
+      ],
+      "nota": "Boceto del mismo comedor; escala y recorte calzan con comedor-resultado.",
+      "origen": "riesgo-alto"
+    },
+    "comedor-resultado": {
+      "src": "WhatsApp Image 2026-10-11 at 9.17.11 AM.jpeg",
+      "crop": [
+        0,
+        62,
+        1143,
+        1190
+      ],
+      "nota": "Par antes/después con comedor-boceto. La captura original muestra la marca «MUEBLES DE PUEBLITO» y el contador «2/13» (quedan fuera del recorte).",
+      "origen": "riesgo-alto"
+    },
+    "sofa-terracota": {
+      "src": "WhatsApp Image 2026-10-11 at 10.52.00 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-gris-taller": {
+      "src": "WhatsApp Image 2026-10-11 at 10.46.04 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-blanco-chaise": {
+      "src": "WhatsApp Image 2026-10-11 at 10.47.20 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 10.49.21 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sala-modulos": {
+      "src": "WhatsApp Image 2026-10-11 at 10.15.59 AM.jpeg",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo."
+    },
+    "chaise-sala": {
+      "src": "WhatsApp Image 2026-10-11 at 10.17.03 AM.jpeg",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo."
+    },
+    "butaca-noche": {
+      "src": "WhatsApp Image 2026-10-11 at 10.28.48 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sillon-hogar": {
+      "src": "WhatsApp Image 2026-10-11 at 11.55.10 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cama-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 12.26.03 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cabecero-claro": {
+      "src": "WhatsApp Image 2026-10-11 at 12.26.23 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "dormitorio-verde": {
+      "src": "WhatsApp Image 2026-10-11 at 12.26.43 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cama-gris": {
+      "src": "WhatsApp Image 2026-10-11 at 12.30.00 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-verde-modular": {
+      "src": "WhatsApp Image 2026-10-11 at 10.41.47 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "sofa-bosque": {
+      "src": "2026-10-28/catalogo-p02-sofa-bosque.jpg",
+      "catalogo": "p. 2 · Más que comodidad: la naturaleza en cada espacio",
+      "origen": "riesgo-alto",
+      "nota": "Versión limpia del catálogo. El original de WhatsApp es un carrusel de Instagram «5/13» de la misma sesión que el comedor de «Muebles de Pueblito»."
+    },
+    "sillon-curvo": {
+      "src": "2026-10-28/catalogo-p06-sillon-curvo.jpg",
+      "catalogo": "p. 6 · Sillón curvo",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo (es la misma foto que la antigua butaca-curva)."
+    },
+    "poltrona": {
+      "src": "2026-10-28/catalogo-p06-poltrona.jpg",
+      "catalogo": "p. 6 · Poltrona",
+      "origen": "riesgo-alto",
+      "nota": "Aspecto de render o foto de catálogo (es la misma foto que la antigua silla-madera)."
+    },
+    "cama-modular": {
+      "src": "2026-10-28/catalogo-p06-cama-modular.jpg",
+      "catalogo": "p. 6 · Cama modular",
+      "origen": "por-confirmar",
+      "nota": "Aspecto de render."
+    },
+    "sofa-chocolate": {
+      "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.12 PM (1).jpeg",
+      "crop": [
+        0,
+        24,
+        861,
+        1206
+      ],
+      "_nota": "Quita las barras negras de la captura.",
+      "catalogo": "p. 5 · Líneas suaves, chocolate",
+      "origen": "por-confirmar"
+    },
+    "sofa-ocre": {
+      "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.13 PM.jpeg",
+      "crop": [
+        0,
+        0,
+        1011,
+        1009
+      ],
+      "_nota": "Quita la barra negra inferior.",
+      "catalogo": "p. 5 · Modular en tono ocre",
+      "origen": "por-confirmar"
+    },
+    "sofa-daybed": {
+      "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.04 PM.jpeg",
+      "crop": [
+        0,
+        12,
+        1170,
+        940
+      ],
+      "_nota": "Quita una marca de interfaz arriba.",
+      "origen": "por-confirmar",
+      "nota": "Aspecto de render."
+    },
+    "silla-verde": {
+      "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.15 PM.jpeg",
+      "crop": [
+        0,
+        120,
+        925,
+        1150
+      ],
+      "_nota": "Quita las barras y el contador «1/» de arriba (solo pared).",
+      "origen": "por-confirmar"
+    },
+    "sofa-terraza": {
+      "src": "2026-10-28/WhatsApp Image 2026-10-25 at 4.37.07 PM.jpeg",
+      "crop": [
+        0,
+        0,
+        1145,
+        1160
+      ],
+      "_nota": "Quita el ícono de sonido de abajo (solo piso).",
+      "origen": "por-confirmar",
+      "nota": "Aspecto de render."
+    },
+    "sofa-listones": {
+      "src": "2026-10-28/WhatsApp Image 2026-10-25 at 5.58.22 PM.jpeg",
+      "crop": [
+        0,
+        12,
+        1170,
+        776
+      ],
+      "_nota": "Quita las barras negras.",
+      "origen": "por-confirmar"
+    },
+    "sofa-blanco-taller": {
+      "src": "WhatsApp Image 2026-10-11 at 10.33.07 AM.jpeg",
+      "crop": [
+        0,
+        23,
+        839,
+        1257
+      ],
+      "_nota": "Quita la barra negra superior.",
+      "origen": "por-confirmar",
+      "nota": "Foto en el taller: probablemente propia."
+    },
+    "sofa-cafe-chaise": {
+      "src": "WhatsApp Image 2026-10-11 at 10.42.41 AM.jpeg",
+      "origen": "por-confirmar",
+      "nota": "Foto en el taller: probablemente propia."
+    },
+    "sofa-gris-esquinero": {
+      "src": "WhatsApp Image 2026-10-11 at 10.46.33 AM.jpeg",
+      "origen": "por-confirmar",
+      "nota": "Foto en el taller: probablemente propia."
+    },
+    "cabecero-oscuro": {
+      "src": "WhatsApp Image 2026-10-11 at 12.30.44 PM.jpeg",
+      "catalogo": "p. 6 · Cabecero tapizado",
+      "origen": "por-confirmar",
+      "nota": "Aspecto de render."
+    },
+    "cama-taupe": {
+      "src": "WhatsApp Image 2026-10-11 at 12.27.35 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cama-blanca": {
+      "src": "WhatsApp Image 2026-10-11 at 12.20.02 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "cama-noche": {
+      "src": "WhatsApp Image 2026-10-11 at 12.21.51 PM.jpeg",
+      "origen": "por-confirmar",
+      "nota": "Mismo cabecero que cama-blanca, de noche."
+    },
+    "cama-infantil": {
+      "src": "WhatsApp Image 2026-10-11 at 12.29.09 PM.jpeg",
+      "origen": "por-confirmar",
+      "nota": "Aspecto de render."
+    },
+    "taller-panorama": {
+      "src": "WhatsApp Image 2026-10-11 at 10.31.17 AM.jpeg",
+      "crop": [
+        0,
+        0,
+        918,
+        1280
+      ],
+      "_nota": "Quita el contador del borde derecho.",
+      "origen": "por-confirmar",
+      "nota": "Taller real."
+    },
+    "corte-tela": {
+      "src": "WhatsApp Image 2026-10-11 at 12.14.21 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "costura-boucle": {
+      "src": "WhatsApp Image 2026-10-11 at 12.32.39 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "tapizando-boucle": {
+      "src": "WhatsApp Image 2026-10-11 at 12.19.43 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "estructura-silla": {
+      "src": "WhatsApp Image 2026-10-11 at 10.35.18 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "lijado": {
+      "src": "WhatsApp Image 2026-10-11 at 10.35.54 AM.jpeg",
+      "crop": [
+        0,
+        16,
+        919,
+        1264
+      ],
+      "_nota": "Quita un círculo de interfaz arriba a la izquierda.",
+      "origen": "por-confirmar"
+    },
+    "medidas-bn": {
+      "src": "WhatsApp Image 2026-10-11 at 12.03.29 PM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "maquina-coser": {
+      "src": "WhatsApp Image 2026-10-11 at 11.53.44 AM.jpeg",
+      "origen": "por-confirmar"
+    },
+    "chenille-gris": {
+      "src": "WhatsApp Image 2026-10-11 at 12.33.09 PM.jpeg",
+      "crop": [
+        0,
+        10,
+        910,
+        1230
+      ],
+      "_nota": "Quita marcas de interfaz arriba y el círculo de abajo a la derecha (solo piso).",
+      "catalogo": "p. 11 · Chenille gris",
+      "origen": "por-confirmar"
     }
   },
   "_muestras": "Círculos del selector de telas: recorte cuadrado SOLO de tela (nunca de un mueble), en px de la foto ya procesada. Salen como <slug>-muestra.jpg.",
   "muestras": {
-    "tela-boucle-taupe": [300, 400, 400, 400],
-    "muestrario-verde": [250, 800, 280, 280],
-    "tela-grafito": [620, 500, 240, 240],
-    "tela-perla": [200, 700, 400, 400],
-    "tela-arena": [200, 280, 320, 320],
-    "sofa-terracota-taller": [300, 560, 260, 260],
-    "tela-gris": [80, 60, 360, 360]
+    "tela-boucle-taupe": [
+      300,
+      400,
+      400,
+      400
+    ],
+    "muestrario-verde": [
+      250,
+      800,
+      280,
+      280
+    ],
+    "tela-grafito": [
+      620,
+      500,
+      240,
+      240
+    ],
+    "tela-perla": [
+      200,
+      700,
+      400,
+      400
+    ],
+    "tela-arena": [
+      200,
+      280,
+      320,
+      320
+    ],
+    "sofa-terracota-taller": [
+      300,
+      560,
+      260,
+      260
+    ],
+    "tela-gris": [
+      80,
+      60,
+      360,
+      360
+    ]
   },
   "logo": {
     "_doc": "Referencia de la silla del logo a color (vectorizada a mano en src/lib/silla.mjs). El logo del sitio es vectorial: ver src/components/ui/Logo.astro.",
     "src": "2026-10-28/logo-color-referencia.jpeg"
   },
-  "og": "cuero-comedor"
+  "og": "sofa-bosque"
 }

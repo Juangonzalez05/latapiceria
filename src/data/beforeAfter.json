@@ -1,11 +1,21 @@
 [
   {
-    "id": "estructura",
-    "label": "De la estructura al sofá",
+    "id": "comedor",
+    "label": "Comedor: del boceto al terminado",
+    "before": "comedor-boceto",
+    "after": "comedor-resultado",
+    "beforeLabel": "Boceto",
+    "afterLabel": "Terminado",
+    "beforeAlt": "Boceto a mano del comedor: mesa, sillas, lámpara de madera colgante y ventanal",
+    "afterAlt": "Comedor terminado con mesa de madera, sillas tapizadas en blanco, lámpara de madera colgante y ventanal al jardín"
+  },
+  {
+    "id": "sofa",
+    "label": "Sofá: de la estructura al tapizado",
     "before": "estructura-cinchas",
     "after": "sofa-boucle-terminado",
     "beforeLabel": "Estructura",
-    "afterLabel": "Terminado",
+    "afterLabel": "Tapizado",
     "beforeAlt": "Estructura de madera de un sofá modular con chaise, con cinchas verdes entrelazadas, frente a un panel claro",
     "afterAlt": "Sofá modular con chaise tapizado en bouclé blanco, frente al mismo panel claro"
   },
@@ -18,6 +28,6 @@
     "afterLabel": "Después",
     "beforeAlt": "",
     "afterAlt": "",
-    "todo": "Agregar par de fotos reales antes/después de un retapizado (mismo ángulo)"
+    "todo": "Agregar un par de fotos reales antes/después de un retapizado (mismo ángulo)"
   }
 ]

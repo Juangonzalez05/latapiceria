@@ -1,15 +1,15 @@
 {
-  "_doc": "Hero. titleLines: cada elemento es un renglón; emphasis = índice del renglón en itálica esmeralda. trust: solo hechos reales (el cuero como especialidad y el trabajo a mano los indicó el cliente); la ciudad se añade sola desde site.json.",
+  "_doc": "Hero. titleLines: cada elemento es un renglón; emphasis = índice del renglón en itálica esmeralda. Foto principal en tela (la que abre el catálogo del cliente) y detalle en cuero: los dos materiales desde el primer pantallazo. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
   "titleLines": ["Mobiliario", "hecho a mano", "para espacios", "con carácter"],
   "emphasis": 1,
-  "subtitle": "Diseñamos, tapizamos y fabricamos a mano piezas a la medida, en cuero y en tela, para hoteles, restaurantes, galerías y casas de arquitecto. Pocas piezas, hechas con tiempo y cuidado.",
+  "subtitle": "Diseñamos, tapizamos y fabricamos a mano piezas a la medida, en tela y en cuero, para hoteles, restaurantes, galerías y casas de arquitecto. Pocas piezas, hechas con tiempo y cuidado.",
   "ctaPrimary": "Cotizar un proyecto",
   "ctaMessage": "Hola, quiero cotizar un proyecto con La Tapicería.",
-  "ctaSecondary": "Conocer el cuero",
-  "ctaSecondaryHref": "#cuero",
-  "image": "cuero-comedor",
-  "imageAlt": "Dos sillas de comedor de madera tapizadas en cuero color coñac, sobre gravilla y frente a plantas altas",
+  "ctaSecondary": "Ver trabajos",
+  "ctaSecondaryHref": "#trabajos",
+  "image": "sofa-bosque",
+  "imageAlt": "Sofá de dos puestos tapizado en tela clara, en medio de un camino de tierra entre árboles altos",
   "detail": "cuero-boton",
   "detailAlt": "Mano con guante ajustando el botón de un capitoné en cuero verde",
-  "trust": ["Hecho a mano en nuestro taller", "Especialistas en cuero", "Piezas a la medida"]
+  "trust": ["Hecho a mano en nuestro taller", "Tapicería en tela y en cuero", "Piezas a la medida"]
 }

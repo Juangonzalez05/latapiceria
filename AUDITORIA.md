@@ -373,25 +373,35 @@ Para pasar de 83 a más de 90 en rendimiento móvil, Literata pasó de la varian
 
 ## 8. Inventario de derechos de las fotos (preparación)
 
-Cada foto de `scripts/media-map.json` tiene un campo `origen` y, si aparece en el catálogo del cliente (`Catalogo_Fabrica_La_Tapiceria_2026.pdf`), un campo `catalogo` con la página y el nombre que le da. Que una foto esté en el catálogo indica que el cliente la presenta como suya, pero **no** confirma la autoría. Esto no reemplaza ninguna foto: deja lista la revisión de derechos que se hará más adelante.
+Cada foto de `scripts/media-map.json` tiene un campo `origen`. Si aparece en el catálogo del cliente (`Catalogo_Fabrica_La_Tapiceria_2026.pdf`), también tiene un campo `catalogo` con la página y el nombre que le da. Que una foto esté en el catálogo indica que el cliente la presenta como suya, pero **no** confirma la autoría. Este inventario no reemplaza ninguna foto: deja lista la revisión de derechos que se hará más adelante.
 
 | Estado | Fotos en uso | Motivo |
 |---|---|---|
-| **riesgo-alto** | `cuero-chesterfield-puf` (Proyectos) | El original de WhatsApp es una captura de una publicación ajena (contadores de «me gusta» y comentarios) |
-| **riesgo-alto** | `cuero-tejido` (Proyectos) | El original es una captura de Instagram (íconos y contador «6») |
-| **riesgo-alto** | `cuero-oliva` (sector Casas de arquitecto) | Aspecto de render o de foto de catálogo |
-| por-confirmar | Todas las demás | Capturas de WhatsApp o fotos de catálogo sin autoría confirmada. La más probable como propia es `cuero-chesterfield-clasico` (instalación con muebles embalados en primer plano) |
+| **riesgo-alto** | `sofa-bosque` (hero) | El original de WhatsApp es un carrusel de Instagram «5/13» de la misma sesión que el comedor. Se usa la versión limpia del catálogo (p. 2) |
+| **riesgo-alto** | `comedor-boceto`, `comedor-resultado` (Del boceto a la pieza) | La captura original muestra la marca «MUEBLES DE PUEBLITO» y el contador «2/13». El cliente pidió explícitamente este par |
+| **riesgo-alto** | `sala-modulos`, `chaise-sala` (Trabajos) | Aspecto de render o de foto de catálogo |
+| **riesgo-alto** | `sillon-curvo` (sector Galerías), `poltrona` (Trabajos) | Aspecto de render o de foto de catálogo (son las antiguas `butaca-curva` y `silla-madera`) |
+| **riesgo-alto** | `cuero-chesterfield-puf`, `cuero-tejido` (Piezas en cuero) | Los originales de WhatsApp son capturas de publicaciones ajenas (contadores de Instagram) |
+| **riesgo-alto** | `cuero-oliva` (Piezas en cuero) | Aspecto de render o de foto de catálogo |
+| por-confirmar | Todas las demás | Capturas de WhatsApp o fotos de catálogo sin autoría confirmada. Las más probables como propias son las del taller real: `sofa-blanco-taller`, `sofa-cafe-chaise`, `sofa-gris-esquinero`, `sofa-terracota`, `taller-panorama` y `cuero-chesterfield-clasico` (instalación con muebles embalados). Las que parecen render llevan una nota |
 | propia | (ninguna confirmada aún) | — |
 
-**Salieron del sitio** en la iteración del 28-10 (§10) todas las fotos de riesgo alto anteriores: `hero-arco`, `hero-bosque`, `hero-sofa`, `comedor-resultado`, `comedor-boceto`, `chaise-sala`, `sala-modulos`, `butaca-curva` y `silla-madera`. Siguen en `./brand`, pero ya no están en el mapa.
+**No se publican** (iteraciones del 28-10 y del 8-11):
 
-**Se descartaron del contenido nuevo** y no se publican:
-- la serie 8.21.07 PM, que tiene la marca de agua «ar» de otra marca;
-- «Una idea» y «Un proceso», que traen texto incrustado;
-- el chesterfield con muro de ladrillo (8.21.12 PM (2)): el mueble ya viene cortado en el original y parece un render;
-- la versión de WhatsApp del chesterfield con puf (8.21.10 PM): quitar los íconos de Instagram cortaba el brazo del sofá. Se usa la versión del catálogo, que viene limpia.
+| Motivo | Fotos |
+|---|---|
+| Marca de agua «ar» de otra marca | La serie 8.21.07 PM y sus versiones del catálogo (colección «Confort que se siente» 02–06). Decisión confirmada con el cliente |
+| Otra marca en la foto | Sofás verdes «MOSS…» (zip 35130); renders con «SOFÁ ELLIE» y contadores de Instagram, y las butacas verdes con «©ZENTO.MX» (zip 35135); camisetas de otros talleres («DE LA ROSA», «MORAI…») |
+| Texto incrustado | «Azul media noche», «Borgoña», «Fabricación», «Quiero poder elegir / Es la idea», «La belleza está en el proceso», «Lo hecho a mano lleva tiempo», «El detalle está en el proceso», «Una idea», «Un proceso» |
+| Stock (ícono de Google Lens) | 4.48.55 y 4.49.30 |
+| Borrosas o sin valor | tornillos, fresadora, sierra con aspecto de IA, taller con línea dibujada encima |
+| Mueble cortado en el original | chesterfield con muro de ladrillo (8.21.12 PM (2)); versión de WhatsApp del chesterfield con puf (se usa la del catálogo) |
+| Duplicados | se usa una sola versión: `butaca-curva` = `sillon-curvo`, `silla-madera` = `poltrona`, bouclé en el banco de tapizado (×3), cama de cabecero redondeado |
 
-**Prioridad de reemplazo:** las tres de riesgo alto, empezando por `cuero-oliva`, que es la única en Sectores.
+**Prioridad de reemplazo:**
+1. El hero (`sofa-bosque`).
+2. El par del comedor, si se consigue un boceto → terminado propio.
+3. Las demás de riesgo alto.
 
 Cuando una foto se confirme como propia, se cambia su `origen` a `propia` en el mapa.
 
@@ -515,3 +525,62 @@ Se borraron `/lab/hero`, que dependía de fotos de riesgo alto, y los PNG del lo
 - condiciones de garantía y anticipo;
 - cobertura del envío;
 - revisión de derechos de las 3 fotos de riesgo alto (§8).
+
+---
+
+## 11. Iteración del 8-11: tela y cuero en equilibrio, los dos bocetos y todo el material
+
+**Pedido:**
+- que la página no se enfoque solo en el cuero: el cuero es el fuerte del cliente, pero va en **una sección exclusiva**, sin dejar de lado la tapicería en tela;
+- que los dos pares boceto → terminado (el comedor y el mueble) estén **los dos**, no uno u otro;
+- que se usen **todas las imágenes aportadas** para mostrar lo que se hace.
+
+**Decisiones confirmadas:**
+- galería de tela con filtros y «Ver más»;
+- no publicar los renders de la marca «ar»;
+- el hero lleva el sofá en el bosque, la foto que abre el catálogo.
+
+**Material:**
+- Se revisaron una por una las 51 fotos de `./brand` que nunca se habían usado, más los zip y el catálogo.
+- Entraron unas 40 fotos (75 en el mapa en total), entre ellas:
+  - sofás terminados en el taller real (blanco, chenilla café, esquinero gris);
+  - camas y cabeceros;
+  - el oficio en tela y madera (medidas, corte, costura, estructura, lijado, tapizado en bouclé).
+- Lo que no entra y por qué está en §8. Los recortes solo quitan interfaz; se revisaron con hojas de contacto.
+
+**Estructura nueva** (sigue la del catálogo del cliente):
+
+| Sección | Cambio |
+|---|---|
+| Hero | Sofá en tela (`sofa-bosque`) con detalle de capitoné en cuero: los dos materiales desde el primer pantallazo. CTA secundario «Ver trabajos» |
+| Sectores | 3 fotos en tela y 1 en cuero; los textos dicen «en tela o en cuero» |
+| Hecho a mano | Foto del taller real y tira nueva «Manos que saben» (catálogo, p. 13) con 8 pasos del oficio (`src/data/taller.json`) |
+| Trabajos (`#trabajos`) | «Confort que se siente»: galería de 27 trabajos en tela, en masonry con fotos completas. Filtros (Todo · Sofás · Sillones y poltronas · Camas y cabeceros), 9 visibles al inicio y «Ver los 27 trabajos», con un contador en `aria-live` |
+| Cuero (`#cuero`) | Sección exclusiva: pasos, «Del corte al capitoné» y «Piezas en cuero» (10 piezas con los nombres del catálogo). Es el único lugar de la página donde el cuero es protagonista |
+| Del boceto a la pieza (`#boceto-a-pieza`) | Los dos sliders a la vez, lado a lado en escritorio y uno debajo del otro en móvil: «Comedor: del boceto al terminado» y «Sofá: de la estructura al tapizado». Cada caja tiene la proporción de su par y un ancho máximo igual a la mitad del origen (nítido a 2x) |
+| Visor | Uno solo para la página, por grupos (`data-lb-group`): las flechas recorren solo la galería abierta |
+| Navegación | Sectores · Trabajos · Cuero · Telas · Proceso · Contacto |
+| Textos | Title, description, servicios (se suma «Tapicería en tela»), footer, OG y telas hablan de tela **y** cuero |
+
+**Regla nueva:** cada foto aparece una sola vez en la página. `npm run qa` lo comprueba en `duplicatePhotos` (Proceso repite cada foto a propósito: fija en escritorio y tarjeta en móvil).
+
+**Verificación:**
+- **Build:** sin errores ni advertencias.
+- **Escaneo** en 360, 390, 768, 1024, 1440 y 1920:
+  - **0 fotos recortadas** y 0 blandas a 2x;
+  - 0 fallos de contraste, 0 textos de menos de 13 px y 0 objetivos táctiles de menos de 24 px;
+  - sin desbordamiento horizontal.
+- **QA funcional** en 390 y 1440, todo OK y 0 errores de consola:
+  - filtros: «Camas» muestra solo camas;
+  - «Ver más»: 9 → 27, con el foco en la primera foto nueva;
+  - los 2 pares visibles, con caja = foto (0,961 y 0,764);
+  - visor de cuero «1 / 10» y de trabajos «x / 27»;
+  - 0 fotos repetidas.
+- **CTA del hero:** dentro del primer pantallazo de 360 × 780 a 1920 × 1080.
+- **TODO:** 0 en producción y 29 con `PUBLIC_SHOW_TODOS=true`.
+- **Lighthouse móvil:** **93 / 100 / 100 / 100** (CLS 0).
+
+**Pendiente del cliente:**
+- confirmar los derechos de las fotos de riesgo alto (§8), empezando por el hero y el comedor;
+- un par real de retapizado antes/después;
+- tipos de cuero, contacto, garantía y cobertura (sin cambios).

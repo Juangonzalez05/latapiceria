@@ -1,5 +1,5 @@
 {
-  "_doc": "Sección Cuero (especialidad del taller). Pasos = descripción del oficio, sin cifras. details = «Del corte al capitoné», con los nombres que les da el catálogo del cliente (p. 10). 'todo' = lo que el cliente debe aportar.",
+  "_doc": "Sección Cuero: la ÚNICA sección con el cuero como protagonista (especialidad del taller). Pasos = descripción del oficio, sin cifras. details = «Del corte al capitoné» y pieces = «Piezas en cuero», con los nombres del catálogo del cliente (p. 8–10). 'todo' = lo que el cliente debe aportar.",
   "title": "El cuero, nuestra especialidad",
   "lead": "Un material noble, trabajado a mano: se hace más bello con el tiempo. Lo seleccionamos, lo cortamos y lo cosemos en el taller para que cada pieza gane carácter con el uso.",
   "photoMain": "cuero-tachuelas",
@@ -28,13 +28,100 @@
   "detailsEmphasis": "capitoné",
   "detailsLead": "El oficio está en lo pequeño: el pliegue, el botón y cada costura, hechos a mano.",
   "details": [
-    { "image": "cuero-capitone", "title": "Capitoné a mano", "alt": "Mano acomodando los pliegues de un capitoné en cuero color malva" },
-    { "image": "cuero-costura-remate", "title": "Costura y remate", "alt": "Brazo de un sofá de cuero cognac con la costura y el remate a la vista" },
-    { "image": "cuero-costura-vista", "title": "Costura a la vista", "alt": "Detalle de una costura a la vista en cuero color miel" },
-    { "image": "cuero-y-madera", "title": "Cuero y madera", "alt": "Respaldo de cuero negro abrazado por un brazo curvo de madera" },
-    { "image": "cuero-costura", "title": "Ribete en máquina", "alt": "Costura de una tira de cuero negro en máquina de coser de taller" }
+    {
+      "image": "cuero-capitone",
+      "title": "Capitoné a mano",
+      "alt": "Mano acomodando los pliegues de un capitoné en cuero color malva"
+    },
+    {
+      "image": "cuero-costura-remate",
+      "title": "Costura y remate",
+      "alt": "Brazo de un sofá de cuero cognac con la costura y el remate a la vista"
+    },
+    {
+      "image": "cuero-costura-vista",
+      "title": "Costura a la vista",
+      "alt": "Detalle de una costura a la vista en cuero color miel"
+    },
+    {
+      "image": "cuero-y-madera",
+      "title": "Cuero y madera",
+      "alt": "Respaldo de cuero negro abrazado por un brazo curvo de madera"
+    },
+    {
+      "image": "cuero-costura",
+      "title": "Ribete en máquina",
+      "alt": "Costura de una tira de cuero negro en máquina de coser de taller"
+    }
   ],
   "cta": "Pedir muestras de cuero",
   "message": "Hola, quiero ver muestras de cuero para un proyecto.",
-  "todo": ["Tipos de cuero, procedencia y cuidados recomendados"]
+  "todo": [
+    "Tipos de cuero, procedencia y cuidados recomendados"
+  ],
+  "piecesTitle": "Piezas en",
+  "piecesEmphasis": "cuero",
+  "piecesLead": "Sofás, sillas y poltronas en cuero, del catálogo del taller. Cada una se hace a la medida del espacio.",
+  "pieces": [
+    {
+      "image": "cuero-chesterfield-clasico",
+      "title": "Chesterfield clásico",
+      "note": "Capitoné y tachuelas a mano",
+      "alt": "Sofá chesterfield de cuero café con capitoné y tachuelas, recién instalado en una sala"
+    },
+    {
+      "image": "cuero-tejido",
+      "title": "Cuero tejido",
+      "note": "Tiras de cuero entrelazadas",
+      "alt": "Silla de estructura metálica con asiento y respaldo de tiras de cuero tejidas y un cojín a juego"
+    },
+    {
+      "image": "cuero-chesterfield-sala",
+      "title": "Chesterfield en sala",
+      "note": "Cuero café envejecido",
+      "alt": "Sofá chesterfield de cuero café junto a una escalera de hierro, en un salón con relojes en la pared"
+    },
+    {
+      "image": "cuero-negro-nogal",
+      "title": "Cuero negro y nogal",
+      "note": "Poltrona de madera y cuero",
+      "alt": "Poltrona de madera de nogal con asiento y respaldo tapizados en cuero negro"
+    },
+    {
+      "image": "cuero-cognac",
+      "title": "Cuero cognac",
+      "note": "Líneas rectas, cuero envejecido",
+      "alt": "Sofá de líneas rectas tapizado en cuero cognac con una manta tejida sobre el respaldo"
+    },
+    {
+      "image": "cuero-madera",
+      "title": "Madera y cuero",
+      "note": "Silla de comedor",
+      "alt": "Silla de madera oscura con asiento tapizado en cuero café, en un rincón de paredes grises"
+    },
+    {
+      "image": "cuero-chesterfield-negro",
+      "title": "Chesterfield negro",
+      "note": "Capitoné en cuero negro",
+      "alt": "Sofá chesterfield de cuero negro bajo un cuadro abstracto grande, con una mujer sentada y una taza en la mano"
+    },
+    {
+      "image": "cuero-butaca-metal",
+      "title": "Butaca de cuero y acero",
+      "note": "Cojines amplios en cuero coñac",
+      "alt": "Butaca de cuero color coñac con cojines amplios sobre una estructura de acero negro"
+    },
+    {
+      "image": "cuero-oliva",
+      "title": "Líneas rectas, verde oliva",
+      "note": "Cuero oliva y base de madera",
+      "alt": "Sofá de líneas rectas tapizado en cuero verde oliva sobre base de madera, en una sala clara"
+    },
+    {
+      "image": "cuero-chesterfield-puf",
+      "title": "Chesterfield con puf",
+      "note": "Sofá y puf en cuero",
+      "alt": "Sofá chesterfield de cuero café con cojines claros y un puf redondo de cuero frente a una pared oscura"
+    }
+  ]
 }

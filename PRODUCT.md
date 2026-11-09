@@ -20,7 +20,7 @@ Landing informativa de una sola página para La Tapicería. Su único objetivo e
 
 ## Positioning
 
-Taller de diseño y producción donde **todo es hecho a mano**, con el **cuero como especialidad**. Prioriza la **calidad sobre la cantidad**: pocas piezas, materiales nobles y acompañamiento del brief a la entrega. **El eslogan del sitio es «Comodidad hecha diseño»**: viene del logo a color y se usa en todo el sitio. La versión de línea del logo dice «Diseño y producción».
+Taller de diseño y producción donde **todo es hecho a mano**: tapiza en **tela y en cuero**, y el **cuero es su especialidad** (con una sección exclusiva; el resto de la página muestra todo lo que hace, sobre todo en tela). Prioriza la **calidad sobre la cantidad**: pocas piezas, materiales nobles y acompañamiento del brief a la entrega. **El eslogan del sitio es «Comodidad hecha diseño»**: viene del logo a color y se usa en todo el sitio. La versión de línea del logo dice «Diseño y producción».
 
 ## Operating Context
 

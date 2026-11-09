@@ -1,16 +1,18 @@
 ---
-// Proyectos · selección curada de 6 piezas (calidad antes que cantidad), casi todas en cuero.
-// Cada foto va completa, en su proporción. Escritorio: grilla editorial 5-4-3 / 3-4-5 (máx. ~490px CSS
-// por foto, nítida en 2x): las horizontales van en las columnas anchas y las verticales en las angostas.
-// Móvil: carrusel.
+// Trabajos en tela · «Confort que se siente» (título de la colección del catálogo del cliente).
+// Galería de todo lo que el taller hace en tela, con filtros por tipo de pieza y «Ver más».
+// Masonry con columnas CSS: cada foto va completa, en su proporción (nada se recorta, sin huecos).
+// 2 columnas en móvil y 3 en escritorio (≤ ~384px CSS por foto, nítida en 2x).
+// Las piezas en cuero están en su sección exclusiva (Leather.astro).
 import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
-import Lightbox from './Lightbox.astro';
 import Foto from './ui/Foto.astro';
 import SectionHeader from './ui/SectionHeader.astro';
 import data from '../data/projects.json';
 import { photo } from '../lib/photos';
 
+const label = (id: string) => data.categories.find((c) => c.id === id)?.label ?? '';
+const categories = data.categories.filter((c) => c.id === 'todos' || data.items.some((i) => i.category === c.id));
 const items = await Promise.all(
   data.items.map(async (p) => {
     const src = photo(p.image);
@@ -20,103 +22,125 @@ const items = await Promise.all(
 );
 ---
 
-<section id="proyectos" class="section-y overflow-hidden bg-crema" aria-labelledby="proyectos-titulo" data-projects>
+<section id="trabajos" class="section-y bg-crema" aria-labelledby="trabajos-titulo" data-works data-limit={data.limit}>
   <div class="container-x">
-    <SectionHeader id="proyectos-titulo" title={data.title} lead={data.lead} />
+    <SectionHeader id="trabajos-titulo" title={data.title} lead={data.lead}>
+      <a href="#cuero" class="link-arrow mt-4 text-esmeralda">
+        <span class="link-line">Ver las piezas en cuero</span>
+        <Icon name="arrow" size={16} class="btn-arrow" />
+      </a>
+    </SectionHeader>
 
-    <ul class="projects no-scrollbar -mx-5 flex snap-x snap-mandatory scroll-px-5 items-end gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:grid lg:snap-none lg:grid-cols-12 lg:items-start lg:gap-x-6 lg:gap-y-14 lg:overflow-visible lg:px-0 lg:pb-0" data-track aria-label="Proyectos">
+    <div class="no-scrollbar -mx-5 mb-8 flex gap-2 overflow-x-auto px-5 md:mx-0 md:flex-wrap md:px-0" role="group" aria-label="Filtrar trabajos por tipo de pieza">
+      {categories.map((c, i) => (
+        <button type="button" class="chip" aria-pressed={i === 0 ? 'true' : 'false'} data-filter={c.id}>{c.label}</button>
+      ))}
+    </div>
+
+    <ul class="works columns-2 gap-4 sm:gap-5 lg:columns-3 lg:gap-6" aria-label="Trabajos en tela" data-works-list>
       {items.map((p, i) => (
-        <li class="project relative w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-auto" data-slot={i % 6}>
+        <li class="work mb-4 break-inside-avoid sm:mb-5 lg:mb-6" data-category={p.category} hidden={i >= data.limit}>
           <button
             type="button"
             class="group block w-full text-left"
             data-open-lightbox
+            data-lb-group="trabajos"
             data-full={p.full}
             data-alt={p.alt}
             data-title={p.title}
-            data-cat={p.note}
+            data-cat={`${label(p.category)} · ${p.note}`}
             aria-label={`Ampliar: ${p.title}`}
           >
             <span class="relative block">
               <Foto
                 src={photo(p.image)}
                 alt={p.alt}
-                widths={[300, 400, 500, 640, 800, 1000]}
-                sizes="(min-width: 1280px) 490px, (min-width: 1024px) 38vw, (min-width: 640px) 46vw, 78vw"
-                imgClass="project-img"
+                widths={[180, 240, 320, 384, 480, 640, 768]}
+                sizes="(min-width: 1280px) 384px, (min-width: 1024px) 30vw, 46vw"
+                imgClass="work-img"
               />
-              <span class="absolute right-3 top-3 grid size-10 place-items-center rounded-full bg-crema/90 text-negro opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">
-                <Icon name="expand" size={16} />
+              <span class="absolute right-2.5 top-2.5 grid size-9 place-items-center rounded-full bg-crema/90 text-negro opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden="true">
+                <Icon name="expand" size={15} />
               </span>
             </span>
-            <span class="mt-3 block font-serif text-[1.15rem] text-negro">{p.title}</span>
+            <span class="mt-2.5 block font-serif text-[1.05rem] leading-snug text-negro sm:text-[1.15rem]">{p.title}</span>
             <span class="mt-0.5 block text-small text-gris">{p.note}</span>
           </button>
         </li>
       ))}
     </ul>
 
-    <div class="mt-6 flex justify-end gap-2 lg:hidden">
-      <button type="button" class="carousel-arrow" aria-label="Proyecto anterior" data-prev><Icon name="arrow-left" /></button>
-      <button type="button" class="carousel-arrow" aria-label="Proyecto siguiente" data-next><Icon name="arrow" /></button>
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-negro/10 pt-6 lg:mt-8">
+      <p class="text-small text-gris" aria-live="polite" data-works-count></p>
+      <button type="button" class="btn btn-light !border !border-negro/20" aria-expanded="false" data-works-more>
+        <span data-works-more-label>Ver más trabajos</span>
+        <Icon name="arrow" size={16} class="btn-arrow rotate-90" />
+      </button>
     </div>
   </div>
-
-  <Lightbox />
 </section>
 
 <style>
   /* Sin zoom (recortaría los bordes de la foto): la foto se eleva con una sombra suave. */
-  .project :global(.project-img) {
+  .work :global(.work-img) {
     transition: box-shadow 500ms var(--ease-salida);
   }
   @media (hover: hover) {
-    .project:hover :global(.project-img) {
-      box-shadow: 0 24px 44px -26px rgb(6 6 6 / 0.55);
+    .work:hover :global(.work-img) {
+      box-shadow: 0 22px 40px -24px rgb(6 6 6 / 0.55);
     }
   }
-  /* Escritorio: dos filas espejo (5-4-3 / 3-4-5 columnas de 12) con desfases suaves. */
-  @media (min-width: 1024px) {
-    .project[data-slot='0'],
-    .project[data-slot='5'] {
-      grid-column: span 5;
-    }
-    .project[data-slot='1'],
-    .project[data-slot='4'] {
-      grid-column: span 4;
-    }
-    .project[data-slot='2'],
-    .project[data-slot='3'] {
-      grid-column: span 3;
-    }
-    .project[data-slot='1'] {
-      margin-top: 3rem;
-    }
-    .project[data-slot='3'] {
-      margin-top: 1.5rem;
-    }
-    .project[data-slot='5'] {
-      margin-top: 2.5rem;
-    }
+  .work.is-entering {
+    animation: fade-only 400ms var(--ease-suave) both;
   }
 </style>
 
 <script>
-  const root = document.querySelector<HTMLElement>('[data-projects]');
+  // Filtros (aria-pressed) + «Ver más»: se muestran `limit` fotos de la categoría activa y el resto al pedirlo.
+  // Lo oculto lleva [hidden]: no ocupa espacio en las columnas y el lightbox lo salta.
+  const root = document.querySelector<HTMLElement>('[data-works]');
   if (root) {
-    const track = root.querySelector<HTMLElement>('[data-track]')!;
-    const items = [...track.querySelectorAll<HTMLElement>('.project')];
-    const prev = root.querySelector<HTMLButtonElement>('[data-prev]')!;
-    const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
-    const step = () => (items[0] ? items[0].getBoundingClientRect().width + 16 : 300);
-    const updateArrows = () => {
-      prev.setAttribute('aria-disabled', String(track.scrollLeft <= 4));
-      next.setAttribute('aria-disabled', String(track.scrollLeft + track.clientWidth >= track.scrollWidth - 4));
+    const limit = Number(root.dataset.limit) || 9;
+    const items = [...root.querySelectorAll<HTMLElement>('.work')];
+    const filters = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const count = root.querySelector<HTMLElement>('[data-works-count]')!;
+    const more = root.querySelector<HTMLButtonElement>('[data-works-more]')!;
+    const moreLabel = root.querySelector<HTMLElement>('[data-works-more-label]')!;
+    let category = 'todos';
+    let expanded = false;
+
+    const apply = (animate: boolean) => {
+      const matching = items.filter((it) => category === 'todos' || it.dataset.category === category);
+      items.forEach((it) => (it.hidden = true));
+      matching.forEach((it, n) => {
+        it.hidden = !expanded && n >= limit;
+        if (animate && !it.hidden) {
+          it.classList.remove('is-entering');
+          void it.offsetWidth;
+          it.classList.add('is-entering');
+        }
+      });
+      const shown = matching.filter((it) => !it.hidden).length;
+      count.textContent = `Mostrando ${shown} de ${matching.length} trabajos`;
+      more.hidden = expanded || matching.length <= limit;
+      moreLabel.textContent = `Ver los ${matching.length} trabajos`;
+      more.setAttribute('aria-expanded', String(expanded));
     };
-    prev.addEventListener('click', () => track.scrollBy({ left: -step() }));
-    next.addEventListener('click', () => track.scrollBy({ left: step() }));
-    track.addEventListener('scroll', () => requestAnimationFrame(updateArrows), { passive: true });
-    window.addEventListener('resize', updateArrows);
-    updateArrows();
+
+    more.addEventListener('click', () => {
+      const firstHidden = items.find((it) => it.hidden && (category === 'todos' || it.dataset.category === category));
+      expanded = true;
+      apply(true);
+      firstHidden?.querySelector<HTMLElement>('button')?.focus();
+    });
+    filters.forEach((f) =>
+      f.addEventListener('click', () => {
+        filters.forEach((o) => o.setAttribute('aria-pressed', String(o === f)));
+        category = f.dataset.filter!;
+        expanded = false;
+        apply(true);
+      })
+    );
+    apply(false);
   }
 </script>

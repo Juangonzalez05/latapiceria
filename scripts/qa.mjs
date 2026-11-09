@@ -40,13 +40,32 @@ async function run(width) {
   await page.keyboard.press('Home');
   r.sliderHome = await handle.getAttribute('aria-valuenow');
 
-  // Proyectos curados: 6 piezas visibles, sin filtros
-  r.projectsShown = await page.evaluate(() => document.querySelectorAll('.project').length);
-  r.projectFilters = await page.evaluate(() => document.querySelectorAll('[data-filter]').length);
+  // Trabajos en tela: filtros + «Ver más» (9 visibles al inicio)
+  const works = () => page.evaluate(() => {
+    const all = [...document.querySelectorAll('.work')];
+    return `${all.filter((w) => !w.hidden).length} visibles de ${all.length} · ${document.querySelector('[data-works-count]').textContent}`;
+  });
+  r.worksInitial = await works();
+  await page.locator('[data-filter="camas"]').scrollIntoViewIfNeeded();
+  await page.click('[data-filter="camas"]');
+  r.worksCamas = await works();
+  r.worksCamasOnly = await page.evaluate(() => [...document.querySelectorAll('.work:not([hidden])')].every((w) => w.dataset.category === 'camas'));
+  await page.click('[data-filter="todos"]');
+  await page.click('[data-works-more]');
+  r.worksExpanded = await works();
+  r.worksMoreFocus = await page.evaluate(() => !!document.activeElement?.closest('.work'));
 
-  // Secciones nuevas presentes
-  r.sections = await page.evaluate(() => ['sectores', 'hecho-a-mano', 'cuero', 'proyectos', 'proceso', 'cotizar', 'contacto'].filter((id) => !document.getElementById(id)));
+  // Secciones presentes y sin fotos repetidas en toda la página (cada foto aparece una sola vez)
+  r.sections = await page.evaluate(() => ['sectores', 'hecho-a-mano', 'trabajos', 'cuero', 'boceto-a-pieza', 'proceso', 'telas', 'cotizar', 'contacto'].filter((id) => !document.getElementById(id)));
   r.sectorCards = await page.evaluate(() => document.querySelectorAll('.sector').length);
+  r.duplicatePhotos = await page.evaluate(() => {
+    const slugs = [...document.querySelectorAll('main img:not([data-muestra])')].map((i) => (i.getAttribute('src') || '').split('/').pop().split('.')[0]);
+    // Proceso repite a propósito cada foto: fija en escritorio y en la tarjeta móvil (una de las dos está oculta).
+    const process = new Set([...document.querySelectorAll('#proceso img')].map((i) => (i.getAttribute('src') || '').split('/').pop().split('.')[0]));
+    const seen = {};
+    for (const s of slugs) seen[s] = (seen[s] || 0) + 1;
+    return Object.entries(seen).filter(([s, n]) => n > (process.has(s) ? 2 : 1)).map(([s, n]) => `${s} ×${n}`);
+  });
 
   // Logo «Comodidad hecha diseño» (vector) en header y footer, con el eslogan como texto real
   r.logos = await page.evaluate(() =>
@@ -54,17 +73,20 @@ async function run(width) {
   );
   r.faviconSvg = await page.evaluate(() => !!document.querySelector('link[rel="icon"][href="/favicon.svg"]'));
 
-  // Cuero: tira «Del corte al capitoné» y muestras de tela con recortes solo de textura
+  // Cuero (sección exclusiva): tira «Del corte al capitoné» + «Piezas en cuero»; taller «Manos que saben»
   r.leatherDetails = await page.evaluate(() => document.querySelectorAll('#cuero figure').length);
+  r.leatherPieces = await page.evaluate(() => document.querySelectorAll('#cuero [data-lb-group="cuero"]').length);
+  r.tallerItems = await page.evaluate(() => document.querySelectorAll('#hecho-a-mano figure').length);
   r.swatchesFromTexture = await page.evaluate(() => [...document.querySelectorAll('[data-muestra]')].every((i) => i.src.includes('-muestra')));
 
-  // Antes/después: la caja tiene la misma proporción que las fotos (nada se recorta)
-  r.baRatio = await page.evaluate(() => {
-    const box = document.querySelector('[data-ba]');
-    const img = box.querySelector('img');
-    const br = box.getBoundingClientRect();
-    return `${(br.width / br.height).toFixed(3)} caja · ${(img.getAttribute('width') / img.getAttribute('height')).toFixed(3)} foto · ${img.alt.slice(0, 30)}`;
-  });
+  // Del boceto a la pieza: los dos pares visibles a la vez; cada caja con la proporción de sus fotos
+  r.baPairs = await page.evaluate(() =>
+    [...document.querySelectorAll('[data-ba]')].map((box) => {
+      const img = box.querySelector('img');
+      const br = box.getBoundingClientRect();
+      return `${box.closest('figure').querySelector('figcaption span').textContent} · caja ${(br.width / br.height).toFixed(3)} = foto ${(img.getAttribute('width') / img.getAttribute('height')).toFixed(3)} · visible ${br.height > 0}`;
+    })
+  );
 
   // Cursor «silla» (solo con mouse): html y enlaces
   r.cursorHtml = await page.evaluate(() => getComputedStyle(document.documentElement).cursor.slice(0, 60));
@@ -83,6 +105,14 @@ async function run(width) {
   await page.keyboard.press('Escape');
   await page.waitForTimeout(200);
   r.lightboxFocusBack = await page.evaluate(() => document.activeElement?.hasAttribute('data-open-lightbox'));
+  // Visor por grupo: una pieza en cuero solo recorre las piezas en cuero
+  const leatherPiece = page.locator('[data-lb-group="cuero"]').first();
+  await leatherPiece.scrollIntoViewIfNeeded();
+  await leatherPiece.click();
+  await page.waitForTimeout(200);
+  r.lightboxLeatherCounter = await page.locator('[data-lb-counter]').textContent();
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(200);
 
   // Telas: elegir con teclado actualiza imagen y mensaje
   await page.locator('[data-fabric-input]').first().focus();

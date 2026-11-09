@@ -1,6 +1,6 @@
 # La Tapicería · Landing
 
-Landing de una página (Astro + Tailwind v4) para La Tapicería: mobiliario hecho a mano para hoteles, restaurantes, galerías y casas de arquitecto, con el cuero como especialidad. No tiene backend: todos los CTA abren WhatsApp con un mensaje prellenado.
+Landing de una página (Astro + Tailwind v4) para La Tapicería: mobiliario hecho a mano, tapizado en tela y en cuero (la especialidad), para hoteles, restaurantes, galerías y casas de arquitecto. No tiene backend: todos los CTA abren WhatsApp con un mensaje prellenado.
 
 La dirección visual y el registro del rediseño están en [AUDITORIA.md](AUDITORIA.md). El contexto de producto está en [PRODUCT.md](PRODUCT.md).
 
@@ -23,11 +23,12 @@ npm run preview   # sirve ./dist
 | Hero (titular, subtítulo, CTA, fotos, línea de confianza) | `src/data/hero.json` |
 | Sectores (hoteles, restaurantes, galerías, casas de arquitecto) | `src/data/sectors.json` |
 | Principios «hecho a mano» | `src/data/values.json` |
-| Sección Cuero (especialidad) y tira «Del corte al capitoné» | `src/data/leather.json` |
+| Taller: foto y tira «Manos que saben» (oficio en tela y madera) | `src/data/taller.json` |
+| Sección Cuero (exclusiva, la especialidad): pasos, «Del corte al capitoné» y «Piezas en cuero» | `src/data/leather.json` |
 | Pasos del proceso | `src/data/steps.json` |
-| Antes / después | `src/data/beforeAfter.json` |
+| Del boceto a la pieza (los dos pares, visibles a la vez) | `src/data/beforeAfter.json` |
 | Telas | `src/data/fabrics.json` |
-| Proyectos curados (6 piezas) | `src/data/projects.json` |
+| Trabajos en tela (galería con filtros y «Ver más»; `category`: sofas, sillones, camas) | `src/data/projects.json` |
 | Condiciones del servicio | `src/data/conditions.json` |
 | Testimonios (`show: false` los oculta) | `src/data/testimonials.json` |
 | Preguntas frecuentes | `src/data/faq.json` |
@@ -78,7 +79,7 @@ Con mouse, el cursor es la silla del logo: oscura con borde claro en la página 
 
 ## Derechos de las fotos
 
-Cada foto en `scripts/media-map.json` tiene un campo `origen` (`propia`, `por-confirmar` o `riesgo-alto`) y, si aparece en el catálogo del cliente, un campo `catalogo`. El inventario y las prioridades están en `AUDITORIA.md` §8. **Antes de publicar, reemplazar las 3 marcadas `riesgo-alto`, empezando por `cuero-oliva`.**
+Cada foto en `scripts/media-map.json` tiene un campo `origen` (`propia`, `por-confirmar` o `riesgo-alto`) y, si aparece en el catálogo del cliente, un campo `catalogo`. El inventario y las prioridades están en `AUDITORIA.md` §8. **Antes de publicar, revisar las 10 marcadas `riesgo-alto`, empezando por el hero (`sofa-bosque`) y el par del comedor.**
 
 ## QA y capturas
 

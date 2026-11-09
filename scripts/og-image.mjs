@@ -49,7 +49,7 @@ const html = `<!doctype html><html><head><style>
         <span class="l">${site.tagline}</span>
       </div>
     </div>
-    <p>Mobiliario hecho a mano, con el cuero como especialidad, para hoteles, restaurantes, galerías y casas de arquitecto.</p>
+    <p>Mobiliario hecho a mano, tapizado en tela y en cuero (nuestra especialidad), para hoteles, restaurantes, galerías y casas de arquitecto.</p>
   </div>
   <div class="media"><span class="arco"></span><img src="data:image/jpeg;base64,${photo}" alt=""></div>
 </body></html>`;
