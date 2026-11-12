@@ -1,41 +1,55 @@
 {
-  "_doc": "Galería de trabajos en TELA (las piezas en cuero están en leather.json → pieces). category: sofas | sillones | camas. El orden mezcla categorías para que los 9 primeros de «Todo» muestren de todo. Títulos con «·» = nombre del catálogo del cliente. note = material u oficio visible en la foto, sin claims nuevos. Ver origen de cada foto en scripts/media-map.json. Cada foto aparece una sola vez en la página.",
+  "_doc": "Galería de trabajos en TELA (las piezas en cuero están en leather.json → pieces). featured = 3 piezas destacadas, grandes, sobre los filtros (no se repiten en items). items: category sofas | sillones | camas; tier premium (fotos ambientadas o de estudio) va primero y taller (fotos en la bodega del taller) va al final, también al filtrar. Los 9 que se ven sin «Ver más» son siempre premium. Títulos con nombre del catálogo cuando lo tiene. note = material u oficio visible, se muestra en el visor. Ver origen de cada foto en scripts/media-map.json. Cada foto aparece una sola vez en la página.",
   "title": "Confort que se siente",
   "lead": "Sofás, sillones y camas tapizados en tela en nuestro taller, a la medida de cada espacio. Las piezas en cuero tienen su propia sección.",
   "limit": 9,
   "categories": [
-    { "id": "todos", "label": "Todo" },
-    { "id": "sofas", "label": "Sofás" },
-    { "id": "sillones", "label": "Sillones y poltronas" },
-    { "id": "camas", "label": "Camas y cabeceros" }
+    {
+      "id": "todos",
+      "label": "Todo"
+    },
+    {
+      "id": "sofas",
+      "label": "Sofás"
+    },
+    {
+      "id": "sillones",
+      "label": "Sillones y poltronas"
+    },
+    {
+      "id": "camas",
+      "label": "Camas y cabeceros"
+    }
+  ],
+  "featured": [
+    { "image": "sofa-chocolate", "category": "sofas", "title": "Líneas suaves, chocolate", "note": "Terciopelo chocolate", "alt": "Sofá de líneas suaves tapizado en terciopelo chocolate, con dos mesas de centro negras" },
+    { "image": "cabecero-lampara", "category": "camas", "title": "Cabecero tapizado", "note": "Tela verde oliva y cojín cilíndrico", "alt": "Cabecero alto tapizado en tela verde oliva con cojín cilíndrico, junto a una mesa de noche con lámpara y una taza" },
+    { "image": "cama-modular", "category": "camas", "title": "Cama modular", "note": "Cabecero de paneles tapizados", "alt": "Cama con base tapizada en tela clara y cabecero de paneles redondeados, frente a una pared de madera" }
   ],
   "items": [
-    { "image": "sofa-terracota", "category": "sofas", "title": "Sofá modular terracota", "note": "Bouclé terracota, cojines capitoné", "alt": "Sofá modular de cojines capitoné en bouclé terracota con chaise, en el taller" },
-    { "image": "cama-taupe", "category": "camas", "title": "Cama tapizada taupe", "note": "Base y cabecero en tela", "alt": "Cama con base y cabecero de dos paneles tapizados en tela taupe, en una habitación con cortinas claras" },
-    { "image": "sofa-blanco-taller", "category": "sofas", "title": "Sofá tres puestos claro", "note": "Recién terminado en el taller", "alt": "Sofá de tres puestos tapizado en tela clara jaspeada, recién terminado en el taller" },
-    { "image": "poltrona", "category": "sillones", "title": "Poltrona", "note": "Bouclé y madera", "alt": "Poltrona con estructura de madera maciza, asiento y respaldo tapizados en bouclé claro" },
-    { "image": "sofa-cafe-chaise", "category": "sofas", "title": "Sofá con chaise en chenilla", "note": "Recién terminado en el taller", "alt": "Sofá con chaise tapizado en chenilla color café, recién terminado en el taller" },
-    { "image": "cama-modular", "category": "camas", "title": "Cama modular", "note": "Cabecero de paneles tapizados", "alt": "Cama con base tapizada en tela clara y cabecero de paneles redondeados, frente a una pared de madera" },
-    { "image": "sofa-chocolate", "category": "sofas", "title": "Líneas suaves, chocolate", "note": "Terciopelo chocolate", "alt": "Sofá de líneas suaves tapizado en terciopelo chocolate, con dos mesas de centro negras" },
-    { "image": "butaca-noche", "category": "sillones", "title": "Butaca de lectura", "note": "Madera y bouclé", "alt": "Butaca de madera y bouclé claro junto a un ventanal, de noche" },
-    { "image": "sofa-gris-esquinero", "category": "sofas", "title": "Esquinero gris", "note": "Módulos redondeados en tela texturizada", "alt": "Sofá esquinero de módulos redondeados tapizado en tela gris texturizada, en el taller" },
-    { "image": "cabecero-oscuro", "category": "camas", "title": "Cabecero tapizado", "note": "Tela verde oscura y cojín cilíndrico", "alt": "Cabecero alto tapizado en tela verde oscura con cojín cilíndrico, junto a una mesa de noche con lámpara" },
-    { "image": "sofa-ocre", "category": "sofas", "title": "Modular en tono ocre", "note": "Terciopelo ocre", "alt": "Sofá modular de formas redondeadas tapizado en terciopelo ocre, sobre piso de madera" },
-    { "image": "silla-verde", "category": "sillones", "title": "Butaca baja verde", "note": "Tela texturizada y madera", "alt": "Butaca baja con estructura de madera clara y cojines tapizados en tela verde texturizada" },
-    { "image": "sofa-gris-taller", "category": "sofas", "title": "Sofá esquinero gris", "note": "Recién salido del taller", "alt": "Sofá esquinero en tela gris claro recién terminado en el taller" },
-    { "image": "cama-verde", "category": "camas", "title": "Cama tapizada verde", "note": "Base y cabecero en tela", "alt": "Cama con base y cabecero tapizados en tela verde, y detalle de la pata de madera" },
-    { "image": "sofa-blanco-chaise", "category": "sofas", "title": "Sofá con chaise", "note": "Tela clara", "alt": "Sofá de cuatro puestos con chaise en tela clara, en el taller" },
-    { "image": "sillon-hogar", "category": "sillones", "title": "Sillón de terciopelo", "note": "Terciopelo café y madera", "alt": "Mujer sentada junto a un sillón tapizado en terciopelo café, en una sala con luz natural" },
-    { "image": "sofa-verde", "category": "sofas", "title": "Sofá tres puestos verde", "note": "Tela verde con cojines", "alt": "Sofá de tres puestos en tela verde con cojines, en el taller" },
-    { "image": "cama-blanca", "category": "camas", "title": "Cabecero redondeado", "note": "Tela clara", "alt": "Cama con cabecero redondeado tapizado en tela clara, vista desde arriba" },
-    { "image": "sala-modulos", "category": "sofas", "title": "Sala de módulos", "note": "Módulos claros a la medida", "alt": "Sala con módulos de sofá claros frente a un ventanal" },
-    { "image": "dormitorio-verde", "category": "camas", "title": "Cabecero con ribete", "note": "Tela clara y ribete oscuro", "alt": "Habitación con cabecero tapizado claro con ribete oscuro y pared verde salvia" },
-    { "image": "chaise-sala", "category": "sofas", "title": "Chaise de sala", "note": "Tela beige y cojines terracota", "alt": "Sofá chaise beige con cojines en tonos terracota" },
-    { "image": "cabecero-claro", "category": "camas", "title": "Detalle de cabecero", "note": "Ribete a la vista", "alt": "Detalle del borde de un cabecero tapizado en tela clara con ribete negro" },
-    { "image": "sofa-daybed", "category": "sofas", "title": "Diván con cojín cilíndrico", "note": "Tela clara y base de madera", "alt": "Diván tapizado en tela clara con cojín cilíndrico y base de madera, junto a un ventanal" },
-    { "image": "cama-gris", "category": "camas", "title": "Cama gris", "note": "Cabecero alto tapizado", "alt": "Cama tapizada en gris con cabecero alto, frente a una pared de piedra blanca" },
-    { "image": "sofa-listones", "category": "sofas", "title": "Sofá tres puestos gris", "note": "Tela gris y patas de madera", "alt": "Sofá de tres puestos en tela gris con patas de madera, frente a una pared de listones" },
-    { "image": "cama-infantil", "category": "camas", "title": "Cama infantil", "note": "Terciopelo rosa", "alt": "Cama baja con base y cabecero tapizados en terciopelo rosa, en una habitación infantil" },
-    { "image": "sofa-terraza", "category": "sofas", "title": "Sofá de terraza", "note": "Tela beige, líneas rectas", "alt": "Sofá de líneas rectas tapizado en tela beige, en una terraza de madera frente al mar" }
+    { "image": "poltrona", "category": "sillones", "title": "Poltrona", "note": "Bouclé y madera", "alt": "Poltrona con estructura de madera maciza, asiento y respaldo tapizados en bouclé claro", "tier": "premium" },
+    { "image": "sofa-daybed", "category": "sofas", "title": "Diván con cojín cilíndrico", "note": "Tela clara y base de madera", "alt": "Diván tapizado en tela clara con cojín cilíndrico y base de madera, junto a un ventanal", "tier": "premium" },
+    { "image": "cama-taupe", "category": "camas", "title": "Cama tapizada taupe", "note": "Base y cabecero en tela", "alt": "Cama con base y cabecero de dos paneles tapizados en tela taupe, en una habitación con cortinas claras", "tier": "premium" },
+    { "image": "sofa-listones", "category": "sofas", "title": "Sofá tres puestos gris", "note": "Tela gris y patas de madera", "alt": "Sofá de tres puestos en tela gris con patas de madera, frente a una pared de listones", "tier": "premium" },
+    { "image": "butaca-noche", "category": "sillones", "title": "Butaca de lectura", "note": "Madera y bouclé", "alt": "Butaca de madera y bouclé claro junto a un ventanal, de noche", "tier": "premium" },
+    { "image": "dormitorio-verde", "category": "camas", "title": "Cabecero con ribete", "note": "Tela clara y ribete oscuro", "alt": "Habitación con cabecero tapizado claro con ribete oscuro y pared verde salvia", "tier": "premium" },
+    { "image": "silla-verde", "category": "sillones", "title": "Butaca baja verde", "note": "Tela texturizada y madera", "alt": "Butaca baja con estructura de madera clara y cojines tapizados en tela verde texturizada", "tier": "premium" },
+    { "image": "cama-gris", "category": "camas", "title": "Cama gris", "note": "Cabecero alto tapizado", "alt": "Cama tapizada en gris con cabecero alto, frente a una pared de piedra blanca", "tier": "premium" },
+    { "image": "sala-modulos", "category": "sofas", "title": "Sala de módulos", "note": "Módulos claros a la medida", "alt": "Sala con módulos de sofá claros frente a un ventanal", "tier": "premium" },
+    { "image": "chaise-sala", "category": "sofas", "title": "Chaise de sala", "note": "Tela beige y cojines terracota", "alt": "Sofá chaise beige con cojines en tonos terracota", "tier": "premium" },
+    { "image": "cama-blanca", "category": "camas", "title": "Cabecero redondeado", "note": "Tela clara", "alt": "Cama con cabecero redondeado tapizado en tela clara, vista desde arriba", "tier": "premium" },
+    { "image": "sofa-terraza", "category": "sofas", "title": "Sofá de terraza", "note": "Tela beige, líneas rectas", "alt": "Sofá de líneas rectas tapizado en tela beige, en una terraza de madera frente al mar", "tier": "premium" },
+    { "image": "cabecero-claro", "category": "camas", "title": "Detalle de cabecero", "note": "Ribete a la vista", "alt": "Detalle del borde de un cabecero tapizado en tela clara con ribete negro", "tier": "premium" },
+    { "image": "cama-verde", "category": "camas", "title": "Cama tapizada verde", "note": "Base y cabecero en tela", "alt": "Cama con base y cabecero tapizados en tela verde, y detalle de la pata de madera", "tier": "premium" },
+    { "image": "cama-infantil", "category": "camas", "title": "Cama infantil", "note": "Terciopelo rosa", "alt": "Cama baja con base y cabecero tapizados en terciopelo rosa, en una habitación infantil", "tier": "premium" },
+    { "image": "sillon-hogar", "category": "sillones", "title": "Sillón de terciopelo", "note": "Terciopelo café y madera", "alt": "Mujer sentada junto a un sillón tapizado en terciopelo café, en una sala con luz natural", "tier": "premium" },
+    { "image": "sofa-terracota", "category": "sofas", "title": "Sofá modular terracota", "note": "Recién terminado en el taller", "alt": "Sofá modular de cojines capitoné en bouclé terracota con chaise, en el taller", "tier": "taller" },
+    { "image": "sofa-blanco-taller", "category": "sofas", "title": "Sofá tres puestos claro", "note": "Recién terminado en el taller", "alt": "Sofá de tres puestos tapizado en tela clara jaspeada, recién terminado en el taller", "tier": "taller" },
+    { "image": "sofa-cafe-chaise", "category": "sofas", "title": "Sofá con chaise en chenilla", "note": "Recién terminado en el taller", "alt": "Sofá con chaise tapizado en chenilla color café, recién terminado en el taller", "tier": "taller" },
+    { "image": "sofa-gris-esquinero", "category": "sofas", "title": "Esquinero gris", "note": "Recién terminado en el taller", "alt": "Sofá esquinero de módulos redondeados tapizado en tela gris texturizada, en el taller", "tier": "taller" },
+    { "image": "sofa-gris-taller", "category": "sofas", "title": "Sofá esquinero gris", "note": "Recién terminado en el taller", "alt": "Sofá esquinero en tela gris claro recién terminado en el taller", "tier": "taller" },
+    { "image": "sofa-blanco-chaise", "category": "sofas", "title": "Sofá con chaise", "note": "Recién terminado en el taller", "alt": "Sofá de cuatro puestos con chaise en tela clara, en el taller", "tier": "taller" },
+    { "image": "sofa-verde", "category": "sofas", "title": "Sofá tres puestos verde", "note": "Recién terminado en el taller", "alt": "Sofá de tres puestos en tela verde con cojines, en el taller", "tier": "taller" },
+    { "image": "sofa-verde-modular", "category": "sofas", "title": "Sofá modular oliva", "note": "Recién terminado en el taller", "alt": "Sofá modular largo en tela verde oliva con puf, recién terminado en el taller", "tier": "taller" }
   ]
 }

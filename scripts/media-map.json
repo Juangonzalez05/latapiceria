@@ -208,10 +208,6 @@
       "catalogo": "p. 14 · Tela gris",
       "origen": "por-confirmar"
     },
-    "sofa-terracota-taller": {
-      "src": "WhatsApp Image 2026-10-11 at 10.50.54 AM.jpeg",
-      "origen": "por-confirmar"
-    },
     "comedor-boceto": {
       "src": "WhatsApp Image 2026-10-11 at 9.16.38 AM.jpeg",
       "scale": 1.26,
@@ -288,12 +284,6 @@
     "sofa-verde-modular": {
       "src": "WhatsApp Image 2026-10-11 at 10.41.47 AM.jpeg",
       "origen": "por-confirmar"
-    },
-    "sofa-bosque": {
-      "src": "2026-10-28/catalogo-p02-sofa-bosque.jpg",
-      "catalogo": "p. 2 · Más que comodidad: la naturaleza en cada espacio",
-      "origen": "riesgo-alto",
-      "nota": "Versión limpia del catálogo. El original de WhatsApp es un carrusel de Instagram «5/13» de la misma sesión que el comedor de «Muebles de Pueblito»."
     },
     "sillon-curvo": {
       "src": "2026-10-28/catalogo-p06-sillon-curvo.jpg",
@@ -405,12 +395,6 @@
       "origen": "por-confirmar",
       "nota": "Foto en el taller: probablemente propia."
     },
-    "cabecero-oscuro": {
-      "src": "WhatsApp Image 2026-10-11 at 12.30.44 PM.jpeg",
-      "catalogo": "p. 6 · Cabecero tapizado",
-      "origen": "por-confirmar",
-      "nota": "Aspecto de render."
-    },
     "cama-taupe": {
       "src": "WhatsApp Image 2026-10-11 at 12.27.35 PM.jpeg",
       "origen": "por-confirmar"
@@ -428,18 +412,6 @@
       "src": "WhatsApp Image 2026-10-11 at 12.29.09 PM.jpeg",
       "origen": "por-confirmar",
       "nota": "Aspecto de render."
-    },
-    "taller-panorama": {
-      "src": "WhatsApp Image 2026-10-11 at 10.31.17 AM.jpeg",
-      "crop": [
-        0,
-        0,
-        918,
-        1280
-      ],
-      "_nota": "Quita el contador del borde derecho.",
-      "origen": "por-confirmar",
-      "nota": "Taller real."
     },
     "corte-tela": {
       "src": "WhatsApp Image 2026-10-11 at 12.14.21 PM.jpeg",
@@ -472,10 +444,6 @@
       "src": "WhatsApp Image 2026-10-11 at 12.03.29 PM.jpeg",
       "origen": "por-confirmar"
     },
-    "maquina-coser": {
-      "src": "WhatsApp Image 2026-10-11 at 11.53.44 AM.jpeg",
-      "origen": "por-confirmar"
-    },
     "chenille-gris": {
       "src": "WhatsApp Image 2026-10-11 at 12.33.09 PM.jpeg",
       "crop": [
@@ -486,6 +454,75 @@
       ],
       "_nota": "Quita marcas de interfaz arriba y el círculo de abajo a la derecha (solo piso).",
       "catalogo": "p. 11 · Chenille gris",
+      "origen": "por-confirmar"
+    },
+    "divan-pana-naranja": {
+      "src": "2026-11-11/adjunto-divan-pana-naranja.webp",
+      "crop": [
+        0,
+        66,
+        917,
+        1214
+      ],
+      "_nota": "Quita el contador «2/3» del carrusel (arriba a la derecha, solo pared).",
+      "origen": "por-confirmar",
+      "nota": "Enviada por el cliente en el chat del 11-11; el original es una captura de un carrusel."
+    },
+    "cabecero-lampara": {
+      "src": "2026-11-11/catalogo-p06-cabecero-tapizado.jpg",
+      "catalogo": "p. 6 · Cabecero tapizado",
+      "origen": "por-confirmar",
+      "nota": "Aspecto de render."
+    },
+    "tejido-terracota": {
+      "src": "2026-11-11/adjunto-tejido-terracota.webp",
+      "crop": [
+        0,
+        0,
+        993,
+        1280
+      ],
+      "_nota": "Quita una marca de interfaz del borde derecho.",
+      "catalogo": "p. 11 · Tejido terracota",
+      "origen": "por-confirmar"
+    },
+    "cuero-rejilla": {
+      "src": "2026-11-11/WhatsApp Image 2026-10-21 at 8.20.59 PM.jpeg",
+      "origen": "por-confirmar",
+      "nota": "Foto de estudio."
+    },
+    "costura-maquina-bn": {
+      "src": "WhatsApp Image 2026-10-11 at 12.04.14 PM.jpeg",
+      "crop": [
+        0,
+        0,
+        764,
+        1262
+      ],
+      "_nota": "Quita el círculo de interfaz de abajo a la izquierda.",
+      "origen": "por-confirmar"
+    },
+    "tapizado-claro": {
+      "src": "WhatsApp Image 2026-10-11 at 12.31.21 PM.jpeg",
+      "crop": [
+        0,
+        0,
+        1117,
+        1155
+      ],
+      "_nota": "Quita la barra negra inferior.",
+      "catalogo": "p. 11 · Tapizado claro",
+      "origen": "por-confirmar"
+    },
+    "hilo-bn": {
+      "src": "WhatsApp Image 2026-10-11 at 12.03.12 PM.jpeg",
+      "crop": [
+        0,
+        0,
+        796,
+        1228
+      ],
+      "_nota": "Quita el círculo de interfaz de abajo a la izquierda.",
       "origen": "por-confirmar"
     }
   },
@@ -521,15 +558,15 @@
       320,
       320
     ],
-    "sofa-terracota-taller": [
-      300,
-      560,
-      260,
-      260
-    ],
     "tela-gris": [
       80,
       60,
+      360,
+      360
+    ],
+    "tejido-terracota": [
+      330,
+      620,
       360,
       360
     ]
@@ -538,5 +575,5 @@
     "_doc": "Referencia de la silla del logo a color (vectorizada a mano en src/lib/silla.mjs). El logo del sitio es vectorial: ver src/components/ui/Logo.astro.",
     "src": "2026-10-28/logo-color-referencia.jpeg"
   },
-  "og": "sofa-bosque"
+  "og": "divan-pana-naranja"
 }

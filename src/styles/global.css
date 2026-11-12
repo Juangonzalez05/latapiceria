@@ -209,6 +209,20 @@
   }
 
   /*
+    Galerías largas (masonry de columnas): el navegador no las calcula hasta que están cerca de la
+    pantalla. Baja el trabajo de estilo y layout al cargar; el tamaño reservado evita saltos.
+  */
+  .galeria-diferida {
+    content-visibility: auto;
+    contain-intrinsic-size: auto var(--alto-movil, 1500px);
+  }
+  @media (min-width: 1024px) {
+    .galeria-diferida {
+      contain-intrinsic-size: auto var(--alto-escritorio, 1500px);
+    }
+  }
+
+  /*
     Fotos completas: ninguna se recorta (sin object-fit: cover ni marcos de proporción fija).
     .foto = la imagen en su proporción natural. .foto-caja = caja de proporción fija donde la foto
     se ajusta entera (la más ancha llena el ancho, la más alta llena el alto). Ver ui/Foto.astro.

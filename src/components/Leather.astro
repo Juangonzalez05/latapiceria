@@ -111,7 +111,7 @@ const pieces = await Promise.all(
         <h3 class="text-h3 !text-crema">{leather.piecesTitle} <em class="text-champana">{leather.piecesEmphasis}</em></h3>
         <p class="max-w-[28rem] text-small text-crema/80">{leather.piecesLead}</p>
       </div>
-      <ul class="mt-8 columns-2 gap-4 sm:gap-5 lg:columns-4 lg:gap-6" aria-label="Piezas en cuero">
+      <ul class="galeria-diferida mt-8 columns-2 gap-4 sm:gap-5 lg:columns-4 lg:gap-6" style="--alto-movil:1720px;--alto-escritorio:1310px" aria-label="Piezas en cuero">
         {pieces.map((p) => (
           <li class="piece mb-5 break-inside-avoid lg:mb-7">
             <button

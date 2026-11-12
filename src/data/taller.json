@@ -1,18 +1,50 @@
 {
-  "_doc": "«Manos que saben» (título del catálogo del cliente, p. 13): el oficio del taller en tela y madera, en la banda «Hecho a mano». Nombres tomados del catálogo (p. 12–14) o descriptivos. El cuero tiene su propia tira en leather.json.",
+  "_doc": "«Manos que saben» (título del catálogo del cliente, p. 13): el oficio del taller en tela y madera, en la banda «Hecho a mano». Dirección de arte: el taller se muestra en blanco y negro (filtro CSS; color al pasar el mouse) y las piezas terminadas siempre a color. El cuero tiene su propia tira en leather.json.",
   "title": "Manos que",
   "emphasis": "saben",
   "lead": "Tela, madera y cuero pasan por las mismas manos: medimos, cortamos, cosemos, armamos y tapizamos en el taller.",
-  "photo": "taller-panorama",
-  "photoAlt": "Vista desde arriba del taller: estructuras de sillas y mesas en madera, mesas de trabajo y artesanos en plena producción",
+  "photo": "costura-maquina-bn",
+  "photoAlt": "Aguja y prensatelas de una máquina de coser industrial sobre la tela, en blanco y negro",
   "items": [
-    { "image": "medidas-bn", "title": "Medidas", "alt": "Manos marcando medidas con regla y tiza sobre tela, en blanco y negro" },
-    { "image": "corte-tela", "title": "Corte de tela", "alt": "Manos cortando a tijera una pieza de tela de tapicería" },
-    { "image": "maquina-coser", "title": "Máquina de coser", "alt": "Prensatelas de una máquina de coser industrial sobre tela clara" },
-    { "image": "costura-boucle", "title": "Hilo y costura", "alt": "Manos guiando tela bouclé bajo una máquina de coser industrial" },
-    { "image": "estructura-silla", "title": "Estructura en madera", "alt": "Estructura de una silla en madera armada sobre la mesa del taller, entre tablas cortadas" },
-    { "image": "lijado", "title": "Lijado a mano", "alt": "Artesano lijando una tabla de madera maciza con una lijadora de banda" },
-    { "image": "taller-estructura-curva", "title": "Estructura curva", "alt": "Artesano armando a mano la estructura curva de madera de un sofá en el taller" },
-    { "image": "tapizando-boucle", "title": "Tapizado", "alt": "Mano estirando tela bouclé sobre la esquina de un asiento, sobre el banco de tapizado" }
+    {
+      "image": "medidas-bn",
+      "title": "Medidas",
+      "alt": "Manos marcando medidas con regla y tiza sobre tela, en blanco y negro"
+    },
+    {
+      "image": "corte-tela",
+      "title": "Corte de tela",
+      "alt": "Manos cortando a tijera una pieza de tela de tapicería"
+    },
+    {
+      "image": "hilo-bn",
+      "title": "Hilo",
+      "alt": "Carrete de hilo negro en el portacarretes de una máquina de coser, en blanco y negro"
+    },
+    {
+      "image": "costura-boucle",
+      "title": "Costura",
+      "alt": "Manos guiando tela bouclé bajo una máquina de coser industrial"
+    },
+    {
+      "image": "estructura-silla",
+      "title": "Estructura en madera",
+      "alt": "Estructura de una silla en madera armada sobre la mesa del taller, entre tablas cortadas"
+    },
+    {
+      "image": "taller-estructura-curva",
+      "title": "Estructura curva",
+      "alt": "Artesano armando a mano la estructura curva de madera de un sofá en el taller"
+    },
+    {
+      "image": "lijado",
+      "title": "Lijado a mano",
+      "alt": "Artesano lijando una tabla de madera maciza con una lijadora de banda"
+    },
+    {
+      "image": "tapizando-boucle",
+      "title": "Tapizado",
+      "alt": "Mano estirando tela bouclé sobre la esquina de un asiento, sobre el banco de tapizado"
+    }
   ]
 }

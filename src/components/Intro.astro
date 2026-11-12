@@ -2,6 +2,8 @@
 // Banda «Hecho a mano» (campo esmeralda): el mensaje central del taller y calidad antes que cantidad.
 // Foto del taller real y, debajo, «Manos que saben» (catálogo del cliente): el oficio en tela y madera,
 // con fotos completas apoyadas sobre una misma base (mismo patrón que «Del corte al capitoné» en Cuero).
+// Dirección de arte: el taller va en blanco y negro (filtro CSS, el archivo no cambia) y recupera el color al
+// pasar el mouse; las piezas terminadas del resto de la página siempre van a color.
 import Todo from './Todo.astro';
 import Foto from './ui/Foto.astro';
 import Pespunte from './ui/Pespunte.astro';
@@ -63,7 +65,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
         <h3 class="text-h3 !text-crema">{taller.title} <em class="text-champana">{taller.emphasis}</em></h3>
         <p class="max-w-[28rem] text-small text-crema/80">{taller.lead}</p>
       </div>
-      <ul class="no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory scroll-px-5 items-end gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-5 lg:gap-y-10 lg:overflow-visible lg:px-0 lg:pb-0" aria-label="El oficio del taller" tabindex="0">
+      <ul class="taller-strip no-scrollbar -mx-5 mt-8 flex snap-x snap-mandatory scroll-px-5 items-end gap-4 overflow-x-auto px-5 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-5 lg:gap-y-10 lg:overflow-visible lg:px-0 lg:pb-0" aria-label="El oficio del taller" tabindex="0">
         {taller.items.map((d, i) => (
           <li class="w-[56%] shrink-0 snap-start sm:w-[32%] lg:w-auto" data-reveal style={`--reveal-delay:${i % 4}`}>
             <figure>
@@ -84,3 +86,20 @@ const pad = (n: number) => String(n).padStart(2, '0');
     </div>
   </div>
 </section>
+
+<style>
+  .taller-strip :global(.foto) {
+    filter: grayscale(1) contrast(1.06);
+    transition: filter 400ms var(--ease-suave);
+  }
+  @media (hover: hover) {
+    .taller-strip li:hover :global(.foto) {
+      filter: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .taller-strip :global(.foto) {
+      transition: none;
+    }
+  }
+</style>

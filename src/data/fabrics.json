@@ -84,16 +84,16 @@
     ]
   },
   {
-    "id": "boucle-terracota",
-    "name": "Bouclé terracota",
-    "family": "Bouclé",
-    "swatch": "#c4572f",
-    "image": "sofa-terracota-taller",
-    "alt": "Módulo de sofá tapizado en bouclé terracota en el taller",
-    "summary": "Color intenso y textura envolvente para una pieza que se roba las miradas.",
+    "id": "tejido-terracota",
+    "name": "Tejido terracota",
+    "family": "Tejido grueso",
+    "swatch": "#7a3f2c",
+    "image": "tejido-terracota",
+    "alt": "Cojín tapizado en tejido grueso color terracota, con la trama a la vista",
+    "summary": "Trama gruesa y color tierra cálido. Le da carácter a un sofá o a una butaca y combina muy bien con madera y cuero.",
     "uses": [
-      "Sofás de diseño",
-      "Puffs",
+      "Sofás",
+      "Cojines",
       "Butacas"
     ]
   }

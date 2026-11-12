@@ -24,11 +24,12 @@ npm run preview   # sirve ./dist
 | Sectores (hoteles, restaurantes, galerías, casas de arquitecto) | `src/data/sectors.json` |
 | Principios «hecho a mano» | `src/data/values.json` |
 | Taller: foto y tira «Manos que saben» (oficio en tela y madera) | `src/data/taller.json` |
+| Manifiesto (pausa de marca, texto del catálogo) | `src/data/manifesto.json` |
 | Sección Cuero (exclusiva, la especialidad): pasos, «Del corte al capitoné» y «Piezas en cuero» | `src/data/leather.json` |
 | Pasos del proceso | `src/data/steps.json` |
 | Del boceto a la pieza (los dos pares, visibles a la vez) | `src/data/beforeAfter.json` |
 | Telas | `src/data/fabrics.json` |
-| Trabajos en tela (galería con filtros y «Ver más»; `category`: sofas, sillones, camas) | `src/data/projects.json` |
+| Trabajos en tela: destacadas (`featured`) y galería con filtros y «Ver más» (`category`: sofas, sillones, camas; `tier`: premium, taller) | `src/data/projects.json` |
 | Condiciones del servicio | `src/data/conditions.json` |
 | Testimonios (`show: false` los oculta) | `src/data/testimonials.json` |
 | Preguntas frecuentes | `src/data/faq.json` |
@@ -53,6 +54,8 @@ npm run preview   # sirve ./dist
 **Regla: ninguna foto se recorta.** Cada foto se muestra completa y en su proporción con `src/components/ui/Foto.astro`:
 - por defecto, en su proporción natural;
 - con `box`, dentro de una caja fija (galerías y fundidos), ajustada entera.
+
+**Dirección de arte:** el taller va en blanco y negro (filtro CSS en «Manos que saben», color al pasar el mouse) y las piezas terminadas siempre a color. En la galería de trabajos, `tier: premium` va primero y `tier: taller` (fotos en la bodega) al final; `featured` son las 3 destacadas de arriba.
 
 No uses `object-cover` ni marcos de proporción fija para fotos. `npm run audit:scan` lo verifica: `imagesCropped` debe quedar vacío.
 
@@ -79,7 +82,7 @@ Con mouse, el cursor es la silla del logo: oscura con borde claro en la página 
 
 ## Derechos de las fotos
 
-Cada foto en `scripts/media-map.json` tiene un campo `origen` (`propia`, `por-confirmar` o `riesgo-alto`) y, si aparece en el catálogo del cliente, un campo `catalogo`. El inventario y las prioridades están en `AUDITORIA.md` §8. **Antes de publicar, revisar las 10 marcadas `riesgo-alto`, empezando por el hero (`sofa-bosque`) y el par del comedor.**
+Cada foto en `scripts/media-map.json` tiene un campo `origen` (`propia`, `por-confirmar` o `riesgo-alto`) y, si aparece en el catálogo del cliente, un campo `catalogo`. El inventario y las prioridades están en `AUDITORIA.md` §8. **Antes de publicar, revisar las 9 marcadas `riesgo-alto`, empezando por el par del comedor.**
 
 ## QA y capturas
 

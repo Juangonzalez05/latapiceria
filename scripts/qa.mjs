@@ -46,6 +46,18 @@ async function run(width) {
     return `${all.filter((w) => !w.hidden).length} visibles de ${all.length} · ${document.querySelector('[data-works-count]').textContent}`;
   });
   r.worksInitial = await works();
+  // Jerarquía: 3 destacadas arriba; las 9 visibles son premium y las fotos de bodega quedan al final
+  r.worksFeatured = await page.evaluate(() => document.querySelectorAll('.feature').length);
+  r.worksTiers = await page.evaluate(() => {
+    const all = [...document.querySelectorAll('.work')];
+    const visible = all.filter((w) => !w.hidden);
+    const firstTaller = all.findIndex((w) => w.dataset.tier === 'taller');
+    return {
+      visiblesPremium: visible.every((w) => w.dataset.tier === 'premium'),
+      bodegaAlFinal: firstTaller >= 0 && all.slice(firstTaller).every((w) => w.dataset.tier === 'taller'),
+    };
+  });
+  r.manifesto = await page.evaluate(() => !!document.querySelector('section[aria-label="Manifiesto"] blockquote'));
   await page.locator('[data-filter="camas"]').scrollIntoViewIfNeeded();
   await page.click('[data-filter="camas"]');
   r.worksCamas = await works();

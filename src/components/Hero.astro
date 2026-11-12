@@ -2,7 +2,7 @@
 // Hero · concepto A «editorial enmarcado» (ver AUDITORIA.md §4), enfocado a hoteles, restaurantes,
 // galerías y casas de arquitecto, con el «hecho a mano» y el cuero como mensaje central.
 // La foto va COMPLETA delante de un arco (eco del respaldo de la silla del logo) y nunca supera su
-// resolución: máx. ~363px CSS para un origen de 840px, nítida en pantallas 2x.
+// resolución: máx. ~363px CSS para un origen de 917px, nítida en pantallas 2x.
 import ArchFrame from './ui/ArchFrame.astro';
 import Foto from './ui/Foto.astro';
 import Pespunte from './ui/Pespunte.astro';
@@ -25,8 +25,8 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
         <ArchFrame
           src={photo(hero.image)}
           alt={hero.imageAlt}
-          sizes="(min-width: 1024px) 363px, (min-width: 640px) 256px, 200px"
-          widths={[160, 200, 256, 320, 363, 400, 512, 726, 840]}
+          sizes="(min-width: 1024px) 363px, (min-width: 640px) 256px, 230px"
+          widths={[160, 230, 256, 320, 363, 460, 512, 726, 917]}
           quality={74}
           eager
         />
@@ -36,8 +36,8 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
         <Foto
           src={photo(hero.detail)}
           alt={hero.detailAlt}
-          widths={[80, 120, 164, 240, 328]}
-          sizes="(min-width: 1024px) 164px, (min-width: 640px) 108px, 80px"
+          widths={[100, 120, 164, 200, 240, 328]}
+          sizes="(min-width: 1024px) 164px, (min-width: 640px) 108px, 100px"
           eager
           class="shadow-soft ring-[5px] ring-crema"
         />
@@ -50,7 +50,9 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
           <><span class:list={['block', i === hero.emphasis && 'italic text-esmeralda']}>{l}</span>{i < lines.length - 1 && ' '}</>
         ))}
       </h1>
-      <p class="mt-6 max-w-[34rem] text-lead text-gris">{hero.subtitle}</p>
+      <p class="mt-6 max-w-[34rem] text-lead text-gris">
+        {hero.subtitle}{hero.subtitleMore && <span class="hidden sm:inline"> {hero.subtitleMore}</span>}
+      </p>
       <div class="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:gap-7">
         <a href={waLink(hero.ctaMessage)} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
           <Icon name="whatsapp" size={20} />
@@ -81,10 +83,11 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
   }
   /*
     Foto vertical completa (no se recorta): en móvil su ancho sale de la altura de pantalla disponible
-    para que el titular y el botón sigan visibles sin desplazarse (el bloque mide ~1,6 veces su ancho).
+    para que el titular y el botón sigan visibles sin desplazarse (el bloque mide ~1,38 veces su ancho con la
+    foto del diván). En móvil el subtítulo muestra solo su primera oración.
   */
   .hero-media {
-    max-width: clamp(9.5rem, calc((100svh - 33.5rem) / 1.6), 17rem);
+    max-width: clamp(9.5rem, calc((100svh - 32rem) / 1.38), 17rem);
   }
   @media (min-width: 640px) {
     .hero-media {

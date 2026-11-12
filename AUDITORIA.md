@@ -377,7 +377,6 @@ Cada foto de `scripts/media-map.json` tiene un campo `origen`. Si aparece en el 
 
 | Estado | Fotos en uso | Motivo |
 |---|---|---|
-| **riesgo-alto** | `sofa-bosque` (hero) | El original de WhatsApp es un carrusel de Instagram «5/13» de la misma sesión que el comedor. Se usa la versión limpia del catálogo (p. 2) |
 | **riesgo-alto** | `comedor-boceto`, `comedor-resultado` (Del boceto a la pieza) | La captura original muestra la marca «MUEBLES DE PUEBLITO» y el contador «2/13». El cliente pidió explícitamente este par |
 | **riesgo-alto** | `sala-modulos`, `chaise-sala` (Trabajos) | Aspecto de render o de foto de catálogo |
 | **riesgo-alto** | `sillon-curvo` (sector Galerías), `poltrona` (Trabajos) | Aspecto de render o de foto de catálogo (son las antiguas `butaca-curva` y `silla-madera`) |
@@ -399,9 +398,10 @@ Cada foto de `scripts/media-map.json` tiene un campo `origen`. Si aparece en el 
 | Duplicados | se usa una sola versión: `butaca-curva` = `sillon-curvo`, `silla-madera` = `poltrona`, bouclé en el banco de tapizado (×3), cama de cabecero redondeado |
 
 **Prioridad de reemplazo:**
-1. El hero (`sofa-bosque`).
-2. El par del comedor, si se consigue un boceto → terminado propio.
-3. Las demás de riesgo alto.
+1. El par del comedor, si se consigue un boceto → terminado propio.
+2. Las demás de riesgo alto.
+
+El 11-11 salió de la página `sofa-bosque` (hero, riesgo alto). El nuevo hero, `divan-pana-naranja`, es una captura de carrusel enviada por el cliente: queda `por-confirmar`. Las fotos «ar» que el cliente adjuntó el 11-11 tampoco se publican, y no se les borra la marca.
 
 Cuando una foto se confirme como propia, se cambia su `origen` a `propia` en el mapa.
 
@@ -584,3 +584,71 @@ Se borraron `/lab/hero`, que dependía de fotos de riesgo alto, y los PNG del lo
 - confirmar los derechos de las fotos de riesgo alto (§8), empezando por el hero y el comedor;
 - un par real de retapizado antes/después;
 - tipos de cuero, contacto, garantía y cobertura (sin cambios).
+
+---
+
+## 12. Iteración del 11-11: imágenes premium y dirección de arte
+
+**Pedido:**
+- en el sitio publicado, el cliente marcó 4 fotos poco limpias: el primer trabajo de la galería, el hero, el taller de «Hecho a mano» y el sector «Casas de arquitecto»;
+- las cambiamos por imágenes más elaboradas y premium que adjuntó;
+- usamos las fotos premium que todavía no estaban en la página;
+- limpiamos las que traen texto;
+- subimos el nivel visual en móvil y en escritorio, con la skill de diseño (impeccable).
+
+**Decisiones:**
+- **Fotos de bodega:** se quedan, pero las mejores ganan protagonismo.
+- **Fotos «ar»:** quedan fuera. Son renders de otra marca; quitarles el logo no elimina el copyright y aumenta el riesgo, así que no se borran marcas de terceros.
+- **Dirección de arte:** taller en blanco y negro, piezas a color.
+
+**Diagnóstico (revisión de diseño):**
+- las 4 fotos marcadas comparten el fondo de bodega, y eso abarata los lugares más vistos;
+- la galería no tenía jerarquía;
+- el taller mezclaba calidades y colores;
+- había demasiado texto bajo cada foto;
+- faltaba una pausa de marca.
+
+**Fotos nuevas** (`brand/2026-11-11/`; los recortes solo quitan interfaz):
+
+| Foto | Detalle |
+|---|---|
+| `divan-pana-naranja` | Adjunto del chat. Se quitó el contador «2/3» |
+| `cabecero-lampara` | Catálogo p. 6 |
+| `tejido-terracota` | Adjunto, mayor que la versión del catálogo p. 11 |
+| `cuero-rejilla` | Del zip |
+| `costura-maquina-bn` | — |
+| `hilo-bn` | — |
+| `tapizado-claro` | Catálogo p. 11 |
+
+**Cambios:**
+
+| Lugar | Antes → después |
+|---|---|
+| Hero | `sofa-bosque` → `divan-pana-naranja` (pana terra de la paleta). En móvil el subtítulo muestra solo la primera oración y la foto gana un 28 % de alto, con el botón todavía sobre el pliegue |
+| «Hecho a mano» | `taller-panorama` → `costura-maquina-bn` |
+| «Manos que saben» | En blanco y negro con un filtro CSS (el archivo no cambia); con mouse recupera el color en 400 ms. Se suma «Hilo» |
+| Casas de arquitecto | `sofa-verde-modular` → `sofa-ocre` |
+| Trabajos | 3 **destacadas** grandes arriba (`sofa-chocolate`, `cabecero-lampara`, `cama-modular`). En la grilla, campo `tier`: las 9 visibles son premium y las 8 de bodega van al final, también al filtrar. Bajo cada foto queda solo el título; la nota pasa al visor |
+| Manifiesto (nuevo) | Pausa de marca entre Trabajos y Cuero, con el texto real del catálogo (p. 17) y `tapizado-claro` |
+| Telas | «Bouclé terracota» (foto de bodega) → «Tejido terracota» (catálogo p. 11) |
+| Cuero | Se suma «Cuero y rejilla»; quedan 11 piezas |
+| Galerías masonry | `content-visibility: auto` con la altura real reservada: menos trabajo de layout al cargar |
+
+Salieron de la página `sofa-bosque` (riesgo alto), `taller-panorama`, `cabecero-oscuro` (misma escena que `cabecero-lampara`, en peor versión), `maquina-coser` y `sofa-terracota-taller`.
+
+**Verificación:**
+- **Build:** sin errores.
+- **Escaneo** en 360, 390, 768, 1024, 1440 y 1920:
+  - 0 fotos recortadas y 0 blandas a 2x;
+  - 0 fallos de contraste, 0 textos de menos de 13 px y 0 objetivos táctiles de menos de 24 px.
+- **QA funcional:**
+  - 3 destacadas;
+  - las 9 visibles son premium y las de bodega están al final;
+  - manifiesto presente;
+  - 2 pares de bocetos;
+  - visor por grupo («x / 27» en trabajos y «1 / 11» en cuero);
+  - 0 fotos repetidas y 0 errores de consola.
+- **CTA del hero:** sobre el pliegue de 360 × 780 a 1920 × 1080.
+- **TODO:** 0 en producción y 29 con el flag.
+- **Lighthouse móvil:** **93–94 / 100 / 100 / 100** (CLS 0).
+- **Traza del navegador:** con la CPU limitada, la versión nueva hace menos trabajo de layout que la anterior.
