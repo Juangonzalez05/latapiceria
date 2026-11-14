@@ -27,10 +27,10 @@
     { "image": "cama-modular", "category": "camas", "title": "Cama modular", "note": "Cabecero de paneles tapizados", "alt": "Cama con base tapizada en tela clara y cabecero de paneles redondeados, frente a una pared de madera" }
   ],
   "items": [
+    { "image": "divan-pana-naranja", "category": "sofas", "title": "Diván en pana terracota", "note": "Pana terracota y cojín cilíndrico a cuadros", "alt": "Diván tapizado en pana terracota con un cojín cilíndrico de tela a cuadros sujeto con una correa", "tier": "premium" },
     { "image": "poltrona", "category": "sillones", "title": "Poltrona", "note": "Bouclé y madera", "alt": "Poltrona con estructura de madera maciza, asiento y respaldo tapizados en bouclé claro", "tier": "premium" },
     { "image": "sofa-daybed", "category": "sofas", "title": "Diván con cojín cilíndrico", "note": "Tela clara y base de madera", "alt": "Diván tapizado en tela clara con cojín cilíndrico y base de madera, junto a un ventanal", "tier": "premium" },
     { "image": "cama-taupe", "category": "camas", "title": "Cama tapizada taupe", "note": "Base y cabecero en tela", "alt": "Cama con base y cabecero de dos paneles tapizados en tela taupe, en una habitación con cortinas claras", "tier": "premium" },
-    { "image": "sofa-listones", "category": "sofas", "title": "Sofá tres puestos gris", "note": "Tela gris y patas de madera", "alt": "Sofá de tres puestos en tela gris con patas de madera, frente a una pared de listones", "tier": "premium" },
     { "image": "butaca-noche", "category": "sillones", "title": "Butaca de lectura", "note": "Madera y bouclé", "alt": "Butaca de madera y bouclé claro junto a un ventanal, de noche", "tier": "premium" },
     { "image": "dormitorio-verde", "category": "camas", "title": "Cabecero con ribete", "note": "Tela clara y ribete oscuro", "alt": "Habitación con cabecero tapizado claro con ribete oscuro y pared verde salvia", "tier": "premium" },
     { "image": "silla-verde", "category": "sillones", "title": "Butaca baja verde", "note": "Tela texturizada y madera", "alt": "Butaca baja con estructura de madera clara y cojines tapizados en tela verde texturizada", "tier": "premium" },

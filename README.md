@@ -9,7 +9,7 @@ La dirección visual y el registro del rediseño están en [AUDITORIA.md](AUDITO
 ```bash
 npm install
 npm run media     # copia y limpia fotos de ./brand -> src/assets (solo si cambias fotos)
-npm run og        # regenera public/og-image.jpg con el logo y la foto del hero (después de media)
+npm run og        # regenera public/og-image.jpg con el logo y la foto `og` del mapa, vertical (después de media)
 npm run dev       # http://localhost:4321 (con etiquetas TODO visibles)
 npm run build     # genera ./dist (sitio estático, sin TODO)
 npm run preview   # sirve ./dist
@@ -20,7 +20,7 @@ npm run preview   # sirve ./dist
 | Qué | Archivo |
 |---|---|
 | Datos del negocio (eslogan, WhatsApp, correo, Instagram, dirección, horario, cobertura, anuncio) | `src/data/site.json` |
-| Hero (titular, subtítulo, CTA, fotos, línea de confianza) | `src/data/hero.json` |
+| Hero (foto del banner, titular, subtítulo, CTA, línea de confianza) | `src/data/hero.json` |
 | Sectores (hoteles, restaurantes, galerías, casas de arquitecto) | `src/data/sectors.json` |
 | Principios «hecho a mano» | `src/data/values.json` |
 | Taller: foto y tira «Manos que saben» (oficio en tela y madera) | `src/data/taller.json` |
@@ -59,12 +59,15 @@ npm run preview   # sirve ./dist
 
 No uses `object-cover` ni marcos de proporción fija para fotos. `npm run audit:scan` lo verifica: `imagesCropped` debe quedar vacío.
 
+**Única excepción: el banner del hero** (`data-crop-ok` en `Hero.astro`). En el celular la foto va completa, de borde a borde. Desde 640 px el banner tiene proporción fija y la foto se ajusta con `object-position: 50% 80%`: solo pierde pared arriba y piso abajo, y el mueble queda completo. El escaneo no lo cuenta; se revisa en las capturas (`npm run shoot -- <dir> <url> 360,390,768,1024,1440,1920 --hero-only`). Si cambias la foto del hero (`hero.json → image`), vuelve a revisar esas capturas. La foto debe ser apaisada y tener el mueble centrado.
+
 - `npm run media` lee `scripts/media-map.json` y hace tres cosas:
   - recorta **solo** la interfaz (contadores «2/13», íconos y barras de Instagram);
   - genera los recortes de textura de las muestras de tela (`muestras` en el mapa);
   - crea el favicon con la silla del logo y el cursor de la silla (`public/cursor/`).
 - Las fotos nuevas que se usan están en `brand/2026-10-28/`. La entrega en bruto (`brand/Nuevo contenido 28-10/`: zip, catálogo PDF y descartes) no se sube al repositorio.
 - Las fotos de WhatsApp miden como máximo unos 1170 px. Ninguna se muestra a más de unos 550 px CSS, para que se vean nítidas en pantallas 2x.
+  - Excepción: el banner del hero. En el celular es nítido (390 px × 3 = 1170). En escritorio ocupa el ancho del contenido (máx. 1224 px CSS, a 1:1 en pantallas 1x), y `audit:scan` lo marca como blando a 2x desde 768 px. Para que también sea nítido en pantallas retina hace falta un original de unos 2500 px de ancho.
 - `npm run contact-sheet -- <salida> [carpeta]` genera hojas de contacto numeradas (por defecto, de `./brand`).
 - `npm run extract-pdf -- <archivo.pdf> <salida>` extrae las imágenes de un PDF, como el catálogo del cliente.
 

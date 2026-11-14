@@ -102,10 +102,11 @@ for (const w of widths) {
     const imgs = [...document.images].map((i) => ({ src: i.currentSrc.split('/').pop().slice(0, 40), alt: i.alt, hasDims: i.hasAttribute('width') && i.hasAttribute('height'), loading: i.loading, natural: fileWidth(i), shown: Math.round(i.getBoundingClientRect().width) }));
     // Fotos recortadas: parte visible de cada foto = object-fit (cover/none) × ancestros con overflow oculto.
     // Un carrusel (overflow auto/scroll) no recorta: se desplaza, así que ahí se deja de subir.
-    // Las muestras de tela (data-muestra) son recortes de textura a propósito.
+    // Excepciones a propósito: las muestras de tela (data-muestra, recortes de textura) y el banner del hero
+    // (data-crop-ok: desde 640px solo pierde pared y piso; el mueble queda completo, se revisa en capturas).
     const cropped = [];
     for (const img of document.images) {
-      if (img.hasAttribute('data-muestra') || !img.naturalWidth) continue;
+      if (img.hasAttribute('data-muestra') || img.hasAttribute('data-crop-ok') || !img.naturalWidth) continue;
       const r = img.getBoundingClientRect();
       if (r.width < 2 || r.height < 2 || getComputedStyle(img).display === 'none') continue;
       const nat = img.naturalWidth / img.naturalHeight;

@@ -1,5 +1,5 @@
 // Imagen Open Graph 1200x630 (al compartir el enlace): logo «Comodidad hecha diseño» con las fuentes
-// reales + la foto del hero COMPLETA delante del arco. Se dibuja en Edge (playwright-core) y se guarda en
+// reales + la foto `og` de media-map.json (vertical) COMPLETA delante del arco. Se dibuja en Edge (playwright-core) y se guarda en
 // public/og-image.jpg. Uso: npm run og (después de npm run media).
 import { chromium } from 'playwright-core';
 import { readFile } from 'node:fs/promises';

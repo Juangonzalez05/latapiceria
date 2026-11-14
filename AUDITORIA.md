@@ -403,6 +403,8 @@ Cada foto de `scripts/media-map.json` tiene un campo `origen`. Si aparece en el 
 
 El 11-11 salió de la página `sofa-bosque` (hero, riesgo alto). El nuevo hero, `divan-pana-naranja`, es una captura de carrusel enviada por el cliente: queda `por-confirmar`. Las fotos «ar» que el cliente adjuntó el 11-11 tampoco se publican, y no se les borra la marca.
 
+El 13-11 el banner del hero pasó a `sofa-listones` (WhatsApp del 25-10, `por-confirmar`). Es la foto más visible de la página: conviene confirmar sus derechos antes de publicar, o reemplazarla por una foto propia en alta resolución (§13).
+
 Cuando una foto se confirme como propia, se cambia su `origen` a `propia` en el mapa.
 
 ---
@@ -652,3 +654,68 @@ Salieron de la página `sofa-bosque` (riesgo alto), `taller-panorama`, `cabecero
 - **TODO:** 0 en producción y 29 con el flag.
 - **Lighthouse móvil:** **93–94 / 100 / 100 / 100** (CLS 0).
 - **Traza del navegador:** con la CPU limitada, la versión nueva hace menos trabajo de layout que la anterior.
+
+---
+
+## 13. Iteración del 13-11: banner del hero con una sola foto
+
+**Pedido:**
+- en lugar de las dos fotos chicas del hero (el diván en el arco y el detalle de capitoné), una sola foto, la mejor del sistema, que cubra toda la parte superior del banner;
+- calidad profesional en computador y en celular, sin perder resolución;
+- el sello «Hecho a mano» se queda, integrado con la esencia y los colores de la página.
+
+**Decisiones (confirmadas con el cliente):**
+- **Foto:** `sofa-listones`, el sofá gris frente a la pared de listones. Es la foto premium más ancha (1170 × 776), con el sofá centrado y completo, y plantas, madera y un tapete terracota y ocre que caen en la paleta.
+- **Formato: banner enmarcado.** Las fotos son exportes de WhatsApp de unos 1170 px: en escritorio el banner ocupa el ancho del contenido (máx. 1224 px CSS) y no el de la pantalla, para no ampliarla.
+
+**Composición:**
+
+| Tamaño | Banner | Texto |
+|---|---|---|
+| Celular (< 640 px) | De borde a borde, en su proporción natural (sin recorte). Nítido: 390 px × 3 = 1170 px | Titular en 4 renglones, primera oración del subtítulo, CTA y línea de confianza |
+| Tablet (640–1023 px) | Enmarcado con `rounded-card`, proporción 1,9 | Igual que en el celular, con el subtítulo completo |
+| Escritorio (≥ 1024 px) | Proporción 2,6, con un alto máximo de `100svh − 28rem` para que el CTA quede sobre el pliegue | Debajo, en 2 columnas: el titular (6/12, en xl 7/12) y el subtítulo con los CTA (6/12, en xl 5/12) |
+
+- **Sello:** montado sobre el borde inferior derecho del banner, mitad sobre la foto y mitad sobre el crema, con su sombra. Mide de 5,25 rem en el celular a 8 rem en xl. Tapa solo piso, nunca el mueble.
+- **Sin texto sobre la foto:** no hace falta oscurecerla y el contraste no depende de la imagen.
+- **Movimiento:** la foto se asienta (escala 1,025 → 1, nunca invisible porque es el LCP), el texto sube 10 px y el sello aparece 350 ms después. Con movimiento reducido, solo fundido.
+
+**Fotos reubicadas** (cada foto sigue apareciendo una sola vez):
+- `sofa-listones` sale de la galería de Trabajos y pasa al hero;
+- `divan-pana-naranja` (hero anterior) entra a la galería como primera pieza premium de Sofás;
+- `cuero-boton` (detalle anterior) vuelve a «Del corte al capitoné» como «Botón y pliegues» (catálogo p. 10). La tira queda en 6 detalles, en 6 columnas en escritorio.
+- `ArchFrame` ya no se usa en el hero; lo sigue usando el cierre.
+
+**Única excepción a «fotos sin recorte»:**
+- Desde 640 px el banner tiene proporción fija y la foto se ajusta con `object-position: 50% 80%`.
+- Solo pierde pared arriba y piso abajo. El sofá, con las patas, y las dos mesas auxiliares quedan completos en 768, 1024, 1440 y 1920 (revisado en las capturas).
+- La imagen lleva `data-crop-ok` y `audit:scan` la excluye de `imagesCropped`. Ninguna otra foto lo usa.
+
+**Límite de resolución (conocido):**
+- En escritorio el banner se muestra a 704–1224 px CSS con un archivo de 1170 px: se ve nítido en pantallas 1x y algo blando en pantallas retina (2x).
+- `audit:scan` lo marca en `imagesUpscaled` desde 768 px. Es la única foto marcada.
+- Para resolverlo hace falta un original de unos 2500 px de ancho de la misma escena, o una foto propia del taller en alta resolución. Con ese original, el componente no cambia: basta con sumar anchos en `widths`.
+
+**Verificación:**
+- **Build:** sin errores.
+- **Escaneo** en 360, 390, 768, 1024, 1440 y 1920:
+  - 0 fotos recortadas (con el banner exento);
+  - en el celular, 0 blandas a 2x; desde 768 px, solo el banner (límite conocido);
+  - 0 fallos de contraste y 0 textos de menos de 13 px.
+- **QA funcional:**
+  - 6 detalles de cuero y 11 piezas;
+  - 2 pares de bocetos;
+  - visor por grupo («x / 27» en trabajos y «1 / 11» en cuero);
+  - 0 fotos repetidas y 0 errores de consola.
+- **CTA del hero:** sobre el pliegue en todos los tamaños:
+
+  | Tamaño | Borde inferior del CTA |
+  |---|---|
+  | 360 × 780 | 719 |
+  | 390 × 844 | 744 |
+  | 1024 × 768 | 742 |
+  | 1440 × 900 | 856 |
+  | 1920 × 1080 | 875 |
+
+- **Lighthouse móvil:** **93 / 100 / 100 / 100**: LCP 2,9 s (la foto del banner), TBT 10 ms y CLS 0.
+- **Capturas:** `.audit/v6/home-hero-{360,390,768,1024,1440,1920}.png`.

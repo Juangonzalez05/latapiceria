@@ -1,5 +1,5 @@
 {
-  "_doc": "Hero. titleLines: cada elemento es un renglón; emphasis = índice del renglón en itálica esmeralda. subtitleMore solo se ve desde 640px (en móvil la foto gana alto sin bajar el botón). Foto principal en tela y detalle en cuero: los dos materiales desde el primer pantallazo. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
+  "_doc": "Hero: banner con una sola foto grande y el texto debajo. titleLines: cada elemento es un renglón en móvil (en escritorio corren juntos); emphasis = índice del renglón en itálica esmeralda. subtitleMore solo se ve desde 640px. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
   "titleLines": ["Mobiliario", "hecho a mano", "para espacios", "con carácter"],
   "emphasis": 1,
   "subtitle": "Diseñamos, tapizamos y fabricamos a mano piezas a la medida, en tela y en cuero, para hoteles, restaurantes, galerías y casas de arquitecto.",
@@ -7,10 +7,8 @@
   "ctaMessage": "Hola, quiero cotizar un proyecto con La Tapicería.",
   "ctaSecondary": "Ver trabajos",
   "ctaSecondaryHref": "#trabajos",
-  "image": "divan-pana-naranja",
-  "imageAlt": "Diván tapizado en pana terracota con un cojín cilíndrico de tela a cuadros sujeto con una correa",
-  "detail": "cuero-boton",
-  "detailAlt": "Mano con guante ajustando el botón de un capitoné en cuero verde",
+  "image": "sofa-listones",
+  "imageAlt": "Sofá de tres puestos tapizado en tela gris con patas de madera, frente a una pared de listones de madera, con plantas, mesas auxiliares y un tapete en tonos terracota y ocre",
   "trust": ["Hecho a mano en nuestro taller", "Tapicería en tela y en cuero", "Piezas a la medida"],
   "subtitleMore": "Pocas piezas, hechas con tiempo y cuidado."
 }
