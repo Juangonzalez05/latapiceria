@@ -20,29 +20,31 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImage = new URL('/og-image.jpg', Astro.site ?? site.url).href;
-const orTodo = (v: string) => (v && v.trim() ? v : 'TODO');
+// Solo los datos que existen en site.json: un campo vacío se omite (nunca un valor de relleno).
+const filled = (v: string) => (v && v.trim() ? v : undefined);
 
-// Datos estructurados LocalBusiness. Los campos con "TODO" deben completarse con datos reales.
+// Datos estructurados LocalBusiness.
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: site.name,
   slogan: site.tagline,
   description: site.description,
-  url: site.url,
+  url: new URL('/', Astro.site ?? site.url).href,
   image: ogImage,
-  telephone: site.whatsappDisplay || 'TODO',
-  email: orTodo(site.email),
+  telephone: filled(site.whatsappDisplay),
+  email: filled(site.email),
   address: {
     '@type': 'PostalAddress',
-    streetAddress: orTodo(site.address),
-    addressLocality: orTodo(site.city),
-    addressRegion: orTodo(site.region),
+    streetAddress: filled(site.address),
+    addressLocality: filled(site.city),
+    addressRegion: filled(site.region),
     addressCountry: 'CO',
   },
-  areaServed: orTodo(site.coverage),
-  openingHours: site.hours.length ? site.hours : 'TODO',
-  sameAs: site.instagramUrl ? [site.instagramUrl] : [],
+  hasMap: filled(site.mapsUrl),
+  areaServed: filled(site.coverage),
+  openingHours: site.hours.length ? site.hours : undefined,
+  sameAs: site.instagramUrl ? [site.instagramUrl] : undefined,
   makesOffer: site.services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s } })),
 };
 

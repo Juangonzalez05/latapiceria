@@ -1,24 +1,23 @@
 ---
 // Cierre: campo terra (acento cálido, texto crema AA 5,1:1) con la foto completa delante de un arco,
 // firmado con el eslogan de la marca.
-// Solo se muestran los datos de contacto reales; los faltantes son TODO en desarrollo.
+// Solo se muestran los datos de contacto que existen en site.json; los vacíos no dejan hueco.
 import ArchFrame from './ui/ArchFrame.astro';
 import Pespunte from './ui/Pespunte.astro';
 import Icon from './Icon.astro';
-import Todo from './Todo.astro';
 import site from '../data/site.json';
 import { photo } from '../lib/photos';
 import { waLink } from '../lib/whatsapp';
-import { SHOW_TODOS, has } from '../lib/flags';
+import { has } from '../lib/flags';
 
 const contact = [
-  { key: 'whatsapp', icon: 'whatsapp', label: 'WhatsApp', value: site.whatsappDisplay, href: waLink(), todo: 'número de WhatsApp' },
-  { key: 'email', icon: 'mail', label: 'Correo', value: site.email, href: site.email ? `mailto:${site.email}` : '', todo: 'correo' },
-  { key: 'address', icon: 'pin', label: 'Taller', value: [site.address, site.city].filter(Boolean).join(', '), href: site.mapsUrl, todo: 'dirección, ciudad y enlace a Google Maps' },
-  { key: 'hours', icon: 'clock', label: 'Horario', value: site.hours.join(' · '), href: '', todo: 'horario de atención' },
-  { key: 'instagram', icon: 'instagram', label: 'Instagram', value: site.instagram, href: site.instagramUrl, todo: 'usuario de Instagram' },
+  { key: 'whatsapp', icon: 'whatsapp', label: 'WhatsApp', value: site.whatsappDisplay, href: waLink() },
+  { key: 'email', icon: 'mail', label: 'Correo', value: site.email, href: site.email ? `mailto:${site.email}` : '' },
+  { key: 'address', icon: 'pin', label: 'Taller', value: [site.address, site.city].filter(Boolean).join(', '), href: site.mapsUrl },
+  { key: 'hours', icon: 'clock', label: 'Horario', value: site.hours.join(' · '), href: '' },
+  { key: 'instagram', icon: 'instagram', label: 'Instagram', value: site.instagram, href: site.instagramUrl },
 ] as const;
-const rows = contact.filter((c) => has(c.value) || SHOW_TODOS);
+const rows = contact.filter((c) => has(c.value));
 ---
 
 <section id="contacto" class="section-y relative overflow-hidden bg-terra-700 text-crema on-dark" aria-labelledby="contacto-titulo">
@@ -49,14 +48,10 @@ const rows = contact.filter((c) => has(c.value) || SHOW_TODOS);
                   {c.label}
                 </dt>
                 <dd class="mt-2">
-                  {has(c.value) ? (
-                    c.href ? (
-                      <a class="link-line" href={c.href} target={c.key === 'email' ? undefined : '_blank'} rel="noopener">{c.value}</a>
-                    ) : (
-                      <span>{c.value}</span>
-                    )
+                  {c.href ? (
+                    <a class="link-line" href={c.href} target={c.key === 'email' ? undefined : '_blank'} rel="noopener">{c.value}</a>
                   ) : (
-                    <Todo text={c.todo} />
+                    <span>{c.value}</span>
                   )}
                 </dd>
               </div>
@@ -64,7 +59,7 @@ const rows = contact.filter((c) => has(c.value) || SHOW_TODOS);
           </dl>
         </>
       )}
-      {!has(site.coverage) && <Todo text="zona de cobertura" class="mt-6" />}
+      {has(site.coverage) && <p class="mt-6 max-w-[34rem] text-small text-crema/85">Visitas técnicas e instalación en {site.coverage}. Fuera del área metropolitana, lo cotizamos aparte.</p>}
     </div>
 
     <div class="mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:col-span-4 lg:col-start-9 lg:mx-0 lg:max-w-[25rem] lg:justify-self-end" data-reveal>

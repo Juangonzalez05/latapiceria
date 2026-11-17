@@ -6,7 +6,6 @@
 // con los nombres del catálogo del cliente.
 import { getImage } from 'astro:assets';
 import Icon from './Icon.astro';
-import Todo from './Todo.astro';
 import Foto from './ui/Foto.astro';
 import Pespunte from './ui/Pespunte.astro';
 import leather from '../data/leather.json';
@@ -72,9 +71,6 @@ const pieces = await Promise.all(
             {leather.cta}
             <Icon name="arrow" size={16} class="btn-arrow" />
           </a>
-        </div>
-        <div class="mt-5 flex flex-wrap gap-2">
-          {leather.todo.map((t) => <Todo text={t} />)}
         </div>
       </div>
     </div>

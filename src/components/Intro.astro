@@ -4,7 +4,6 @@
 // con fotos completas apoyadas sobre una misma base (mismo patrón que «Del corte al capitoné» en Cuero).
 // Dirección de arte: el taller va en blanco y negro (filtro CSS, el archivo no cambia) y recupera el color al
 // pasar el mouse; las piezas terminadas del resto de la página siempre van a color.
-import Todo from './Todo.astro';
 import Foto from './ui/Foto.astro';
 import Pespunte from './ui/Pespunte.astro';
 import values from '../data/values.json';
@@ -54,7 +53,6 @@ const pad = (n: number) => String(n).padStart(2, '0');
           {site.services.map((s) => (
             <span class="rounded-full border border-crema/30 px-3.5 py-1.5 text-small text-crema/90">{s}</span>
           ))}
-          <Todo text={site.servicesTodo} />
         </div>
       </div>
     </div>

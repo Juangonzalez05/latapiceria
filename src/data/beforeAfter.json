@@ -18,16 +18,5 @@
     "afterLabel": "Tapizado",
     "beforeAlt": "Estructura de madera de un sofá modular con chaise, con cinchas verdes entrelazadas, frente a un panel claro",
     "afterAlt": "Sofá modular con chaise tapizado en bouclé blanco, frente al mismo panel claro"
-  },
-  {
-    "id": "retapizado",
-    "label": "Retapizado",
-    "before": "",
-    "after": "",
-    "beforeLabel": "Antes",
-    "afterLabel": "Después",
-    "beforeAlt": "",
-    "afterAlt": "",
-    "todo": "Agregar un par de fotos reales antes/después de un retapizado (mismo ángulo)"
   }
 ]

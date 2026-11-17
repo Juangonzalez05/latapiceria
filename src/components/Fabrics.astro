@@ -4,7 +4,6 @@
 // completa sobre un paspartú. Los círculos usan recortes solo de tela (<slug>-muestra, npm run media).
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import Todo from './Todo.astro';
 import Pespunte from './ui/Pespunte.astro';
 import fabrics from '../data/fabrics.json';
 import { photo, ajuste } from '../lib/photos';
@@ -70,7 +69,11 @@ const first = fabrics[0];
             </ul>
           </div>
         ))}
-        <Todo text="referencia, composición y disponibilidad de cada tela" class="mt-4" />
+        <p class="mt-5 max-w-[30rem] text-small text-gris">
+          Con cada tela te confirmamos referencia, fabricante, composición, color, ancho del rollo, características
+          técnicas y disponibilidad (disponible, bajo pedido o agotada temporalmente). Antes de fabricar verificamos la
+          cantidad, y los tiempos de suministro se informan al cotizar.
+        </p>
       </div>
 
       <a href={waLink(msg(first.name))} target="_blank" rel="noopener" class="btn btn-primary btn-lg mt-6" data-fabric-cta>

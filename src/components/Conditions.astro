@@ -1,11 +1,10 @@
 ---
-// Condiciones del servicio. En producción solo se muestran las que tienen texto real;
+// Condiciones del servicio (datos de la cliente). Solo se muestran las que tienen texto;
 // si ninguna lo tiene, la sección no se renderiza (sin huecos).
-import Todo from './Todo.astro';
 import conditions from '../data/conditions.json';
-import { SHOW_TODOS, has } from '../lib/flags';
+import { has } from '../lib/flags';
 
-const items = conditions.filter((c) => has(c.text) || SHOW_TODOS);
+const items = conditions.filter((c) => has(c.text));
 ---
 
 {items.length > 0 && (
@@ -19,7 +18,7 @@ const items = conditions.filter((c) => has(c.text) || SHOW_TODOS);
         {items.map((c, i) => (
           <div class="bg-crema p-6 md:p-8" data-reveal style={`--reveal-delay:${i}`}>
             <dt class="text-h3">{c.title}</dt>
-            <dd class="mt-3 text-gris">{has(c.text) ? c.text : <Todo text={c.todo} />}</dd>
+            <dd class="mt-3 text-gris">{c.text}</dd>
           </div>
         ))}
       </dl>

@@ -1,6 +1,18 @@
 [
-  { "title": "Visita y medidas", "text": "", "todo": "Costo de la visita y zonas que cubren" },
-  { "title": "Tiempos de entrega", "text": "", "todo": "Plazo típico por tipo de trabajo" },
-  { "title": "Anticipo y pagos", "text": "", "todo": "Porcentaje de anticipo y medios de pago" },
-  { "title": "Garantía", "text": "", "todo": "Cobertura y duración de la garantía" }
+  {
+    "title": "Visita y medidas",
+    "text": "Visitas técnicas para tomar medidas, evaluar el espacio, asesorarte en materiales y validar las especificaciones, en Medellín y los municipios del área metropolitana. El costo depende de la ubicación, el desplazamiento y el alcance del proyecto, y te lo informamos antes. Fuera del área metropolitana se cotizan aparte. Toda visita se agenda previamente."
+  },
+  {
+    "title": "Tiempos de entrega",
+    "text": "Fabricación de mobiliario: unos 25 días calendario. Retapizados: según la cantidad de piezas, su estado y la complejidad del trabajo. Proyectos especiales y corporativos: con un cronograma propio. Los tiempos corren desde el anticipo, las especificaciones aprobadas y la tela recibida (cuando la pones tú), y se confirman en cada cotización."
+  },
+  {
+    "title": "Anticipo y pagos",
+    "text": "50 % de anticipo para confirmar el pedido e iniciar la fabricación, y 50 % antes de la entrega. Puedes pagar por transferencia bancaria y los demás medios autorizados. Para proyectos corporativos, institucionales o de gran volumen, las condiciones se acuerdan previamente."
+  },
+  {
+    "title": "Garantía",
+    "text": "5 años en la estructura de madera y 2 años en costuras. Cubre defectos de fabricación, fallas estructurales y problemas de costura atribuibles a nuestros procesos de producción."
+  }
 ]

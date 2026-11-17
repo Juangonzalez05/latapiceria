@@ -1,7 +1,7 @@
 {
-  "_doc": "Sección Cuero: la ÚNICA sección con el cuero como protagonista (especialidad del taller). Pasos = descripción del oficio, sin cifras. details = «Del corte al capitoné» y pieces = «Piezas en cuero», con los nombres del catálogo del cliente (p. 8–10). 'todo' = lo que el cliente debe aportar.",
+  "_doc": "Sección Cuero: la ÚNICA sección con el cuero como protagonista (especialidad del taller). Pasos = descripción del oficio, sin cifras. details = «Del corte al capitoné» y pieces = «Piezas en cuero», con los nombres del catálogo del cliente (p. 8–10).",
   "title": "El cuero, nuestra especialidad",
-  "lead": "Un material noble, trabajado a mano: se hace más bello con el tiempo. Lo seleccionamos, lo cortamos y lo cosemos en el taller para que cada pieza gane carácter con el uso.",
+  "lead": "Un material noble, trabajado a mano: se hace más bello con el tiempo. Lo seleccionamos, lo cortamos y lo cosemos en el taller para que cada pieza gane carácter con el uso. Te mostramos muestras para elegir textura, color y acabado, con su referencia y recomendaciones de cuidado.",
   "photoMain": "cuero-tachuelas",
   "photoMainAlt": "Manos de tapicero clavando a mano las tachuelas decorativas en el brazo de un sofá chesterfield de cuero",
   "photoDetail": "cuero-corte",
@@ -61,9 +61,6 @@
   ],
   "cta": "Pedir muestras de cuero",
   "message": "Hola, quiero ver muestras de cuero para un proyecto.",
-  "todo": [
-    "Tipos de cuero, procedencia y cuidados recomendados"
-  ],
   "piecesTitle": "Piezas en",
   "piecesEmphasis": "cuero",
   "piecesLead": "Sofás, sillas y poltronas en cuero, del catálogo del taller. Cada una se hace a la medida del espacio.",

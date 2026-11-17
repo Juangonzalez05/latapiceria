@@ -36,16 +36,16 @@ npm run preview   # sirve ./dist
 | Fotos (origen, recortes y estado de derechos) | `scripts/media-map.json` → `npm run media` |
 | Colores, escala tipográfica, espaciado y formas | `src/styles/global.css` (`@theme`) |
 
-### Datos que faltan (TODO)
+### Datos del negocio
 
-- Las etiquetas **TODO** solo se ven en desarrollo (`npm run dev`). Para verlas en un build de revisión: `PUBLIC_SHOW_TODOS=true npm run build`.
-- En producción, lo que no tiene datos reales se oculta sin dejar huecos:
-  - barra de anuncio;
-  - condiciones;
-  - testimonios;
-  - datos de contacto vacíos;
-  - pares antes/después incompletos.
-- Para encontrar todos los pendientes, busca `<Todo` y `"todo"` en `src/`.
+- Los datos de la cliente ya están en la página y no queda ningún TODO. Se reparten así:
+  - `site.json`: dirección en Laureles, Medellín, cobertura en el área metropolitana y barra de anuncio;
+  - `conditions.json`, `steps.json` y `faq.json`: visitas técnicas, tiempos, anticipo y pagos, y garantía;
+  - `Fabrics.astro`: la ficha de información de las telas.
+- Lo que sigue vacío no se muestra, no deja hueco y se omite en los datos estructurados: **WhatsApp, correo, Instagram y horario** (`site.json`).
+- Los testimonios esperan en `testimonials.json` con `show: false` hasta que haya reales. No se inventan.
+- El componente `<Todo>` sigue disponible para marcar pendientes nuevos. Solo se ve en desarrollo o con `PUBLIC_SHOW_TODOS=true npm run build`.
+- La URL absoluta (canonical y Open Graph) la entrega Vercel al compilar: `VERCEL_PROJECT_PRODUCTION_URL` en `astro.config.mjs`.
 
 **WhatsApp:** pon el número en `site.json → whatsapp` solo con dígitos y el indicativo del país (ej. `573001234567`), y en `whatsappDisplay` la versión legible. Mientras esté vacío, los enlaces usan `wa.me/?text=`, que abre WhatsApp para que el usuario elija el chat. **Es lo primero que falta antes de publicar.**
 

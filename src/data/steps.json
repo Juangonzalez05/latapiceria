@@ -1,15 +1,13 @@
 [
   {
     "title": "Análisis",
-    "text": "Revisamos contigo los planos, el espacio y el listado de muebles. Puedes enviarnos fotos y referencias por WhatsApp.",
-    "todo": "Confirmar si hay visita a la obra para tomar medidas, su costo y en qué zonas",
+    "text": "Revisamos contigo los planos, el espacio y el listado de muebles; puedes enviarnos fotos y referencias por WhatsApp. En Medellín y el área metropolitana hacemos una visita técnica para tomar medidas, con un costo que te informamos antes.",
     "image": "cinta-metrica",
     "alt": "Cinta métrica de costura sobre la mesa de corte del taller"
   },
   {
     "title": "Cotización",
-    "text": "Te enviamos costos y cronograma, con muestras de cuero y tela antes de producir para que decidas con ellas en la mano.",
-    "todo": "Confirmar condiciones de anticipo",
+    "text": "Te enviamos costos y cronograma, con muestras de cuero y tela antes de producir para que decidas con ellas en la mano. Con el 50 % de anticipo iniciamos la fabricación.",
     "image": "chenille-gris",
     "alt": "Brazos de un sofá tapizado en chenilla gris, vistos desde arriba sobre piso de madera"
   },
@@ -27,15 +25,13 @@
   },
   {
     "title": "Envío e instalación",
-    "text": "Coordinamos la logística y la instalación en sitio, para que cada pieza quede donde va.",
-    "todo": "Confirmar zonas de cobertura del envío",
+    "text": "Coordinamos la logística y la instalación en sitio en Medellín y el área metropolitana, para que cada pieza quede donde va. Fuera del área, lo cotizamos aparte.",
     "image": "taller-ensamble",
     "alt": "Manos atornillando a mano la estructura de madera de un mueble"
   },
   {
     "title": "Entrega final",
-    "text": "Hacemos una inspección conjunta de cada pieza y te entregamos la garantía.",
-    "todo": "Condiciones de la garantía",
+    "text": "Hacemos una inspección conjunta de cada pieza y te entregamos la garantía: 5 años en la estructura de madera y 2 años en costuras.",
     "image": "sofa-hogar",
     "alt": "Sofá claro con cojines en una sala iluminada por el sol"
   }

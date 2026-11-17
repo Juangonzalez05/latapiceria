@@ -4,7 +4,6 @@
 // títulos queden alineados (≤ 300px CSS, nítida en 2x). Móvil: carrusel deslizable.
 import Icon from './Icon.astro';
 import Foto from './ui/Foto.astro';
-import Todo from './Todo.astro';
 import SectionHeader from './ui/SectionHeader.astro';
 import data from '../data/sectors.json';
 import { photo } from '../lib/photos';
@@ -29,7 +28,6 @@ import { waLink } from '../lib/whatsapp';
             />
             <h3 id={`sector-${s.id}`} class="mt-5 text-h3">{s.name}</h3>
             <p class="mt-2 text-gris">{s.text}</p>
-            {s.todo && <Todo text={s.todo} class="mt-3" />}
             <a href={waLink(s.message)} target="_blank" rel="noopener" class="link-arrow mt-auto pt-4 text-esmeralda">
               <Icon name="whatsapp" size={18} />
               <span class="link-line">{s.cta}</span>

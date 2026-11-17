@@ -1,33 +1,27 @@
 [
   {
     "q": "¿Trabajan con arquitectos e interioristas?",
-    "a": "Sí. Trabajamos junto al estudio: recibimos referencias, tomamos medidas y proponemos materiales para cada pieza.",
-    "todo": "Confirmar si fabrican a partir de planos o fichas técnicas del estudio"
+    "a": "Sí. Trabajamos junto al estudio: recibimos planos, fichas técnicas y referencias, tomamos medidas y proponemos materiales para cada pieza."
   },
   {
     "q": "¿Pueden hacer varias piezas iguales para un hotel o restaurante?",
-    "a": "Sí. Producimos por lotes, a mano, y te mostramos muestras antes de producir. Te confirmamos tiempos según la cantidad de piezas.",
-    "todo": "Capacidad de producción por proyecto"
+    "a": "Sí. Producimos por lotes, a mano, y te mostramos muestras antes de producir. Para proyectos corporativos armamos un cronograma de producción y entrega según las cantidades."
   },
   {
     "q": "¿Qué cueros manejan?",
-    "a": "El cuero es nuestra especialidad. Te mostramos muestras para elegir textura y color según el uso de cada pieza.",
-    "todo": "Tipos de cuero, procedencia y cuidados"
+    "a": "El cuero es nuestra especialidad. Te mostramos muestras para elegir textura, color y acabado según el uso de cada pieza, con su referencia y recomendaciones de cuidado."
   },
   {
     "q": "¿Van al espacio a tomar medidas?",
-    "a": "Sí, la visita y la toma de medidas hacen parte de nuestro proceso.",
-    "todo": "Zonas de cobertura y costo de la visita"
+    "a": "Sí. Hacemos visitas técnicas en Medellín y los municipios del área metropolitana para tomar medidas, evaluar el espacio y asesorarte en materiales. El costo depende de la ubicación y del alcance, y te lo informamos antes. Fuera del área metropolitana la visita se cotiza aparte."
   },
   {
     "q": "¿Cuánto tarda un proyecto?",
-    "a": "Depende del número de piezas, del material y del acabado. Te damos una fecha estimada en la propuesta.",
-    "todo": "Rangos de tiempo reales por tipo de proyecto"
+    "a": "La fabricación de mobiliario toma unos 25 días calendario. Los retapizados dependen de la cantidad de piezas y su estado, y los proyectos corporativos llevan su propio cronograma. El tiempo corre desde el anticipo y las especificaciones aprobadas, y lo confirmamos en la cotización."
   },
   {
-    "q": "¿Facturan a empresas? ¿Cómo son los pagos?",
-    "a": "Te explicamos las condiciones en la propuesta, antes de empezar.",
-    "todo": "Facturación a empresas, anticipo, medios de pago y garantía"
+    "q": "¿Cómo son los pagos y la garantía?",
+    "a": "50 % de anticipo para iniciar la fabricación y 50 % antes de la entrega, por transferencia bancaria u otros medios autorizados; para empresas y grandes volúmenes acordamos las condiciones. Damos 5 años de garantía en la estructura de madera y 2 años en costuras."
   },
   {
     "q": "¿Cómo pido una cotización?",

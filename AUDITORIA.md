@@ -360,14 +360,22 @@ Para pasar de 83 a más de 90 en rendimiento móvil, Literata pasó de la varian
 
 ### Pendiente (depende del cliente)
 
-1. **Número de WhatsApp** (P0 para publicar).
-2. Ciudad, cobertura, dirección, horario, correo e Instagram.
-3. Condiciones reales (visita, plazos, anticipo, garantía).
-4. Testimonios reales.
-5. Fotos de restauración y pares antes/después de retapizado.
-6. Confirmar «producción propia», las categorías de los proyectos y los nombres de las telas.
-7. Logo vectorial.
-8. Dominio para `site` y Open Graph.
+El 17-11 la cliente entregó estos datos, que ya están en la página (no queda ningún TODO):
+- dirección: Carrera 79 No. 45 E-72, Laureles, Medellín;
+- cobertura: Medellín y el área metropolitana;
+- visitas técnicas;
+- tiempos: unos 25 días de fabricación;
+- anticipo: 50 % y 50 %;
+- garantía: 5 años en estructura y 2 en costuras;
+- la ficha de información de telas.
+
+Sigue pendiente:
+
+1. **Número de WhatsApp** (P0: todos los botones lo usan; sin él abren WhatsApp para elegir el chat).
+2. Correo, Instagram y horario.
+3. Testimonios reales.
+4. Fotos de restauración y pares antes/después de retapizado.
+5. Dominio propio, si lo habrá (mientras tanto se usa la URL de Vercel).
 
 ---
 

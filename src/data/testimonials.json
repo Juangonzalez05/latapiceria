@@ -1,24 +1,5 @@
 {
-  "_doc": "show: false oculta la sección completa. Pon show: true cuando haya testimonios reales y borra los provisionales (todo: true). En producción los items con todo: true nunca se muestran.",
+  "_doc": "show: false oculta la sección. Cuando haya testimonios reales, agrégalos en items ({ quote, name, detail }) y pon show: true. No se publican testimonios inventados.",
   "show": false,
-  "items": [
-    {
-      "quote": "Texto provisional. Aquí irá la opinión real de un cliente sobre su sofá retapizado.",
-      "name": "Nombre del cliente",
-      "detail": "Retapizado de sofá",
-      "todo": true
-    },
-    {
-      "quote": "Texto provisional. Aquí irá la experiencia real de un cliente con un mueble hecho a medida.",
-      "name": "Nombre del cliente",
-      "detail": "Mueble a la medida",
-      "todo": true
-    },
-    {
-      "quote": "Texto provisional. Aquí irá el testimonio real de un cliente sobre una restauración.",
-      "name": "Nombre del cliente",
-      "detail": "Restauración",
-      "todo": true
-    }
-  ]
+  "items": []
 }

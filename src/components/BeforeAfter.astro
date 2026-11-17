@@ -2,16 +2,13 @@
 // Del boceto a la pieza: los dos pares, visibles a la vez (lado a lado en escritorio, uno debajo del otro
 // en móvil). Cada slider toma la proporción real de su par (las dos fotos se igualan en npm run media):
 // nada se recorta. Ancho ≤ ~560px CSS (orígenes de 977 y 1143px, nítidos en 2x).
-// En producción solo se muestran pares con ambas fotos; los pendientes quedan como TODO en desarrollo.
+// Solo se muestran pares con ambas fotos.
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
-import Todo from './Todo.astro';
 import allPairs from '../data/beforeAfter.json';
 import { photo } from '../lib/photos';
-import { SHOW_TODOS } from '../lib/flags';
 
 const pairs = allPairs.filter((p) => p.before && p.after);
-const pending = SHOW_TODOS ? allPairs.filter((p) => !(p.before && p.after)) : [];
 const ratio = (slug: string) => `${photo(slug).width} / ${photo(slug).height}`;
 ---
 
@@ -67,7 +64,6 @@ const ratio = (slug: string) => `${photo(slug).width} / ${photo(slug).height}`;
           </figure>
         ))}
       </div>
-      {pending.map((p) => p.todo && <p class="mt-8"><Todo text={p.todo} /></p>)}
     </div>
   </section>
 )}
