@@ -1,12 +1,17 @@
 ---
-// Hero · banner con una sola foto grande (el sofá frente a la pared de listones) y el texto debajo,
-// enfocado a hoteles, restaurantes, galerías y casas de arquitecto.
-// La foto mide 1170px de ancho (exporte de WhatsApp): para no ampliarla, en escritorio ocupa el ancho del
-// contenido (≤ 1224px), no el de la pantalla, y en el celular va de borde a borde en su proporción natural.
-// Única excepción a «fotos sin recorte» (data-crop-ok): desde 640px el banner tiene proporción fija y solo
-// pierde pared arriba y piso abajo; el sofá y las mesas auxiliares quedan completos (object-position 50% 80%).
-// El sello «Hecho a mano» va montado sobre el borde inferior derecho del banner.
-import { Image } from 'astro:assets';
+// Hero · banner de borde a borde con una foto de revista: una ambientación generada a partir de dos piezas
+// del catálogo (sofá en terciopelo chocolate y butaca en cuero coñac; ver media-map.json → hero-escritorio).
+// hero.json → tone dice si la foto es oscura o clara, y con eso cambian el color del texto, el botón y el
+// «suelo» del bloque (el color con el que la foto se funde y sobre el que va la línea de confianza).
+// Dirección de arte con <picture>: desde 768px la foto apaisada (2:1); en el celular, la cuadrada.
+// - Celular (< 768): la foto cuadrada, que se funde con el suelo; el titular se monta sobre el fundido.
+// - Tablet (768–1023): la foto apaisada completa y el texto debajo.
+// - Escritorio (≥ 1024): la foto ocupa la pantalla bajo el header y el texto va sobre su zona tranquila, a la
+//   izquierda y alineado con el logo. La proporción del banner se mantiene cerca de la de la foto (1,95–2,4)
+//   y la foto se ancla a la derecha, para que los muebles nunca se recorten ni queden debajo del texto.
+// Única excepción a «fotos sin recorte» (data-crop-ok): el banner solo pierde pared y piso; los muebles quedan
+// completos (se revisa en capturas). El sello «Hecho a mano» va montado sobre el borde inferior de la foto.
+import { getImage } from 'astro:assets';
 import Pespunte from './ui/Pespunte.astro';
 import SelloHechoAMano from './ui/SelloHechoAMano.astro';
 import Icon from './Icon.astro';
@@ -18,57 +23,90 @@ import { waLink } from '../lib/whatsapp';
 
 const lines = hero.titleLines;
 const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust;
+const dark = hero.tone === 'oscuro';
+
+// srcset a mano (getImage) para poder cambiar de foto según el ancho de pantalla.
+const variants = async (src: ImageMetadata, widths: number[], quality: number) => {
+  const ws = [...new Set([...widths.filter((w) => w < src.width), src.width])].sort((a, b) => a - b);
+  const imgs = await Promise.all(ws.map((width) => getImage({ src, width, format: 'webp', quality })));
+  return { srcset: imgs.map((img, i) => `${img.src} ${ws[i]}w`).join(', '), imgs };
+};
+const desk = photo(hero.imageDesktop);
+const mob = photo(hero.imageMobile);
+const deskSet = await variants(desk, [1024, 1280, 1600, 1920, 2560, 3200, 3840], 72);
+const mobSet = await variants(mob, [390, 600, 780, 1170, 1560], 74);
+const mobFallback = mobSet.imgs[Math.min(2, mobSet.imgs.length - 1)];
+// Si la foto del celular es apaisada (queda baja), el titular no se monta sobre ella: va debajo.
+const mobAncha = mob.width / mob.height > 1.25;
 ---
 
-<section id="inicio" class="hero relative bg-crema pb-14 lg:pb-20" aria-labelledby="hero-titulo">
-  <div class="container-x sm:pt-4 lg:pt-5">
-    <div class="hero-banner relative -mx-5 sm:mx-0">
-      <div class="hero-photo overflow-hidden bg-champana-200 sm:rounded-card">
-        <Image
-          src={photo(hero.image)}
-          alt={hero.imageAlt}
-          widths={[390, 600, 780, 1000, 1170]}
-          sizes="(min-width: 1320px) 1224px, (min-width: 1024px) calc(100vw - 96px), (min-width: 640px) calc(100vw - 64px), 100vw"
-          quality={76}
-          loading="eager"
-          fetchpriority="high"
-          class="hero-img block h-auto w-full"
-          data-crop-ok
-        />
+<section id="inicio" class:list={['hero relative', dark && 'on-dark', mobAncha && 'hero--movil-ancha']} data-tone={dark ? 'oscuro' : 'claro'} aria-labelledby="hero-titulo">
+  <div class="hero-stage relative">
+    <div class="hero-media relative">
+      <div class="hero-banner relative overflow-hidden">
+        <picture>
+          <source media="(min-width: 768px)" srcset={deskSet.srcset} sizes="100vw" width={desk.width} height={desk.height} />
+          <img
+            src={mobFallback.src}
+            srcset={mobSet.srcset}
+            sizes="100vw"
+            width={mob.width}
+            height={mob.height}
+            alt={hero.imageAlt}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="hero-img"
+            data-crop-ok
+          />
+        </picture>
+        <div class="hero-velo" aria-hidden="true"></div>
       </div>
-      <SelloHechoAMano class="hero-sello absolute bottom-0 right-5 w-[5.25rem] translate-y-1/2 sm:right-8 sm:w-[6.5rem] lg:right-12 lg:w-[6.75rem] xl:w-[8rem]" />
+      <!-- El sello se alinea con el borde derecho del contenido (como el botón del header) -->
+      <div class="container-x pointer-events-none absolute inset-x-0 bottom-0 z-10">
+        <div class="relative">
+          <SelloHechoAMano class="hero-sello absolute bottom-0 right-0 w-[5.25rem] translate-y-1/2 sm:w-[6.5rem] lg:w-[7rem] xl:w-[8rem]" />
+        </div>
+      </div>
     </div>
 
-    <div class="hero-copy mt-9 grid grid-cols-[minmax(0,1fr)] gap-6 sm:mt-12 lg:mt-[3.75rem] lg:grid-cols-12 xl:mt-[4.5rem] lg:items-start lg:gap-12">
-      <h1 id="hero-titulo" class="hero-title text-display text-negro lg:col-span-6 xl:col-span-7">
-        {lines.map((l, i) => (
-          <><span class:list={['block lg:inline', i === hero.emphasis && 'italic text-esmeralda']}>{l}</span>{i < lines.length - 1 && ' '}</>
-        ))}
-      </h1>
-
-      <div class="lg:col-span-6 lg:pt-2 xl:col-span-5">
-        <p class="max-w-[34rem] text-lead text-gris">
-          {hero.subtitle}{hero.subtitleMore && <span class="hidden sm:inline"> {hero.subtitleMore}</span>}
-        </p>
-        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-7">
-          <a href={waLink(hero.ctaMessage)} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-            <Icon name="whatsapp" size={20} />
-            {hero.ctaPrimary}
-          </a>
-          <a href={hero.ctaSecondaryHref} class="link-arrow justify-center text-negro sm:justify-start">
-            <span class="link-line">{hero.ctaSecondary}</span>
-            <Icon name="arrow" size={16} class="btn-arrow" />
-          </a>
-        </div>
-        <div class="mt-9 max-w-[34rem]">
-          <Pespunte class="text-sepia" />
-          <div class="mt-4 overflow-hidden">
-            <ul class="hero-trust grid gap-1.5 text-small text-gris sm:flex sm:flex-wrap">
-              {trust.map((t) => <li>{t}</li>)}
-            </ul>
+    <div class="hero-copy">
+      <div class="container-x">
+        <div class="hero-copy-inner">
+          <h1 id="hero-titulo" class="hero-title text-display">
+            {lines.map((l, i) => (
+              <><span class:list={['hero-line', i === hero.emphasis && 'hero-enfasis italic']}>{l}</span>{i < lines.length - 1 && ' '}</>
+            ))}
+          </h1>
+          <p class="hero-sub text-lead">
+            {hero.subtitle}{hero.subtitleMore && <span class="hidden sm:inline lg:hidden xl:inline"> {hero.subtitleMore}</span>}
+          </p>
+          <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+            <a href={waLink(hero.ctaMessage)} target="_blank" rel="noopener" class:list={['btn btn-lg', dark ? 'btn-light' : 'btn-primary']}>
+              <Icon name="whatsapp" size={20} />
+              {hero.ctaPrimary}
+            </a>
+            <a href={hero.ctaSecondaryHref} class="hero-link link-arrow justify-center sm:justify-start">
+              <span class="link-line">{hero.ctaSecondary}</span>
+              <Icon name="arrow" size={16} class="btn-arrow" />
+            </a>
           </div>
-          {!site.city && <Todo text="ciudad y zona de cobertura para la línea de confianza" class="mt-3" />}
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Base del banner: la línea de confianza con el pespunte del logo -->
+  <div class="hero-pie">
+    <div class="container-x">
+      <div class="max-w-[34rem] lg:max-w-none lg:pr-44">
+        <Pespunte class="hero-hilo lg:max-w-[34rem]" />
+        <div class="mt-3 overflow-hidden">
+          <ul class="hero-trust grid gap-1.5 text-small sm:flex sm:flex-wrap">
+            {trust.map((t) => <li>{t}</li>)}
+          </ul>
+        </div>
+        {!site.city && <Todo text="ciudad y zona de cobertura para la línea de confianza" class="mt-3" />}
       </div>
     </div>
   </div>
@@ -76,37 +114,167 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
 
 <style>
   /*
-    Móvil: la foto completa, en su proporción natural. Desde 640px, proporción fija de banner; en escritorio,
-    además, un alto máximo según la pantalla para que el botón de cotizar quede dentro del primer pantallazo.
+    Colores según la foto (hero.json → tone). --suelo es el color del bloque: la foto se funde con él y el velo
+    bajo el texto sale de él, así el texto siempre tiene contraste AA sin depender de la imagen.
+    Medidas del escritorio: --borde es el margen izquierdo del contenido (el de container-x, alineado con el
+    logo), --texto el ancho del bloque de texto y --pie el alto de la base con la línea de confianza.
   */
-  @media (min-width: 640px) {
-    .hero-photo {
-      aspect-ratio: 1.9;
-    }
-    .hero-photo :global(.hero-img) {
-      height: 100%;
-      object-fit: cover;
-      object-position: 50% 80%;
-    }
+  .hero {
+    --suelo: var(--color-crema);
+    --titulo: var(--color-negro);
+    --enfasis: var(--color-esmeralda);
+    --suave: var(--color-gris);
+    --hilo: var(--color-sepia);
+    --velo-a: 76%;
+    --velo-b: 54%;
+    --borde: max(3rem, calc((100vw - 82.5rem) / 2 + 3rem));
+    --texto: 24rem;
+    --cola: 8rem;
+    --pie: 6rem;
+    background: var(--suelo);
+    padding-bottom: 3.5rem;
   }
-  @media (min-width: 1024px) {
-    .hero-photo {
-      aspect-ratio: 2.6;
-      min-height: 16rem;
-      max-height: calc(100svh - 28rem);
-      width: 100%;
-    }
+  .hero[data-tone='oscuro'] {
+    --suelo: var(--color-esmeralda-900);
+    --titulo: var(--color-crema);
+    --enfasis: var(--color-champana);
+    --suave: color-mix(in srgb, var(--color-crema) 88%, transparent);
+    --hilo: var(--color-champana);
+    --velo-a: 82%;
+    --velo-b: 62%;
   }
-  /* Titular: 4 renglones cortos en móvil; en escritorio corre en 2–3 renglones equilibrados. */
+
+  .hero-banner {
+    background: var(--suelo);
+  }
   .hero-title {
+    color: var(--titulo);
     font-size: clamp(2.15rem, 1.6rem + 3.4vw, 3.9rem);
   }
-  @media (min-width: 1024px) {
-    .hero-title {
-      text-wrap: balance;
+  .hero-enfasis {
+    color: var(--enfasis);
+  }
+  .hero-line {
+    display: block;
+  }
+  .hero-sub {
+    max-width: 34rem;
+    margin-top: 1.25rem;
+    color: var(--suave);
+  }
+  .hero-link {
+    color: var(--titulo);
+  }
+  .hero-pie {
+    margin-top: 2.25rem;
+  }
+  .hero-pie :global(.hero-hilo) {
+    color: var(--hilo);
+  }
+  .hero-trust {
+    color: var(--suave);
+  }
+
+  /* Celular: la foto cuadrada completa; su parte baja se funde con el suelo y el titular se monta encima. */
+  .hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-velo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, transparent 54%, color-mix(in srgb, var(--suelo) 80%, transparent) 84%, var(--suelo) 100%);
+  }
+  .hero-copy {
+    position: relative;
+    margin-top: -4.25rem;
+  }
+  @media (max-width: 767.98px) {
+    .hero--movil-ancha .hero-velo {
+      display: none;
+    }
+    .hero--movil-ancha .hero-copy {
+      margin-top: 2.75rem;
     }
   }
-  /* En fila: un punto sepia entre datos. El contenedor recorta el punto del primer dato de cada renglón. */
+
+  /* Tablet: la foto apaisada completa (2:1) y el texto debajo. */
+  @media (min-width: 768px) {
+    .hero-banner {
+      aspect-ratio: 2;
+      width: 100%;
+    }
+    .hero-img {
+      height: 100%;
+      object-fit: cover;
+      object-position: 100% 60%;
+    }
+    .hero-velo {
+      display: none;
+    }
+    .hero-copy {
+      margin-top: 3rem;
+    }
+  }
+
+  /* Escritorio: el banner llena la pantalla bajo el header; el texto va sobre la zona tranquila de la foto. */
+  @media (min-width: 1024px) {
+    .hero {
+      padding-bottom: 0;
+    }
+    .hero-banner {
+      aspect-ratio: auto;
+      height: clamp(30rem, min(100svh - 6.25rem - var(--pie), 100vw / 1.95), max(60rem, 42vw));
+    }
+    .hero-velo {
+      display: block;
+      background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--suelo) var(--velo-a), transparent) 0%,
+        color-mix(in srgb, var(--suelo) var(--velo-b), transparent) calc(var(--borde) + var(--texto)),
+        transparent calc(var(--borde) + var(--texto) + var(--cola))
+      );
+    }
+    .hero-copy {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    .hero-copy-inner {
+      max-width: var(--texto);
+    }
+    .hero-title {
+      font-size: 2.75rem;
+      text-wrap: wrap;
+    }
+    .hero-pie {
+      display: flex;
+      align-items: center;
+      min-height: var(--pie);
+      margin-top: 0;
+    }
+    .hero-pie > :global(*) {
+      flex: 1;
+    }
+  }
+  @media (min-width: 1280px) {
+    .hero {
+      --texto: 28rem;
+      --cola: 12rem;
+    }
+    .hero-title {
+      font-size: clamp(3rem, 1rem + 2.6vw, 3.9rem);
+    }
+    .hero-sub {
+      margin-top: 1.5rem;
+    }
+  }
+
+  /* En fila: un punto entre datos. El contenedor recorta el punto del primer dato de cada renglón. */
   @media (min-width: 640px) {
     .hero-trust {
       margin-left: -1.6rem;
@@ -124,17 +292,17 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
       height: 4px;
       margin-top: -2px;
       border-radius: 50%;
-      background: var(--color-sepia);
+      background: var(--hilo);
     }
   }
   /*
     Un solo momento de entrada. La foto y el titular nunca están invisibles (son el LCP): la foto se asienta
     con un movimiento corto, el texto sube 10px y el sello aparece después.
   */
-  .hero-photo :global(.hero-img) {
-    animation: hero-settle 1200ms var(--ease-salida) both;
+  .hero-img {
+    animation: hero-settle 1400ms var(--ease-salida) both;
   }
-  .hero-copy {
+  .hero-copy-inner {
     animation: hero-rise 900ms var(--ease-salida) both;
   }
   /* El sello es otro componente: se alcanza con :global. */
@@ -142,8 +310,8 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
     animation: fade-up 900ms var(--ease-salida) 350ms both;
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero-photo :global(.hero-img),
-    .hero-copy {
+    .hero-img,
+    .hero-copy-inner {
       animation: none;
     }
     :global(.hero-sello) {
@@ -152,7 +320,7 @@ const trust = site.city ? [`Taller en ${site.city}`, ...hero.trust] : hero.trust
   }
   @keyframes hero-settle {
     from {
-      transform: scale(1.025);
+      transform: scale(1.03);
     }
     to {
       transform: none;

@@ -1,14 +1,25 @@
 {
-  "_doc": "Hero: banner con una sola foto grande y el texto debajo. titleLines: cada elemento es un renglón en móvil (en escritorio corren juntos); emphasis = índice del renglón en itálica esmeralda. subtitleMore solo se ve desde 640px. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
-  "titleLines": ["Mobiliario", "hecho a mano", "para espacios", "con carácter"],
+  "_doc": "Hero: banner de borde a borde con una ambientación generada a partir de piezas del catálogo (ver scripts/media-map.json → hero-escritorio / hero-movil). imageDesktop (2:1) se usa desde 768px; imageMobile (cuadrada) en el celular. tone: \"oscuro\" o \"claro\" según la foto; cambia el color del texto, el botón y el fondo del bloque. Desde 1024px el texto va sobre la zona tranquila de la foto, a la izquierda; debajo de 1024 va debajo de la foto. titleLines: cada elemento es un renglón; emphasis = índice del renglón en itálica. subtitleMore se ve en tablet y desde 1280px. trust: solo hechos reales; la ciudad se añade sola desde site.json.",
+  "titleLines": [
+    "Mobiliario",
+    "hecho a mano",
+    "para espacios",
+    "con carácter"
+  ],
   "emphasis": 1,
   "subtitle": "Diseñamos, tapizamos y fabricamos a mano piezas a la medida, en tela y en cuero, para hoteles, restaurantes, galerías y casas de arquitecto.",
+  "subtitleMore": "Pocas piezas, hechas con tiempo y cuidado.",
   "ctaPrimary": "Cotizar un proyecto",
   "ctaMessage": "Hola, quiero cotizar un proyecto con La Tapicería.",
   "ctaSecondary": "Ver trabajos",
   "ctaSecondaryHref": "#trabajos",
-  "image": "sofa-listones",
-  "imageAlt": "Sofá de tres puestos tapizado en tela gris con patas de madera, frente a una pared de listones de madera, con plantas, mesas auxiliares y un tapete en tonos terracota y ocre",
-  "trust": ["Hecho a mano en nuestro taller", "Tapicería en tela y en cuero", "Piezas a la medida"],
-  "subtitleMore": "Pocas piezas, hechas con tiempo y cuidado."
+  "imageDesktop": "hero-escritorio",
+  "imageMobile": "hero-movil",
+  "tone": "claro",
+  "imageAlt": "Sala con un sofá de terciopelo chocolate de cojines mullidos y una manta verde esmeralda, junto a una butaca de cuero coñac con estructura de acero negro, una mesa auxiliar de madera oscura con un jarrón de barro y un olivo, sobre un tapete de lana frente a una pared de estuco crema iluminada por la luz de una ventana",
+  "trust": [
+    "Hecho a mano en nuestro taller",
+    "Tapicería en tela y en cuero",
+    "Piezas a la medida"
+  ]
 }

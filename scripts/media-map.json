@@ -1,6 +1,18 @@
 {
   "_doc": "Mapa de fotos de ./brand -> src/assets/photos/<slug>.jpg. crop = [left, top, width, height] en px del original y SOLO quita interfaz (contadores, íconos, barras negras) o alinea un par antes/después: nunca corta muebles. La página muestra cada foto completa, en su proporción. origen: propia | por-confirmar | riesgo-alto (inventario para la revisión de derechos, ver AUDITORIA.md §8). 'catalogo' = la foto aparece en el catálogo del cliente (Catalogo_Fabrica_La_Tapiceria_2026.pdf), con el nombre que le da.",
   "photos": {
+    "hero-escritorio": {
+      "src": "2026-11-13/hero-escritorio-v1.jpg",
+      "origen": "generada-ia",
+      "referencias": ["sofa-chocolate", "cuero-butaca-metal"],
+      "nota": "Ambientación generada con IA (ElevenLabs Creative, gpt-image-2.5-sunburst) a partir de dos piezas del catálogo: el sofá en terciopelo chocolate y la butaca en cuero coñac. Prompt y decisiones en AUDITORIA.md §14."
+    },
+    "hero-movil": {
+      "src": "2026-11-13/hero-escritorio-v1.jpg",
+      "origen": "generada-ia",
+      "referencias": ["sofa-chocolate", "cuero-butaca-metal"],
+      "nota": "Versión vertical (4:5) de la misma escena para el celular. PROVISIONAL: apunta a la de escritorio hasta generar la vertical."
+    },
     "cuero-comedor": {
       "src": "2026-10-28/WhatsApp Image 2026-10-21 at 8.21.13 PM (3).jpeg",
       "catalogo": "p. 9 · Comedor en cuero",
