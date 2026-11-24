@@ -11,7 +11,13 @@ import { waLink } from '../lib/whatsapp';
 import { has } from '../lib/flags';
 
 const contact = [
-  { key: 'whatsapp', icon: 'whatsapp', label: 'WhatsApp', value: site.whatsappDisplay, href: waLink() },
+  {
+    key: 'whatsapp',
+    icon: 'whatsapp',
+    label: 'WhatsApp',
+    value: site.whatsappDisplay,
+    href: waLink('¡Hola! Quisiera hablar con el taller. ¿Me orientan sobre fabricación a medida y retapizado?'),
+  },
   { key: 'email', icon: 'mail', label: 'Correo', value: site.email, href: site.email ? `mailto:${site.email}` : '' },
   { key: 'address', icon: 'pin', label: 'Taller', value: [site.address, site.city].filter(Boolean).join(', '), href: site.mapsUrl },
   { key: 'hours', icon: 'clock', label: 'Horario', value: site.hours.join(' · '), href: '' },
@@ -30,7 +36,7 @@ const rows = contact.filter((c) => has(c.value));
       </p>
       <p class="mt-4 font-serif text-[1.25rem] italic text-crema" data-reveal>{site.tagline}.</p>
       <div class="mt-9" data-reveal>
-        <a href={waLink('Hola, tenemos un proyecto y queremos cotizar con La Tapicería.')} target="_blank" rel="noopener" class="btn btn-light btn-lg">
+        <a href={waLink('¡Hola, La Tapicería! Tengo un proyecto en mente. ¿Puedo contarles cómo es el espacio y qué piezas necesito para recibir una cotización?')} target="_blank" rel="noopener" class="btn btn-light btn-lg">
           <Icon name="whatsapp" size={22} />
           Hablemos de tu proyecto
           <Icon name="arrow" size={18} class="btn-arrow" />

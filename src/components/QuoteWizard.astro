@@ -1,6 +1,5 @@
 ---
 import Icon from './Icon.astro';
-import { waBase } from '../lib/whatsapp';
 
 // Cotizador B2B: tipo de espacio → qué necesita → datos del proyecto. Sin backend: arma el mensaje de WhatsApp.
 const spaces = ['Hotel', 'Restaurante', 'Galería', 'Casa de arquitecto', 'Otro proyecto'];
@@ -17,7 +16,7 @@ const needs = ['Piezas a la medida', 'Tapizado en cuero', 'Retapizar mobiliario 
       </p>
     </div>
 
-    <form class="quote rounded-card bg-crema-50 p-5 text-negro shadow-soft sm:p-10 lg:col-span-7" novalidate data-quote data-wa-base={waBase} data-reveal>
+    <form class="quote rounded-card bg-crema-50 p-5 text-negro shadow-soft sm:p-10 lg:col-span-7" novalidate data-quote data-reveal>
       <div class="mb-8">
         <div class="label flex justify-between">
           <span data-q-label>Paso 1 de 3</span>
@@ -60,23 +59,23 @@ const needs = ['Piezas a la medida', 'Tapizado en cuero', 'Retapizar mobiliario 
         <div class="grid gap-5 sm:grid-cols-2">
           <div>
             <label for="q-nombre" class="field-label">Tu nombre</label>
-            <input id="q-nombre" name="nombre" type="text" class="field" required autocomplete="name" aria-describedby="q-error" />
+            <input id="q-nombre" name="nombre" type="text" class="field" placeholder="Ej. Ana Pérez" required autocomplete="name" aria-describedby="q-error" />
           </div>
           <div>
             <label for="q-empresa" class="field-label">Empresa o estudio <span class="font-normal text-gris">(opcional)</span></label>
-            <input id="q-empresa" name="empresa" type="text" class="field" autocomplete="organization" />
+            <input id="q-empresa" name="empresa" type="text" class="field" placeholder="Ej. Estudio de arquitectura" autocomplete="organization" />
           </div>
           <div>
             <label for="q-ciudad" class="field-label">Ciudad <span class="font-normal text-gris">(opcional)</span></label>
-            <input id="q-ciudad" name="ciudad" type="text" class="field" autocomplete="address-level2" />
+            <input id="q-ciudad" name="ciudad" type="text" class="field" placeholder="Ej. Medellín" autocomplete="address-level2" />
           </div>
           <div>
             <label for="q-piezas" class="field-label">Piezas aproximadas <span class="font-normal text-gris">(opcional)</span></label>
-            <input id="q-piezas" name="piezas" type="text" class="field" placeholder="Ej.: 12 sillas y 2 bancas" autocomplete="off" />
+            <input id="q-piezas" name="piezas" type="text" class="field" placeholder="Ej. 12 sillas y 2 bancas" autocomplete="off" />
           </div>
           <div class="sm:col-span-2">
             <label for="q-detalle" class="field-label">Cuéntanos más <span class="font-normal text-gris">(opcional)</span></label>
-            <textarea id="q-detalle" name="detalle" rows="3" class="field resize-y" placeholder="Medidas, materiales que te gustan, fecha de apertura o de entrega…"></textarea>
+            <textarea id="q-detalle" name="detalle" rows="3" class="field resize-y" placeholder="Ej. tela fácil de limpiar y entrega en junio"></textarea>
           </div>
         </div>
       </fieldset>
@@ -179,6 +178,8 @@ const needs = ['Piezas a la medida', 'Tapizado en cuero', 'Retapizar mobiliario 
 </style>
 
 <script>
+  import { waLink } from '../lib/whatsapp';
+
   const form = document.querySelector<HTMLFormElement>('[data-quote]');
   if (form) {
     const steps = [...form.querySelectorAll<HTMLFieldSetElement>('[data-q-step]')];
@@ -237,19 +238,21 @@ const needs = ['Piezas a la medida', 'Tapizado en cuero', 'Retapizar mobiliario 
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (current !== steps.length - 1) return;
       const msg = validate();
       if (msg) return void (error.textContent = msg);
       const lines = [
-        `Hola, soy ${val('nombre')}${val('empresa') ? ` de ${val('empresa')}` : ''}. Quiero cotizar un proyecto:`,
+        `¡Hola, La Tapicería! Soy ${val('nombre')} y quiero cotizar mi proyecto.`,
         `• Espacio: ${val('espacio')}`,
         `• Necesito: ${val('servicio')}`,
+        val('empresa') ? `• Empresa o estudio: ${val('empresa')}` : null,
         val('piezas') ? `• Piezas aproximadas: ${val('piezas')}` : null,
         val('ciudad') ? `• Ciudad: ${val('ciudad')}` : null,
         val('detalle') ? `• Detalles: ${val('detalle')}` : null,
         '',
-        '(Enviado desde la página web)',
+        '¿Me indican el siguiente paso para cotizar?',
       ].filter((l): l is string => l !== null);
-      const href = `${form.dataset.waBase}?text=${encodeURIComponent(lines.join('\n'))}`;
+      const href = waLink(lines.join('\n'));
       fallback.href = href;
       done.hidden = false;
       window.open(href, '_blank', 'noopener');

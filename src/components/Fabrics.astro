@@ -7,9 +7,8 @@ import Icon from './Icon.astro';
 import Pespunte from './ui/Pespunte.astro';
 import fabrics from '../data/fabrics.json';
 import { photo, ajuste } from '../lib/photos';
-import { waLink } from '../lib/whatsapp';
+import { fabricSampleLink } from '../lib/whatsapp';
 
-const msg = (name: string) => `Hola, me gustaría pedir una muestra de la tela «${name}». ¿Cómo la puedo recibir?`;
 const first = fabrics[0];
 ---
 
@@ -76,7 +75,7 @@ const first = fabrics[0];
         </p>
       </div>
 
-      <a href={waLink(msg(first.name))} target="_blank" rel="noopener" class="btn btn-primary btn-lg mt-6" data-fabric-cta>
+      <a href={fabricSampleLink(first.name)} target="_blank" rel="noopener" class="btn btn-primary btn-lg mt-6" data-fabric-cta>
         <Icon name="whatsapp" size={20} />
         Pedir muestra por WhatsApp
         <Icon name="arrow" size={16} class="btn-arrow" />
@@ -102,7 +101,7 @@ const first = fabrics[0];
 </style>
 
 <script>
-  import { waLink } from '../lib/whatsapp';
+  import { fabricSampleLink } from '../lib/whatsapp';
   const root = document.querySelector<HTMLElement>('[data-fabrics]');
   if (root) {
     const cta = root.querySelector<HTMLAnchorElement>('[data-fabric-cta]')!;
@@ -122,7 +121,7 @@ const first = fabrics[0];
           if (!el.hidden) name = el.querySelector('h3')?.textContent ?? '';
         });
         caption.textContent = name;
-        cta.href = waLink(`Hola, me gustaría pedir una muestra de la tela «${name}». ¿Cómo la puedo recibir?`);
+        cta.href = fabricSampleLink(name);
       });
     });
   }

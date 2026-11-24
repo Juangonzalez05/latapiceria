@@ -5,7 +5,7 @@
   "home": {
     "text": "¿Es para tu casa? También te acompañamos.",
     "cta": "Escríbenos",
-    "message": "Hola, quiero una pieza hecha a mano para mi casa."
+    "message": "¡Hola! Quiero hacer un mueble a medida o renovar uno que ya tengo. ¿Puedo mandarles una foto para que me orienten?"
   },
   "items": [
     {
@@ -15,7 +15,7 @@
       "cta": "Hablemos de tu hotel",
       "image": "habitacion-luz",
       "alt": "Habitación con cama tapizada, cabecero y mesas de noche",
-      "message": "Hola, tenemos un proyecto para un hotel y queremos cotizar piezas hechas a mano."
+      "message": "¡Hola! Queremos cotizar mobiliario tapizado para un hotel. ¿Podemos enviarles el listado de piezas y la fecha de apertura para revisar tiempos de producción?"
     },
     {
       "id": "restaurantes",
@@ -24,7 +24,7 @@
       "cta": "Hablemos de tu restaurante",
       "image": "cuero-comedor",
       "alt": "Dos sillas de comedor de madera tapizadas en cuero color coñac, sobre gravilla y frente a plantas altas",
-      "message": "Hola, tenemos un proyecto para un restaurante y queremos cotizar mobiliario tapizado."
+      "message": "¡Hola! Queremos cotizar asientos tapizados para un restaurante. ¿Qué telas o cueros recomiendan para el uso diario? Podemos compartirles las cantidades y las referencias."
     },
     {
       "id": "galerias",
@@ -33,7 +33,7 @@
       "cta": "Hablemos de tu galería",
       "image": "sillon-curvo",
       "alt": "Sillón de formas curvas tapizado en bouclé gris claro, junto a una pared clara",
-      "message": "Hola, tenemos un proyecto para una galería y queremos cotizar piezas a la medida."
+      "message": "¡Hola! Buscamos piezas a medida para una galería. ¿Podemos enviarles fotos del espacio y referencias para explorar opciones?"
     },
     {
       "id": "arquitectura",
@@ -42,7 +42,7 @@
       "cta": "Hablemos de tu proyecto",
       "image": "sofa-ocre",
       "alt": "Sofá modular de formas redondeadas tapizado en terciopelo ocre, sobre piso de madera y frente a una pared terracota",
-      "message": "Hola, somos un estudio de arquitectura y tenemos un proyecto residencial."
+      "message": "¡Hola! Estamos diseñando un proyecto residencial y queremos cotizar mobiliario a medida. ¿Podemos compartirles los planos y las referencias de acabados?"
     }
   ]
 }

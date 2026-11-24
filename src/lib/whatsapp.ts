@@ -1,17 +1,15 @@
 import site from '../data/site.json';
 
-/** Número en formato internacional solo dígitos (ej. 573001234567). Vacío = TODO. */
-export const waNumber = site.whatsapp.replace(/\D/g, '');
-export const hasWaNumber = waNumber.length > 0;
+const waNumber = site.whatsapp.replace(/\D/g, '');
 
 /**
  * Enlace de WhatsApp con mensaje prellenado.
  * Sin número configurado usa wa.me/?text=, que abre WhatsApp para elegir el chat.
  */
-export function waLink(message = 'Hola, quiero una cotización.'): string {
-  const text = encodeURIComponent(message);
-  return hasWaNumber ? `https://wa.me/${waNumber}?text=${text}` : `https://wa.me/?text=${text}`;
+export function waLink(message: string): string {
+  return `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
 }
 
-/** Base sin texto, para que el JS del cliente arme mensajes dinámicos. */
-export const waBase = hasWaNumber ? `https://wa.me/${waNumber}` : 'https://wa.me/';
+export function fabricSampleLink(name: string): string {
+  return waLink(`¡Hola! Me gustó la tela «${name}». ¿Está disponible y cómo puedo recibir una muestra para verla en mi espacio?`);
+}
